@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Bold';
+    src: url('../fonts/Stem-Bold.woff');
+}
+@font-face {
+    font-family: 'Medium';
+    src: url('../fonts/Stem-Medium.woff');
+}
+@font-face {
+    font-family: 'Regular';
+    src: url('../fonts/Stem-Regular.woff');
+}
+:root{
+    --bold: 'Bold';
+    --medium: 'Medium';
+    --regular: 'Regular';
+}
+
+@mixin main-title($size,$wieght,$height){
+    font-size: $size;
+    line-height: $height;
+    font-weight: $wieght;
+    font-family: var(--medium);
+}
+@mixin soft-title($size,$wieght,$height){
+    font-size: $size;
+    line-height: $height;
+    font-weight: $wieght;
+    font-family: var(--medium);
+}
+@mixin main-stroke($size,$wieght,$height){
+    font-size: $size;
+    line-height: $height;
+    font-weight: $wieght;
+    font-family: var(--bold);
+}
+@mixin main-description($size,$wieght,$height){
+    font-size: $size;
+    line-height: $height;
+    font-weight: $wieght;
+    font-family: var(--medium);
+}
+@mixin soft-description($size,$wieght,$height){
+    font-size: $size;
+    line-height: $height;
+    font-weight: $wieght;
+    font-family: var(--regular);
+}
+
+.main-title{
+    @include main-title(88px,500 ,100%);
+}
+.main-stroke{
+    @include main-stroke(240px,700 ,168px);
+    color: var(--black);
+}
+.main-description{
+    @include main-description(60px,500 ,72px);
+    color: var(--text-grey);
+}
+.soft-title{
+    @include soft-title(14px,500 ,20px);
+    color: var(--white);
+}
+.soft-description{
+    @include soft-description(20px,400 ,120%);
+    color: var(--white);
+}
