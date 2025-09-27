@@ -122,11 +122,23 @@
                 .item {
                     padding: 20rem 0rem;
                     width: 100%;
-                    border-top: 1rem solid #8F919A33;
                     display: flex;
                     align-items: center;
                     gap: 20rem;
                     justify-content: center;
+
+                    .line {
+                        position: absolute;
+                        top: -90rem;
+                        width: 100%;
+                        height: 200rem;
+
+                    }
+
+                    .line-bottom {
+                        top: auto;
+                        bottom: -90rem;
+                    }
 
                     .main-title {
                         color: var(--white);
@@ -153,16 +165,25 @@
                         }
                     }
 
+                    .circle-hero {
+                        width: 100%;
+                        height: 100%;
+                        background: var(--grey);
+                        border-radius: 60rem;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 0;
+                    }
+
                     .stoke-title {
                         display: flex;
                         align-items: center;
                         gap: 20rem;
                         max-width: 480rem;
-                        background: var(--grey);
-                        border-radius: 60rem;
                         padding: 8rem 0rem 8rem 20rem;
                         overflow: hidden;
-
+                        border-radius: 60rem;
                         .stroke-wrap {
                             display: flex;
                             gap: 40rem;
@@ -310,6 +331,19 @@
         padding-top: 200rem;
         width: 100%;
         overflow: hidden;
+
+        .content__img-inner {
+            border-radius: 12rem;
+        }
+
+        .content__img {
+            position: absolute;
+            width: 213rem;
+            height: 133rem;
+            opacity: 0;
+            scale: 0.2;
+            will-change: transform, opacity;
+        }
 
         &__top {
             margin: 0 auto;
@@ -469,8 +503,6 @@
 
     .longest.different {
         background: var(--black);
-        padding-top: 200rem;
-        margin-top: 0;
         padding-bottom: 200rem;
 
         .stroke-wrap {
@@ -480,9 +512,9 @@
 
     .longest {
         width: 100%;
-        margin-top: 200rem;
         padding-bottom: 200rem;
         overflow: hidden;
+        padding-top: 200rem;
 
         &__body {
             display: flex;
@@ -531,8 +563,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            padding-bottom: 600rem;
-            overflow: hidden;
+            padding-bottom: 0rem;
 
             .guarantees__top {
                 display: flex;
@@ -605,7 +636,7 @@
 
             .guarantees-circle {
                 position: absolute;
-                bottom: -432rem;
+                bottom: -832rem;
                 align-self: center;
                 width: 832rem;
                 height: 832rem;
@@ -615,7 +646,6 @@
 
     .case {
         width: 100%;
-        padding-top: 200rem;
         background: var(--black);
         overflow: hidden;
         padding-bottom: 200rem;
@@ -809,9 +839,6 @@
             flex-direction: column;
             width: 100%;
 
-            .item:last-child {
-                border-bottom: 1rem solid #FFFFFF33;
-            }
 
             .item {
                 padding: 20rem 0rem;
@@ -820,7 +847,18 @@
                 justify-content: center;
                 width: 100%;
                 gap: 20rem;
-                border-top: 1rem solid #FFFFFF33;
+
+                .line {
+                    position: absolute;
+                    top: -90rem;
+                    width: 100%;
+                    height: 200rem;
+                }
+
+                .line-bottom {
+                    top: auto;
+                    bottom: -90rem;
+                }
 
                 .main-title {
                     color: var(--white);

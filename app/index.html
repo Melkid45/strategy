@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <canvas id="dotCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;"></canvas>
     <header class="header">
         <div class="container">
             <div class="header__body">
@@ -31,6 +30,8 @@
     </header>
     <main class="main">
         <section class="hero-block">
+            <canvas id="dotCanvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="hero-block__body">
                     <div class="hero__body-items">
@@ -42,21 +43,53 @@
                                 <p class="soft-title">гарантия на разработку <br>
                                     и бесконечное продление</p>
                             </div>
+                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2"
+                                    fill="none" />
+                            </svg>
                         </div>
+    
+    
+    
                         <div class="item">
                             <span class="main-title">разработки и поддержки</span>
+                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2"
+                                    fill="none" />
+                            </svg>
                         </div>
+    
+    
+    
                         <div class="item">
                             <span class="main-title">любых сайтов</span>
+                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2"
+                                    fill="none" />
+                            </svg>
                         </div>
+    
+    
+    
                         <div class="item">
                             <span class="main-title">и приложений</span>
-                            <div class="stoke-title">
-                                <div class="stroke-wrap">
-                                    <span class="main-title">с безлимитной гарантией и технической поддержкой</span>
-                                    <span class="main-title">с безлимитной гарантией и технической поддержкой</span>
+                            <div class="wrap-animation">
+                                <div class="circle-hero"></div>
+                                <div class="stoke-title">
+                                    <div class="stroke-wrap">
+                                        <span class="main-title">с безлимитной гарантией и технической поддержкой</span>
+                                        <span class="main-title">с безлимитной гарантией и технической поддержкой</span>
+                                    </div>
                                 </div>
                             </div>
+                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2"
+                                    fill="none" />
+                            </svg>
+                            <svg class="line line-bottom" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2"
+                                    fill="none" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -86,24 +119,56 @@
                         </a>
                     </li>
                     <li class=" soft-title">
-                        <a class="ancor-item" href="">Агентство</a>
+                        <a class="ancor-item" href="#agency">Агентство</a>
                     </li>
                     <li class=" soft-title">
-                        <a class="ancor-item" href="">Кейсы</a>
+                        <a class="ancor-item" href="#case">Кейсы</a>
                     </li>
                     <li class=" soft-title">
-                        <a class="ancor-item" href="">Услуги</a>
+                        <a class="ancor-item" href="#services">Услуги</a>
                     </li>
                     <li class=" soft-title">
-                        <a class="ancor-item" href="">FAQ</a>
+                        <a class="ancor-item" href="#faq">FAQ</a>
                     </li>
                     <li class=" soft-title">
-                        <a class="ancor-item" href="">Контакты</a>
+                        <a class="ancor-item" href="#contact">Контакты</a>
                     </li>
                 </ul>
             </nav>
         </div>
-        <section class="agency">
+        <section id="agency" class="agency">
+            <div class="content">
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+            </div>
             <div class="agency__top">
                 <div class="title">
                     <div class="circle"></div>
@@ -264,11 +329,11 @@
                         </p>
                         <img src="../images/dist/quard.webp" alt="">
                     </div>
-                    <img class="guarantees-circle" src="../images/dist/quard-circle.png" alt="">
+                    <img class="guarantees-circle" src="../images/dist/quard-circle.svg" alt="">
                 </div>
             </div>
         </section>
-        <section class="case">
+        <section id="case" class="case">
             <div class="container">
                 <div class="case__body">
                     <div class="case__top">
@@ -422,7 +487,7 @@
                 </div>
             </div>
         </section>
-        <section class="services">
+        <section id="services" class="services">
             <div class="container">
                 <div class="services__body">
                     <div class="services__top">
@@ -517,6 +582,38 @@
             </div>
         </section>
         <section class="agency">
+            <div class="content">
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+            </div>
             <div class="agency__top">
                 <div class="title">
                     <div class="circle"></div>
@@ -539,6 +636,9 @@
             <div class="container">
                 <div class="implementation__body">
                     <div class="item">
+                        <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                            <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
+                        </svg>
                         <span class="main-title">Реализация</span>
                         <svg class="item-rotate" width="104" height="104" viewBox="0 0 104 104" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -565,12 +665,24 @@
                         </div>
                     </div>
                     <div class="item">
+                        <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                            <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
+                        </svg>
                         <span class="main-title">задачи — ключевая метрика</span>
                     </div>
                     <div class="item">
+                        <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                            <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
+                        </svg>
                         <span class="main-title">нашей работы. Быстро,</span>
                     </div>
                     <div class="item">
+                        <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                            <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
+                        </svg>
+                        <svg class="line line-bottom" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                            <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
+                        </svg>
                         <span class="main-title">понятно,</span>
                         <div class="stoke-title">
                             <div class="stroke-wrap">
@@ -724,7 +836,7 @@
                 </div>
             </div>
         </section>
-        <section class="faq">
+        <section id="faq" class="faq">
             <div class="container">
                 <div class="faq__body">
                     <div class="title">
@@ -831,7 +943,7 @@
                 </div>
             </div>
         </section>
-        <section class="contact">
+        <section id="contact" class="contact">
             <div class="container">
                 <div class="contact__body">
                     <div class="title">
@@ -879,6 +991,7 @@
             </div>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="../js/libs.min.js"></script>
     <script src="../js/main.min.js"></script>
 </body>
