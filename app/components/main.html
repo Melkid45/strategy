@@ -1,7 +1,7 @@
 <main class="main">
     <section class="hero-block">
         <canvas id="dotCanvas"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="hero-block__body">
                 <div class="hero__body-items">
@@ -107,38 +107,8 @@
         </nav>
     </div>
     <section id="agency" class="agency">
-        <div class="content">
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/1.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/2.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/3.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/1.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/2.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/3.webp" alt="">
-                </div>
-            </div>
-        </div>
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="agency__top">
             <div class="title">
                 <div class="circle"></div>
@@ -151,12 +121,47 @@
             <span>к которому приходят как с новыми идеями,</span>
             <span>так и с существующими проектами</span>
         </div>
+        <div class="wrap-agency-animation">
+            <div class="content">
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="agency-stroke">
             <div class="stroke-item main-stroke">Стратегия -</div>
             <div class="stroke-item main-stroke">Стратегия -</div>
         </div>
     </section>
     <section class="xcode">
+        <img class="dot-patern" src="../images/dist/dot-patern.svg" alt="">
         <div class="container">
             <div class="xcode__body">
                 <div class="xcode__top">
@@ -203,6 +208,93 @@
                         <p class="soft-description">Покупаем команду разработки <br>
                             Xcode и становимся Стратегией</p>
                     </div>
+                    <div class="item">
+                        <span class="age main-title">2024</span>
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M59.9995 34.4119V81.9119M59.9995 34.4119C59.9995 26.1276 53.284 19.4119 44.9995 19.4119H9.99951V24.8384C9.99951 47.8184 7.48456 70.7294 2.49951 93.1619V94.4119H44.9995C53.284 94.4119 59.9995 101.127 59.9995 109.412M59.9995 34.4119C59.9995 26.1276 66.715 19.4119 74.9995 19.4119H110V24.8384C110 47.8184 112.515 70.7294 117.5 93.1619V94.4119H74.9995C66.715 94.4119 59.9995 101.127 59.9995 109.412M59.9995 109.412V111.912"
+                                stroke="#FD4B03" stroke-width="4" />
+                        </svg>
+                        <p class="soft-description">Начинаем свою историю <br>
+                            с компании Broccoli</p>
+                    </div>
+                    <div class="item">
+                        <span class="age main-title">2013</span>
+                        <svg width="104" height="104" viewBox="0 0 104 104" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_28_722)">
+                                <path
+                                    d="M28.1669 91.0001C28.1669 85.7394 26.9051 80.6304 24.4963 75.969C24.0723 75.1483 23.5438 74.3878 22.9669 73.6667H2.16667V74.7501C5.00634 79.7196 6.5 85.2766 6.5 91.0001H43.3333M65 101.833H0M67.1667 41.1667C67.1667 35.9063 65.9052 30.797 63.4963 26.1355C63.0725 25.3151 62.5439 24.5545 61.9667 23.8334H41.1667V24.9167C44.0063 29.8862 45.5 35.4432 45.5 41.1667H82.3333M104 52.0001H65M62.8333 93.1667V82.333C62.8333 82.333 56.3333 77.9997 45.5 77.9997C41.1399 77.9997 37.4817 78.7016 34.6667 79.5406M101.833 43.3334V32.4995C101.833 32.4995 95.3333 28.1664 84.5 28.1664C80.1398 28.1664 76.4816 28.8684 73.6667 29.7073M44.85 69.3334C44.85 69.3334 37.9167 65.0001 37.9167 59.5834C37.9167 55.3952 41.3118 52.0001 45.5 52.0001C49.6882 52.0001 53.0647 55.3952 53.0647 59.5834C53.0647 65.0001 46.15 69.3334 46.15 69.3334H44.85ZM83.85 19.5001C83.85 19.5001 76.9167 15.1667 76.9167 9.75008C76.9167 5.56191 80.3118 2.16675 84.5 2.16675C88.6882 2.16675 92.0647 5.56191 92.0647 9.75008C92.0647 15.1667 85.15 19.5001 85.15 19.5001H83.85Z"
+                                    stroke="#BEBFC3" stroke-width="4" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_28_722">
+                                    <rect width="104" height="104" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="soft-description">Покупаем команду разработки <br>
+                            Xcode и становимся Стратегией</p>
+                    </div>
+                    <div class="item">
+                        <span class="age main-title">2024</span>
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M59.9995 34.4119V81.9119M59.9995 34.4119C59.9995 26.1276 53.284 19.4119 44.9995 19.4119H9.99951V24.8384C9.99951 47.8184 7.48456 70.7294 2.49951 93.1619V94.4119H44.9995C53.284 94.4119 59.9995 101.127 59.9995 109.412M59.9995 34.4119C59.9995 26.1276 66.715 19.4119 74.9995 19.4119H110V24.8384C110 47.8184 112.515 70.7294 117.5 93.1619V94.4119H74.9995C66.715 94.4119 59.9995 101.127 59.9995 109.412M59.9995 109.412V111.912"
+                                stroke="#FD4B03" stroke-width="4" />
+                        </svg>
+                        <p class="soft-description">Начинаем свою историю <br>
+                            с компании Broccoli</p>
+                    </div>
+                    <div class="item">
+                        <span class="age main-title">2013</span>
+                        <svg width="104" height="104" viewBox="0 0 104 104" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_28_722)">
+                                <path
+                                    d="M28.1669 91.0001C28.1669 85.7394 26.9051 80.6304 24.4963 75.969C24.0723 75.1483 23.5438 74.3878 22.9669 73.6667H2.16667V74.7501C5.00634 79.7196 6.5 85.2766 6.5 91.0001H43.3333M65 101.833H0M67.1667 41.1667C67.1667 35.9063 65.9052 30.797 63.4963 26.1355C63.0725 25.3151 62.5439 24.5545 61.9667 23.8334H41.1667V24.9167C44.0063 29.8862 45.5 35.4432 45.5 41.1667H82.3333M104 52.0001H65M62.8333 93.1667V82.333C62.8333 82.333 56.3333 77.9997 45.5 77.9997C41.1399 77.9997 37.4817 78.7016 34.6667 79.5406M101.833 43.3334V32.4995C101.833 32.4995 95.3333 28.1664 84.5 28.1664C80.1398 28.1664 76.4816 28.8684 73.6667 29.7073M44.85 69.3334C44.85 69.3334 37.9167 65.0001 37.9167 59.5834C37.9167 55.3952 41.3118 52.0001 45.5 52.0001C49.6882 52.0001 53.0647 55.3952 53.0647 59.5834C53.0647 65.0001 46.15 69.3334 46.15 69.3334H44.85ZM83.85 19.5001C83.85 19.5001 76.9167 15.1667 76.9167 9.75008C76.9167 5.56191 80.3118 2.16675 84.5 2.16675C88.6882 2.16675 92.0647 5.56191 92.0647 9.75008C92.0647 15.1667 85.15 19.5001 85.15 19.5001H83.85Z"
+                                    stroke="#BEBFC3" stroke-width="4" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_28_722">
+                                    <rect width="104" height="104" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="soft-description">Покупаем команду разработки <br>
+                            Xcode и становимся Стратегией</p>
+                    </div>
+                    <div class="item">
+                        <span class="age main-title">2024</span>
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M59.9995 34.4119V81.9119M59.9995 34.4119C59.9995 26.1276 53.284 19.4119 44.9995 19.4119H9.99951V24.8384C9.99951 47.8184 7.48456 70.7294 2.49951 93.1619V94.4119H44.9995C53.284 94.4119 59.9995 101.127 59.9995 109.412M59.9995 34.4119C59.9995 26.1276 66.715 19.4119 74.9995 19.4119H110V24.8384C110 47.8184 112.515 70.7294 117.5 93.1619V94.4119H74.9995C66.715 94.4119 59.9995 101.127 59.9995 109.412M59.9995 109.412V111.912"
+                                stroke="#FD4B03" stroke-width="4" />
+                        </svg>
+                        <p class="soft-description">Начинаем свою историю <br>
+                            с компании Broccoli</p>
+                    </div>
+                    <div class="item">
+                        <span class="age main-title">2013</span>
+                        <svg width="104" height="104" viewBox="0 0 104 104" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_28_722)">
+                                <path
+                                    d="M28.1669 91.0001C28.1669 85.7394 26.9051 80.6304 24.4963 75.969C24.0723 75.1483 23.5438 74.3878 22.9669 73.6667H2.16667V74.7501C5.00634 79.7196 6.5 85.2766 6.5 91.0001H43.3333M65 101.833H0M67.1667 41.1667C67.1667 35.9063 65.9052 30.797 63.4963 26.1355C63.0725 25.3151 62.5439 24.5545 61.9667 23.8334H41.1667V24.9167C44.0063 29.8862 45.5 35.4432 45.5 41.1667H82.3333M104 52.0001H65M62.8333 93.1667V82.333C62.8333 82.333 56.3333 77.9997 45.5 77.9997C41.1399 77.9997 37.4817 78.7016 34.6667 79.5406M101.833 43.3334V32.4995C101.833 32.4995 95.3333 28.1664 84.5 28.1664C80.1398 28.1664 76.4816 28.8684 73.6667 29.7073M44.85 69.3334C44.85 69.3334 37.9167 65.0001 37.9167 59.5834C37.9167 55.3952 41.3118 52.0001 45.5 52.0001C49.6882 52.0001 53.0647 55.3952 53.0647 59.5834C53.0647 65.0001 46.15 69.3334 46.15 69.3334H44.85ZM83.85 19.5001C83.85 19.5001 76.9167 15.1667 76.9167 9.75008C76.9167 5.56191 80.3118 2.16675 84.5 2.16675C88.6882 2.16675 92.0647 5.56191 92.0647 9.75008C92.0647 15.1667 85.15 19.5001 85.15 19.5001H83.85Z"
+                                    stroke="#BEBFC3" stroke-width="4" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_28_722">
+                                    <rect width="104" height="104" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <p class="soft-description">Покупаем команду разработки <br>
+                            Xcode и становимся Стратегией</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -216,22 +308,27 @@
                 </div>
                 <div class="awards__body-frame">
                     <div class="item">
+                        <img class="awards-img" src="../images/dist/awards.svg" alt="">
                         <span class="main-title">Премия Рунета</span>
                         <p class="soft-title">×1</p>
                     </div>
                     <div class="item">
+                        <img class="awards-img" src="../images/dist/awards.svg" alt="">
                         <span class="main-title">Рейтинг Рунета</span>
                         <p class="soft-title">×6</p>
                     </div>
                     <div class="item">
+                        <img class="awards-img" src="../images/dist/awards.svg" alt="">
                         <span class="main-title">Awwwards</span>
                         <p class="soft-title">×1</p>
                     </div>
                     <div class="item">
+                        <img class="awards-img" src="../images/dist/awards.svg" alt="">
                         <span class="main-title">Awards KZ</span>
                         <p class="soft-title">×1</p>
                     </div>
                     <div class="item">
+                        <img class="awards-img" src="../images/dist/awards.svg" alt="">
                         <span class="main-title">Золотой сайт</span>
                         <p class="soft-title">×3</p>
                     </div>
@@ -240,6 +337,7 @@
         </div>
     </section>
     <section class="longest">
+        <img class="dot-patern" src="../images/dist/dot-patern.svg" alt="">
         <div class="container">
             <div class="longest__body">
                 <p>Самая долгая <br>
@@ -263,6 +361,8 @@
         </div>
     </section>
     <section class="guarantees">
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="guarantees__body">
                 <div class="guarantees__top">
@@ -304,6 +404,8 @@
         </div>
     </section>
     <section id="case" class="case">
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="case__body">
                 <div class="case__top">
@@ -425,13 +527,20 @@
                         </div>
                     </div>
                 </div>
-                <button class="want-order soft-description">
-                    Заказать смету проекта
+                <button class="want-order ">
+                    <div class="circle-want"></div>
+                    <p class="black-mode soft-description">
+                        <span>Заказать смету проекта</span>
+                    </p>
+                    <p class="white-mode soft-description">
+                        <span>Заказать смету проекта</span>
+                    </p>
                 </button>
             </div>
         </div>
     </section>
     <section class="longest">
+        <img class="dot-patern" src="../images/dist/dot-patern.svg" alt="">
         <div class="container">
             <div class="longest__body">
                 <p>То, что мы научились <br>
@@ -552,38 +661,8 @@
         </div>
     </section>
     <section class="agency">
-        <div class="content">
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/1.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/2.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/3.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/1.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/2.webp" alt="">
-                </div>
-            </div>
-            <div class="content__img">
-                <div class="content__img-inner">
-                    <img src="../images/dist/projects/3.webp" alt="">
-                </div>
-            </div>
-        </div>
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="agency__top">
             <div class="title">
                 <div class="circle"></div>
@@ -597,12 +676,48 @@
             <span>и сверхсложные системы диспетчеризации</span>
             <span>и внутреннего операционного управления</span>
         </div>
+        <div class="wrap-agency-animation">
+            <div class="content">
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/1.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/2.webp" alt="">
+                    </div>
+                </div>
+                <div class="content__img">
+                    <div class="content__img-inner">
+                        <img src="../images/dist/projects/3.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="agency-stroke">
             <div class="stroke-item main-stroke">Проекты любого масштаба -</div>
             <div class="stroke-item main-stroke">Проекты любого масштаба -</div>
         </div>
     </section>
     <section class="implementation">
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="implementation__body">
                 <div class="item">
@@ -654,10 +769,13 @@
                         <path d="M0 100 L2000 100" stroke="#8F919A" stroke-opacity="0.3" stroke-width="2" fill="none" />
                     </svg>
                     <span class="main-title">понятно,</span>
-                    <div class="stoke-title">
-                        <div class="stroke-wrap">
-                            <span class="main-title">без лишних вопросов и бюрократии</span>
-                            <span class="main-title">без лишних вопросов и бюрократии</span>
+                    <div class="wrap-animation">
+                        <div class="circle-hero"></div>
+                        <div class="stoke-title">
+                            <div class="stroke-wrap">
+                                <span class="main-title">без лишних вопросов и бюрократии</span>
+                                <span class="main-title">без лишних вопросов и бюрократии</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -665,6 +783,7 @@
         </div>
     </section>
     <section class="longest different">
+        <img class="dot-patern" src="../images/dist/dot-patern-black.svg" alt="">
         <div class="container">
             <div class="longest__body">
                 <p>
@@ -690,7 +809,9 @@
             </div>
         </div>
     </section>
-    <section class="feedback">
+    <section id="feedback" class="feedback">
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="feedback__body">
                 <div class="feedback__top">
@@ -782,6 +903,7 @@
         </div>
     </section>
     <section class="longest different">
+        <img class="dot-patern" src="../images/dist/dot-patern-black.svg" alt="">
         <div class="container">
             <div class="longest__body">
                 <p>
@@ -888,6 +1010,7 @@
         </div>
     </section>
     <section class="longest">
+        <img class="dot-patern" src="../images/dist/dot-patern.svg" alt="">
         <div class="container">
             <div class="longest__body">
                 <p>
@@ -914,6 +1037,8 @@
         </div>
     </section>
     <section id="contact" class="contact">
+        <canvas id="dotCanvas"
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="contact__body">
                 <div class="title">

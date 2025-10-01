@@ -3,6 +3,23 @@
         font-size: calc(100vw / 1440);
     }
 
+    .cursor {
+        width: 16rem;
+        height: 16rem;
+        border-radius: 50%;
+        background: var(--orange);
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        will-change: transform;
+        margin-left: -8rem;
+        margin-top: -8rem;
+    }
+
     body {
         max-width: 1440rem;
         background: var(--grey);
@@ -20,7 +37,7 @@
     }
 
     .main-stroke {
-        @include main-stroke(240rem, 700, 168rem);
+        @include main-stroke(240rem, 700, 240rem);
         color: var(--black);
     }
 
@@ -111,7 +128,7 @@
         position: relative;
 
         &__body {
-            padding: 162rem 0rem;
+            padding: 122rem 0px 122rem 0px;
             width: 100%;
 
             .hero__body-items {
@@ -184,6 +201,7 @@
                         padding: 8rem 0rem 8rem 20rem;
                         overflow: hidden;
                         border-radius: 60rem;
+
                         .stroke-wrap {
                             display: flex;
                             gap: 40rem;
@@ -201,7 +219,7 @@
 
         &-scroll {
             position: absolute;
-            bottom: 44rem;
+            bottom: 40rem;
             right: 40rem;
             display: flex;
             align-items: center;
@@ -331,6 +349,7 @@
         padding-top: 200rem;
         width: 100%;
         overflow: hidden;
+        padding-bottom: 200rem;
 
         .content__img-inner {
             border-radius: 12rem;
@@ -368,8 +387,13 @@
             }
         }
 
+        .wrap-agency-animation {
+            width: 100%;
+            height: 400rem;
+            position: relative;
+        }
+
         .agency-stroke {
-            margin-top: 400rem;
             display: flex;
             align-items: center;
             gap: 40rem;
@@ -384,8 +408,9 @@
     }
 
     .xcode {
-        margin-top: 200rem;
-
+        .dot-patern{
+            bottom: -200rem;
+        }
         &__body {
             border-top: 1rem solid #FFFFFF33;
             width: 100%;
@@ -420,6 +445,7 @@
 
                 .item {
                     width: 427rem;
+                    min-width: 427rem;
                     height: 560rem;
                     padding: 40rem;
                     border-radius: 24rem;
@@ -456,6 +482,8 @@
     .awards {
         margin-top: 140rem;
         width: 100%;
+        position: relative;
+        z-index: 2;
 
         &__body {
             display: flex;
@@ -487,6 +515,13 @@
                     gap: 20.5rem;
                     cursor: pointer;
 
+                    img {
+                        width: 472rem;
+                        height: 550rem;
+                        object-fit: cover;
+                        z-index: 1;
+                    }
+
                     span {
                         color: var(--text-grey);
                         transition: all 0.3s ease;
@@ -510,11 +545,22 @@
         }
     }
 
+    .dot-patern {
+        position: absolute;
+        width: 1004rem;
+        height: 1004rem;
+        bottom: 150rem;
+        transform: translateX(-50%);
+        left: 50%;
+    }
+
     .longest {
         width: 100%;
         padding-bottom: 200rem;
         overflow: hidden;
         padding-top: 200rem;
+
+
 
         &__body {
             display: flex;
@@ -556,6 +602,7 @@
 
     .guarantees {
         width: 100%;
+        padding-bottom: 1200rem;
 
         &__body {
             padding-top: 64rem;
@@ -717,11 +764,12 @@
             }
 
             .want-order {
-                padding: 22rem 97.5rem;
-                background: var(--white);
+                width: 426rem;
+                height: 72rem;
+                background: transparent;
                 border-radius: 40rem;
-                color: var(--black);
-                max-width: max-content;
+                border: 1rem solid var(--white);
+                color: var(--white);
                 margin-top: 200rem;
                 align-self: center;
             }
@@ -760,7 +808,7 @@
                         }
 
                         span:nth-child(2) {
-                            opacity: 0;
+                            rotate: 360deg;
                         }
                     }
 
@@ -831,8 +879,9 @@
 
     .implementation {
         width: 100%;
-        margin-top: 200rem;
         padding-bottom: 200rem;
+        padding-top: 100rem;
+        height: 110vh;
 
         &__body {
             display: flex;
@@ -887,6 +936,17 @@
                         font-weight: 500;
                         color: var(--text-grey);
                     }
+                }
+
+                .circle-hero {
+                    width: 100%;
+                    height: 100%;
+                    background: var(--black);
+                    border-radius: 60rem;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 0;
                 }
 
                 .stoke-title {

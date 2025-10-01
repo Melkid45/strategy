@@ -398,71 +398,156 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Custom Cursor
 
-const canvas = document.getElementById('dotCanvas');
-const ctx = canvas.getContext('2d');
-
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-
-// фоновая сетка точек
-const spacing = 48;
-const dots = [];
-for(let y=spacing/2; y<h; y+=spacing){
-  for(let x=spacing/2; x<w; x+=spacing){
-    dots.push({x, y, r:2, targetR:2, opacity:0.5, targetOpacity:0.5});
-  }
-}
-
-// курсор
-const cursor = {x:w/2, y:h/2, tx:w/2, ty:h/2, vx:0, vy:0, speed:0};
-
-window.addEventListener('mousemove', e=>{
-  cursor.tx = e.clientX;
-  cursor.ty = e.clientY;
-});
-
-function draw(){
-  ctx.clearRect(0,0,w,h);
-
-  // движение курсора
-  let dx = cursor.tx - cursor.x;
-  let dy = cursor.ty - cursor.y;
-  cursor.vx += dx*0.2;
-  cursor.vy += dy*0.2;
-  cursor.vx *= 0.7;
-  cursor.vy *= 0.7;
-  cursor.x += cursor.vx;
-  cursor.y += cursor.vy;
-  cursor.speed = Math.sqrt(cursor.vx*cursor.vx + cursor.vy*cursor.vy);
-
-  // рисуем точки на фоне
-  dots.forEach(dot=>{
-    const dist = Math.hypot(dot.x - cursor.x, dot.y - cursor.y);
-    if(dist < 120){
-      dot.targetR = 1 + (120-dist)/50;
-      dot.targetOpacity = 0.5;
-    } else {
-      dot.targetR = 0.5;
-      dot.targetOpacity = 0;
+class DotCanvas {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        
+        this.w = this.canvas.width = this.canvas.offsetWidth;
+        this.h = this.canvas.height = this.canvas.offsetHeight;
+        
+        // фоновая сетка точек
+        this.spacing = 48;
+        this.dots = [];
+        this.initDots();
+        
+        // курсор
+        this.cursor = {x: this.w/2, y: this.h/2, tx: this.w/2, ty: this.h/2, vx: 0, vy: 0, speed: 0};
+        
+        this.setupEventListeners();
+        this.animate();
     }
-    dot.r += (dot.targetR - dot.r)*0.1;
-    dot.opacity += (dot.targetOpacity - dot.opacity)*0.1;
+    
+    initDots() {
+        for(let y = this.spacing/2; y < this.h; y += this.spacing){
+            for(let x = this.spacing/2; x < this.w; x += this.spacing){
+                this.dots.push({
+                    x, 
+                    y, 
+                    r: 2, 
+                    targetR: 2, 
+                    opacity: 0.5, 
+                    targetOpacity: 0.5
+                });
+            }
+        }
+    }
+    
+    setupEventListeners() {
+        // Обработчик движения мыши
+        this.handleMouseMove = (e) => {
+            const rect = this.canvas.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right && 
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                this.cursor.tx = e.clientX - rect.left;
+                this.cursor.ty = e.clientY - rect.top;
+            }
+        };
+        
+        window.addEventListener('mousemove', this.handleMouseMove);
+        
+        // Обработчик ресайза
+        this.handleResize = () => {
+            this.w = this.canvas.width = this.canvas.offsetWidth;
+            this.h = this.canvas.height = this.canvas.offsetHeight;
+            this.dots = [];
+            this.initDots();
+        };
+        
+        window.addEventListener('resize', this.handleResize);
+    }
+    
+    draw() {
+        this.ctx.clearRect(0, 0, this.w, this.h);
 
-    ctx.beginPath();
-    ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(255,255,255,${dot.opacity})`;
-    ctx.fill();
-  });
+        // движение курсора
+        let dx = this.cursor.tx - this.cursor.x;
+        let dy = this.cursor.ty - this.cursor.y;
+        this.cursor.vx += dx * 0.2;
+        this.cursor.vy += dy * 0.2;
+        this.cursor.vx *= 0.7;
+        this.cursor.vy *= 0.7;
+        this.cursor.x += this.cursor.vx;
+        this.cursor.y += this.cursor.vy;
+        this.cursor.speed = Math.sqrt(this.cursor.vx * this.cursor.vx + this.cursor.vy * this.cursor.vy);
 
-  requestAnimationFrame(draw);
+        // рисуем точки на фоне
+        this.dots.forEach(dot => {
+            const dist = Math.hypot(dot.x - this.cursor.x, dot.y - this.cursor.y);
+            if(dist < 120){
+                dot.targetR = 1 + (120 - dist) / 50;
+                dot.targetOpacity = 0.5;
+            } else {
+                dot.targetR = 0.5;
+                dot.targetOpacity = 0;
+            }
+            dot.r += (dot.targetR - dot.r) * 0.1;
+            dot.opacity += (dot.targetOpacity - dot.opacity) * 0.1;
+
+            this.ctx.beginPath();
+            this.ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${dot.opacity})`;
+            this.ctx.fill();
+        });
+    }
+    
+    animate() {
+        this.draw();
+        requestAnimationFrame(() => this.animate());
+    }
+    
+    destroy() {
+        window.removeEventListener('mousemove', this.handleMouseMove);
+        window.removeEventListener('resize', this.handleResize);
+    }
 }
 
-draw();
+// Инициализация всех canvas на странице
+class DotCanvasManager {
+    constructor() {
+        this.canvases = new Map();
+        this.init();
+    }
+    
+    init() {
+        const canvasElements = document.querySelectorAll('#dotCanvas, .dotCanvas, canvas[data-dot-canvas]');
+        
+        canvasElements.forEach((canvas, index) => {
+            // Даем уникальный ID если его нет
+            if (!canvas.id) {
+                canvas.id = `dotCanvas-${index}`;
+            }
+            
+            const dotCanvas = new DotCanvas(canvas);
+            this.canvases.set(canvas.id, dotCanvas);
+        });
+    }
+    
+    getCanvas(id) {
+        return this.canvases.get(id);
+    }
+    
+    destroy() {
+        this.canvases.forEach(canvas => canvas.destroy());
+        this.canvases.clear();
+    }
+}
 
-window.addEventListener('resize', ()=>{
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    window.dotCanvasManager = new DotCanvasManager();
 });
+
+// Если нужно добавить canvas динамически
+function addDotCanvas(canvasElement) {
+    if (!window.dotCanvasManager) {
+        window.dotCanvasManager = new DotCanvasManager();
+    }
+    
+    const dotCanvas = new DotCanvas(canvasElement);
+    window.dotCanvasManager.canvases.set(canvasElement.id || `dotCanvas-${Date.now()}`, dotCanvas);
+    return dotCanvas;
+}
 
 
 
@@ -563,6 +648,77 @@ document.addEventListener('mouseleave', () => {
         });
     });
 });
+gsap.to('.hero-block .circle-hero',{
+  scale: 15,
+  yPercent: -50,
+  xPercent: -70,
+  scrollTrigger: {
+    trigger: '.hero-block',
+    start: 'top top',
+    end: '+=50%',
+    scrub: 1,
+    pin: true,
+    pinSpacing: false,
+  }
+})
+
+
+// Cards Xcode
+
+
+let xcodeContainer = document.querySelector('.xcode-cards');
+let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
+let xcodeItemWidth = xcodeItems[0].offsetWidth;
+let xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
+let formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
+
+// Основная анимация движения карточек
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.xcode',
+    start: '+=40%',
+    end: `+=${formula}`,
+    pin: true,
+    scrub: 1
+  }
+});
+
+tl.to('.xcode-cards', {
+  x: -formula,
+  ease: 'power1.inOut'
+});
+
+// Убираем актив у всех, ставим у первой
+xcodeItems.forEach(el => el.classList.remove('active'));
+xcodeItems[0].classList.add('active');
+
+// Для каждой карточки создаём ScrollTrigger
+xcodeItems.forEach((item, i) => {
+  ScrollTrigger.create({
+    trigger: '.xcode-cards',
+    start: () => `top+=${i * (xcodeItemWidth + xcodeGap)} center`,
+    end: () => `top+=${(i + 1) * (xcodeItemWidth + xcodeGap)} center`,
+    scrub: true,
+    onEnter: () => setActive(i),
+    onEnterBack: () => setActive(i)
+  });
+});
+
+// Функция установки активной карточки
+function setActive(index) {
+  xcodeItems.forEach(el => el.classList.remove('active'));
+  xcodeItems[index].classList.add('active');
+}
+
+// Обновление при ресайзе
+window.addEventListener('resize', () => {
+  xcodeItemWidth = xcodeItems[0].offsetWidth;
+  xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
+  formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
+  ScrollTrigger.refresh();
+});
+
+
 
 // Гарантии 
 
@@ -573,14 +729,26 @@ gsap.to('.guarantees-circle', {
   rotate: 90,
   scrollTrigger: {
     trigger: '.guarantees',
-    start: '+=70%',
+    start: '+=45%',
     end: '+=200%',
     scrub: 1,
     pin: true,
-    pinSpacing: true
+    pinSpacing: false
   }
 })
-
+gsap.to('.implementation .circle-hero',{
+  scale: 15,
+  yPercent: -50,
+  xPercent: -70,
+  scrollTrigger: {
+    trigger: '.implementation',
+    start: 'top top',
+    end: '+=50%',
+    scrub: 1,
+    pin: true,
+    pinSpacing: false,
+  }
+})
 
 gsap.set('.feedback-form, .guarantees-section', {
   yPercent: -85,
@@ -614,19 +782,29 @@ gsap.to('.feedback-form', {
 
 
 
-
-
 // Agency
-
-
-
 
 
 
 class AgencyTrail {
     constructor(agencyElement) {
         this.agency = agencyElement;
-        this.content = this.agency.querySelector('.content');
+        this.animationContainer = this.agency.querySelector('.wrap-agency-animation');
+        
+        // Если контейнер анимации не найден, отключаем функциональность
+        if (!this.animationContainer) {
+            this.isValid = false;
+            return;
+        }
+        
+        this.isValid = true;
+        this.content = this.animationContainer.querySelector('.content');
+        
+        // Если внутри контейнера нет content, ищем в родительских элементах
+        if (!this.content) {
+            this.content = this.agency.querySelector('.content');
+        }
+        
         this.images = Array.from(this.content.querySelectorAll('.content__img'));
         this.imgInners = Array.from(this.content.querySelectorAll('.content__img-inner'));
         
@@ -641,57 +819,105 @@ class AgencyTrail {
         this.isPaused = false;
         
         this.activationDistance = 80;
-        this.agencyRect = this.agency.getBoundingClientRect();
+        this.animationRect = this.animationContainer.getBoundingClientRect();
+        
+        // Для управления анимациями
+        this.activeAnimations = new Map();
+        this.hideAnimation = null;
         
         this.init();
     }
     
     init() {
-        // Сразу скрываем все изображения
+        if (!this.isValid) return;
+        
         this.hideAllImages();
         this.setupEventListeners();
         this.startTracking();
     }
     
     setupEventListeners() {
-        this.agency.addEventListener('mousemove', (e) => {
-            this.updateAgencyRect();
-            this.mouse.x = e.clientX - this.agencyRect.left;
-            this.mouse.y = e.clientY - this.agencyRect.top;
+        if (!this.isValid) return;
+        
+        // Основные события мыши на контейнере анимации
+        this.animationContainer.addEventListener('mousemove', (e) => {
+            this.updateAnimationRect();
+            this.mouse.x = e.clientX - this.animationRect.left;
+            this.mouse.y = e.clientY - this.animationRect.top;
         });
         
-        this.agency.addEventListener('mouseenter', (e) => {
+        this.animationContainer.addEventListener('mouseenter', (e) => {
             this.isPaused = false;
-            this.updateAgencyRect();
-            this.mouse.x = e.clientX - this.agencyRect.left;
-            this.mouse.y = e.clientY - this.agencyRect.top;
+            this.updateAnimationRect();
+            this.mouse.x = e.clientX - this.animationRect.left;
+            this.mouse.y = e.clientY - this.animationRect.top;
             this.cacheMouse.x = this.mouse.x;
             this.cacheMouse.y = this.mouse.y;
             this.lastMouse.x = this.mouse.x;
             this.lastMouse.y = this.mouse.y;
+            
+            // Отменяем анимацию скрытия
+            if (this.hideAnimation) {
+                this.hideAnimation.kill();
+                this.hideAnimation = null;
+            }
         });
         
-        this.agency.addEventListener('mouseleave', () => {
-            this.isPaused = true;
-            // При выходе СКРЫВАЕМ все элементы
-            this.hideAllImages();
+        this.animationContainer.addEventListener('mouseleave', (e) => {
+            // Проверяем, что курсор действительно вышел из контейнера анимации
+            if (!this.isCursorInAnimationContainer(e)) {
+                this.isPaused = true;
+                this.hideAllImagesSmoothly();
+            }
         });
         
-        this.agency.querySelectorAll('a, button, [data-no-hover]').forEach(el => {
-            el.addEventListener('mouseenter', () => this.isPaused = true);
-            el.addEventListener('mouseleave', () => this.isPaused = false);
+        // Для фиксированной шапки - отслеживаем движение по всему документу
+        document.addEventListener('mousemove', (e) => {
+            if (!this.isPaused) return;
+            
+            // Если анимация на паузе (мышь покинула контейнер), но курсор вернулся в контейнер
+            if (this.isCursorInAnimationContainer(e)) {
+                this.isPaused = false;
+                if (this.hideAnimation) {
+                    this.hideAnimation.kill();
+                    this.hideAnimation = null;
+                }
+                
+                this.updateAnimationRect();
+                this.mouse.x = e.clientX - this.animationRect.left;
+                this.mouse.y = e.clientY - this.animationRect.top;
+                this.cacheMouse.x = this.mouse.x;
+                this.cacheMouse.y = this.mouse.y;
+                this.lastMouse.x = this.mouse.x;
+                this.lastMouse.y = this.mouse.y;
+            }
         });
         
         window.addEventListener('resize', () => {
-            this.updateAgencyRect();
+            this.updateAnimationRect();
         });
     }
     
-    updateAgencyRect() {
-        this.agencyRect = this.agency.getBoundingClientRect();
+    // Точная проверка нахождения курсора в контейнере анимации
+    isCursorInAnimationContainer(e) {
+        const rect = this.animationContainer.getBoundingClientRect();
+        const buffer = 2; // Небольшой буфер для предотвращения ложных срабатываний
+        
+        return (
+            e.clientX >= rect.left - buffer &&
+            e.clientX <= rect.right + buffer &&
+            e.clientY >= rect.top - buffer &&
+            e.clientY <= rect.bottom + buffer
+        );
+    }
+    
+    updateAnimationRect() {
+        this.animationRect = this.animationContainer.getBoundingClientRect();
     }
     
     startTracking() {
+        if (!this.isValid) return;
+        
         gsap.ticker.add(() => {
             if (!this.isPaused) {
                 this.cacheMouse.x = this.lerp(this.cacheMouse.x, this.mouse.x, 0.1);
@@ -723,7 +949,7 @@ class AgencyTrail {
     }
     
     spawnImage() {
-        if (this.isPaused) return;
+        if (this.isPaused || !this.isValid) return;
         
         this.activeImagesCount++;
         this.isIdle = false;
@@ -734,13 +960,14 @@ class AgencyTrail {
         const currentImg = this.images[this.activeIndex];
         const currentInner = this.imgInners[this.activeIndex];
         
-        gsap.killTweensOf(currentImg);
-        gsap.killTweensOf(currentInner);
+        // Останавливаем предыдущие анимации для этого элемента
+        if (this.activeAnimations.has(currentImg)) {
+            this.activeAnimations.get(currentImg).kill();
+        }
         
         const imgRect = currentImg.getBoundingClientRect();
         
-        // ВАЖНО: Сбрасываем позицию перед анимацией
-        // Устанавливаем начальную позицию прямо под курсором
+        // Устанавливаем начальную позицию относительно контейнера анимации
         gsap.set(currentImg, {
             x: this.mouse.x - imgRect.width / 2,
             y: this.mouse.y - imgRect.height / 2,
@@ -756,10 +983,15 @@ class AgencyTrail {
         
         const timeline = gsap.timeline({
             onStart: () => this.onImageActivate(),
-            onComplete: () => this.onImageComplete()
+            onComplete: () => {
+                this.onImageComplete();
+                this.activeAnimations.delete(currentImg);
+            }
         });
         
-        // Анимация начинается ИЗ ТОЧКИ КУРСОРА, а не прыгает
+        // Сохраняем анимацию для возможности отмены
+        this.activeAnimations.set(currentImg, timeline);
+        
         timeline.to(currentImg, {
             duration: 0.4,
             ease: "power1.out",
@@ -782,17 +1014,80 @@ class AgencyTrail {
     }
     
     hideAllImages() {
-        // Полностью скрываем все изображения
+        if (!this.isValid) return;
+        
+        // Мгновенное скрытие всех изображений
         this.images.forEach(img => {
-            gsap.killTweensOf(img);
             gsap.set(img, {
                 opacity: 0,
                 scale: 0.2
             });
         });
+        
+        // Останавливаем все активные анимации
+        this.activeAnimations.forEach((animation, img) => {
+            animation.kill();
+        });
+        this.activeAnimations.clear();
+        
+        if (this.hideAnimation) {
+            this.hideAnimation.kill();
+            this.hideAnimation = null;
+        }
+        
         this.activeImagesCount = 0;
         this.isIdle = true;
         this.zIndex = 1;
+    }
+    
+    hideAllImagesSmoothly() {
+        if (!this.isValid) return;
+        
+        // Останавливаем все активные анимации появления
+        this.activeAnimations.forEach((animation, img) => {
+            animation.kill();
+        });
+        this.activeAnimations.clear();
+        
+        // Останавливаем предыдущую анимацию скрытия
+        if (this.hideAnimation) {
+            this.hideAnimation.kill();
+        }
+        
+        // Плавно скрываем все видимые изображения
+        const visibleImages = this.images.filter(img => {
+            const opacity = gsap.getProperty(img, "opacity");
+            return opacity > 0;
+        });
+        
+        if (visibleImages.length === 0) {
+            this.activeImagesCount = 0;
+            this.isIdle = true;
+            return;
+        }
+        
+        this.hideAnimation = gsap.timeline({
+            onComplete: () => {
+                this.activeImagesCount = 0;
+                this.isIdle = true;
+                this.zIndex = 1;
+                this.hideAnimation = null;
+            }
+        });
+        
+        visibleImages.forEach(img => {
+            const currentScale = gsap.getProperty(img, "scale");
+            const currentOpacity = gsap.getProperty(img, "opacity");
+            
+            // Продолжаем с текущего состояния, а не начинаем заново
+            this.hideAnimation.to(img, {
+                duration: 0.3,
+                ease: "power2.out",
+                opacity: 0,
+                scale: currentScale * 0.5, // Плавно уменьшаем от текущего размера
+                overwrite: true
+            }, 0);
+        });
     }
     
     onImageActivate() {
@@ -817,9 +1112,12 @@ class AgencyTrailManager {
         const agencySections = document.querySelectorAll('.agency');
         
         agencySections.forEach((agency) => {
-            if (agency.querySelector('.content')) {
+            // Проверяем наличие контейнера анимации
+            if (agency.querySelector('.wrap-agency-animation')) {
                 const trail = new AgencyTrail(agency);
-                this.agencyTrails.push(trail);
+                if (trail.isValid) {
+                    this.agencyTrails.push(trail);
+                }
             }
         });
     }
@@ -832,26 +1130,55 @@ document.addEventListener('DOMContentLoaded', () => {
 // Main block
 
 
-// gsap.to('.circle-hero',{
-//   scale: 15,
-//   yPercent: -50,
-//   xPercent: -70,
-//   scrollTrigger: {
-//     trigger: '.hero-block',
-//     start: 'top top',
-//     end: '+=100%',
-//     scrub: 1,
-//     markers: true
-//   }
-// })
-// gsap.to('.stoke-title',{
-//   opacity: 0,
-//   scrollTrigger: {
-//     trigger: '.hero-block',
-//     start: 'top top',
-//     end: '+=30%',
-//     scrub: 1,
-//   }
-// })
+
+gsap.to('.hero-block .stoke-title',{
+  opacity: 0,
+  scrollTrigger: {
+    trigger: '.hero-block__body',
+    start: 'top top',
+    end: '+=10%',
+    scrub: 1,
+  }
+})
+
+gsap.to('.implementation .stoke-title',{
+  opacity: 0,
+  scrollTrigger: {
+    trigger: '.implementation__body',
+    start: 'top top',
+    end: '+=10%',
+    scrub: 1,
+  }
+})
 
 
+
+class CustomCursor {
+    constructor() {
+        this.cursor = document.querySelector('.cursor');
+        
+        this.init();
+    }
+    
+    init() {
+        // Скрываем стандартный курсор
+        document.body.style.cursor = 'none';
+        
+        // Показываем кастомный курсор
+        this.cursor.style.opacity = '1';
+        
+        this.setupEventListeners();
+    }
+    
+    setupEventListeners() {
+        // Отслеживаем движение мыши и сразу обновляем позицию
+        document.addEventListener('mousemove', (e) => {
+            this.cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    new CustomCursor();
+});

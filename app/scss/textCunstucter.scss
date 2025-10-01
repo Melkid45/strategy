@@ -48,10 +48,10 @@
 }
 
 .main-title{
-    @include main-title(88px,500 ,100%);
+    @include main-title(88px,500 ,120%);
 }
 .main-stroke{
-    @include main-stroke(240px,700 ,168px);
+    @include main-stroke(240px,700 ,240px);
     color: var(--black);
 }
 .main-description{

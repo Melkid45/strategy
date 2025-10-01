@@ -8,8 +8,35 @@ body{
     max-width: 1440px;
     background: var(--grey);
     margin: 0 auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+*{
+    cursor: none;
+}
+.cursor {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--orange);
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+    margin-left: -8px;
+    margin-top: -8px;
 }
 
+/* Скрываем на тач-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .cursor {
+        display: none;
+    }
+}
 .container{
     width: 100%;
     margin: 0 auto;
