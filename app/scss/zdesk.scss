@@ -123,7 +123,7 @@
 
     .hero-block {
         width: 100%;
-        height: 100vh;
+        height: 110vh;
         background: var(--black);
         position: relative;
 
@@ -408,9 +408,10 @@
     }
 
     .xcode {
-        .dot-patern{
+        .dot-patern {
             bottom: -200rem;
         }
+
         &__body {
             border-top: 1rem solid #FFFFFF33;
             width: 100%;
@@ -506,6 +507,15 @@
                     }
                 }
 
+                .item:hover+.item span {
+                    z-index: 0;
+                }
+
+                // Предыдущий элемент
+                .item:has(+ .item:hover) span {
+                    z-index: 0;
+                }
+
                 .item {
                     width: 100%;
                     padding: 20rem 0rem;
@@ -514,7 +524,6 @@
                     justify-content: center;
                     gap: 20.5rem;
                     cursor: pointer;
-
                     img {
                         width: 472rem;
                         height: 550rem;
@@ -525,6 +534,8 @@
                     span {
                         color: var(--text-grey);
                         transition: all 0.3s ease;
+                        position: relative;
+                        z-index: 2;
                     }
 
                     p {
@@ -683,7 +694,7 @@
 
             .guarantees-circle {
                 position: absolute;
-                bottom: -832rem;
+                bottom: -1032rem;
                 align-self: center;
                 width: 832rem;
                 height: 832rem;
@@ -808,7 +819,13 @@
                         }
 
                         span:nth-child(2) {
-                            rotate: 360deg;
+                            width: 0;
+                        }
+                    }
+
+                    .item__top {
+                        h3 {
+                            color: var(--white) !important;
                         }
                     }
 
@@ -881,7 +898,7 @@
         width: 100%;
         padding-bottom: 200rem;
         padding-top: 100rem;
-        height: 110vh;
+        height: 115vh;
 
         &__body {
             display: flex;
@@ -974,7 +991,7 @@
     .feedback {
         width: 100%;
         background: var(--black);
-
+        padding-top: 100rem;
         &__body {
             display: flex;
             flex-direction: column;
@@ -1103,8 +1120,13 @@
                             background: transparent;
                             color: var(--white);
                             resize: none;
+                            min-height: 56rem;
+                            max-height: 150rem;
                         }
-
+                        textarea::-webkit-scrollbar{
+                            width: 0;
+                            height: 0;
+                        }
                         textarea::placeholder {
                             color: var(--white);
                         }
