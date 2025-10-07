@@ -42,6 +42,7 @@
                 align-items: center;
                 gap: 20px;
                 justify-content: center;
+
                 .line {
                     position: absolute;
                     top: -90px;
@@ -106,6 +107,7 @@
                     overflow: hidden;
                     border-radius: 60px;
                     position: relative;
+
                     .stroke-wrap {
                         display: flex;
                         gap: 40px;
@@ -330,6 +332,7 @@
         flex-wrap: nowrap;
         position: relative;
         z-index: 5;
+
         .stroke-item {
             white-space: nowrap;
             text-transform: uppercase;
@@ -710,7 +713,8 @@
         }
 
         .want-order:hover {
-            .circle-want {
+            background:#fff, #15151933;
+            /*.circle-want {
                 transform: translate(0px, 0px) scale(1);
             }
 
@@ -719,6 +723,7 @@
                     transform: translateY(0%);
                 }
             }
+                */
         }
 
         .want-order {
@@ -726,8 +731,8 @@
             height: 72px;
             display: flex;
             justify-content: center;
-            background: transparent;
             border: 1px solid var(--white);
+            border: none !important;
             border-radius: 40px;
             color: var(--white);
             margin-top: 200px;
@@ -735,7 +740,10 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-
+            background: var(--white);
+            transition: all 0.3s ease;
+            color: var(--black) !important;
+            /*
             .white-mode {
                 span {
                     transform: translateY(100%);
@@ -770,6 +778,7 @@
                 transform: translate(0px, 75%) scale(0, 0);
                 transition: all 0.5s ease;
             }
+                */
         }
     }
 }
@@ -1388,7 +1397,9 @@
                         color: var(--grey);
                         transition: all 0.4s ease;
                     }
-
+                    button:hover{
+                        background: #8F919A33;
+                    }
                     button {
                         width: 64px;
                         height: 48px;
@@ -1400,7 +1411,6 @@
                         border-radius: 40px;
                         border: 1px solid #FFFFFF33;
                         transition: all 0.4s ease;
-
                         span {
                             width: 16px;
                             height: 2px;

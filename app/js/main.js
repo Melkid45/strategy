@@ -122,75 +122,95 @@ lenis.on('scroll', ({ scroll }) => {
 });
 
 
+let isReady = false;
+
+// === ИНИЦИАЛИЗАЦИЯ после полной загрузки ===
 window.addEventListener('load', () => {
-  // Сначала даем время на полную инициализацию
-  setTimeout(() => {
-    // Обновляем ScrollTrigger после полной загрузки
-    ScrollTrigger.refresh();
+  const waitForReady = () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof lenis === 'undefined') {
+      console.warn('⏳ Ждем GSAP / ScrollTrigger / Lenis...');
+      return requestAnimationFrame(waitForReady);
+    }
 
-    // Сбрасываем позицию скролла
-    lenis.scrollTo(0, { immediate: true });
+    // Убеждаемся, что GSAP уже все зарегистрировал
+    gsap.delayedCall(0.3, () => {
+      ScrollTrigger.refresh(true);
 
-    // Инициализируем обработчики якорных ссылок
-    initAnchorLinks();
-  }, 100);
+      lenis.scrollTo(0, { immediate: true });
+
+      // Двойной кадр — ждём пока все layout'ы инициализируются
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          initAnchorLinks();
+          isReady = true;
+          console.log('✅ Anchor links initialized (GSAP + Lenis ready)');
+        });
+      });
+    });
+  };
+
+  // Даем 300 мс буфера после window.load
+  setTimeout(waitForReady, 300);
 });
 
-// Функция для инициализации якорных ссылок
+// === ФУНКЦИЯ для якорных ссылок ===
 function initAnchorLinks() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Проверяем, готовы ли Lenis и GSAP
-      if (typeof lenis === 'undefined' || !ScrollTrigger) {
-        console.warn('Lenis или GSAP не готовы');
+      if (!isReady) {
+        console.warn('⛔ Якоря пока не готовы — ждем инициализацию Lenis/GSAP');
         return;
       }
 
-      const target = document.querySelector(anchor.getAttribute('href'));
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = document.querySelector(href);
       if (!target) return;
 
-      let parent = target.parentNode;
+      // На всякий случай перед прыжком пересчитываем триггеры
+      ScrollTrigger.refresh(true);
 
-      // Ждем следующего фрейма для гарантии
       requestAnimationFrame(() => {
+        const parent = target.parentNode;
+        let scrollTarget = target;
+
+        // Если это pinned элемент
         if (parent.classList.contains('pin-spacer')) {
           const previous = parent.previousElementSibling;
-          const height = previous.clientHeight;
-          lenis.scrollTo(previous.offsetTop + height, {
-            lerp: 0.1,
-            duration: 6
-          });
-        } else {
-          lenis.scrollTo(target, {
-            lerp: 0.1,
-            duration: 6
-          });
+          if (previous) {
+            const height = previous.clientHeight || 0;
+            scrollTarget = previous.offsetTop + height;
+          }
         }
 
-        // Обновляем ScrollTrigger после скролла
+        lenis.scrollTo(scrollTarget, {
+          lerp: 0.1,
+          duration: 6
+        });
+
+        // Повторный рефреш после прокрутки
         setTimeout(() => {
-          ScrollTrigger.refresh();
-        }, 300);
+          ScrollTrigger.refresh(true);
+        }, 500);
       });
     });
   });
 }
 
-// Обработчики resize и hashchange
+// === РЕАКЦИЯ НА resize и hashchange ===
 window.addEventListener("resize", () => {
-  if (typeof controller !== 'undefined') {
-    controller.update(true);
-  }
-  ScrollTrigger.refresh();
+  if (typeof controller !== 'undefined') controller.update(true);
+  ScrollTrigger.refresh(true);
 });
 
 window.addEventListener("hashchange", () => {
-  ScrollTrigger.refresh();
+  ScrollTrigger.refresh(true);
 });
 
-// Дополнительная проверка готовности Lenis
+// === СВЯЗКА Lenis и GSAP ===
 if (typeof lenis !== 'undefined') {
   lenis.on('scroll', () => {
     ScrollTrigger.update();
@@ -201,36 +221,56 @@ if (typeof lenis !== 'undefined') {
 
 
 
-function updateScroll() {
-  gsap.delayedCall(0.1, () => {
-    ScrollTrigger.refresh();
+
+
+function updateScrollDelayed() {
+  // Даем браузеру закончить layout + GSAP пересчитать позиции
+  gsap.delayedCall(0.35, () => { // чуть больше 0.1
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh(true);
+    }
 
     if (typeof lenis !== "undefined") {
-      if (typeof lenis.resize === "function") {
-        lenis.resize(); // у новых версий есть
-      }
-      // Хак: пересчитать позицию, сбросить easing
+      if (typeof lenis.resize === "function") lenis.resize();
       lenis.scrollTo(lenis.scroll, { immediate: true });
     }
 
-    // Дополнительно можно "обмануть" Lenis resize-событием
+    // В крайнем случае, заставляем всё обновиться
     window.dispatchEvent(new Event("resize"));
   });
 }
 
+// Общая функция для аккордионов
+function handleAccordionClick($item) {
+  const $siblings = $item.siblings('.item');
+  const isAlreadyOpen = $item.hasClass('open');
 
+  // Закрываем все
+  $siblings.removeClass('open');
 
+  // Тогглим текущее
+  if (!isAlreadyOpen) {
+    $item.addClass('open');
+  } else {
+    $item.removeClass('open');
+  }
+
+  // Обновляем после короткой задержки
+  updateScrollDelayed();
+}
+
+// Привязка обработчиков
 $('.services-frame .item').on('click', function () {
-  $('.services-frame .item').not(this).removeClass('open')
-  $(this).addClass('open')
-  updateScroll();
-})
+  handleAccordionClick($(this));
+});
 
 $('.faq-frame .item').on('click', function () {
-  $('.faq-frame .item').not(this).removeClass('open')
-  $(this).addClass('open')
-  updateScroll();
-})
+  handleAccordionClick($(this));
+});
+
+
+
+
 
 
 
