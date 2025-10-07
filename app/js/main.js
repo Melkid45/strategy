@@ -122,39 +122,80 @@ lenis.on('scroll', ({ scroll }) => {
 });
 
 
-let archorTime = false;
 window.addEventListener('load', () => {
-  ScrollTrigger.refresh();
-  lenis.scrollTo(0);
-  lenis.emit();
-  lenis.resize();
-  lenis.raf(0);
+  // Сначала даем время на полную инициализацию
   setTimeout(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', (e) => {
-        archorTime = true;
-        setTimeout(() => {
-          archorTime = false;
-        }, 1000);
-        e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
-        let parent = target.parentNode
-        console.log(parent)
+    // Обновляем ScrollTrigger после полной загрузки
+    ScrollTrigger.refresh();
+
+    // Сбрасываем позицию скролла
+    lenis.scrollTo(0, { immediate: true });
+
+    // Инициализируем обработчики якорных ссылок
+    initAnchorLinks();
+  }, 100);
+});
+
+// Функция для инициализации якорных ссылок
+function initAnchorLinks() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Проверяем, готовы ли Lenis и GSAP
+      if (typeof lenis === 'undefined' || !ScrollTrigger) {
+        console.warn('Lenis или GSAP не готовы');
+        return;
+      }
+
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (!target) return;
+
+      let parent = target.parentNode;
+
+      // Ждем следующего фрейма для гарантии
+      requestAnimationFrame(() => {
         if (parent.classList.contains('pin-spacer')) {
-          const previos = parent.previousElementSibling;
-          const height = previos.clientHeight;
-          lenis.scrollTo(previos.offsetTop + height, { lerp: 0.1, duration: 2.5 });
+          const previous = parent.previousElementSibling;
+          const height = previous.clientHeight;
+          lenis.scrollTo(previous.offsetTop + height, {
+            lerp: 0.1,
+            duration: 6
+          });
         } else {
-          lenis.scrollTo(target, { lerp: 0.1, duration: 2.5 });
+          lenis.scrollTo(target, {
+            lerp: 0.1,
+            duration: 6
+          });
         }
+
+        // Обновляем ScrollTrigger после скролла
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 300);
       });
     });
-  }, 500);
+  });
+}
+
+// Обработчики resize и hashchange
+window.addEventListener("resize", () => {
+  if (typeof controller !== 'undefined') {
+    controller.update(true);
+  }
+  ScrollTrigger.refresh();
 });
-window.addEventListener("resize load", () => controller.update(true));
+
 window.addEventListener("hashchange", () => {
   ScrollTrigger.refresh();
 });
+
+// Дополнительная проверка готовности Lenis
+if (typeof lenis !== 'undefined') {
+  lenis.on('scroll', () => {
+    ScrollTrigger.update();
+  });
+}
 
 
 
@@ -180,24 +221,14 @@ function updateScroll() {
 
 
 $('.services-frame .item').on('click', function () {
-  if ($(this).hasClass('open')) {
-    $(this).removeClass('open')
-    $(this).next('.item').addClass('open')
-  } else {
-    $('.services-frame .item').not(this).removeClass('open')
-    $(this).addClass('open')
-  }
+  $('.services-frame .item').not(this).removeClass('open')
+  $(this).addClass('open')
   updateScroll();
 })
 
 $('.faq-frame .item').on('click', function () {
-  if ($(this).hasClass('open')) {
-    $(this).removeClass('open')
-    $(this).next('.item').addClass('open')
-  } else {
-    $('.faq-frame .item').not(this).removeClass('open')
-    $(this).addClass('open')
-  }
+  $('.faq-frame .item').not(this).removeClass('open')
+  $(this).addClass('open')
   updateScroll();
 })
 
@@ -483,7 +514,6 @@ class DotCanvas {
       this.initDots();
     };
 
-    window.addEventListener('resize', this.handleResize);
   }
 
   draw() {
@@ -684,13 +714,12 @@ gsap.to('.hero-block .circle-hero', {
   scrollTrigger: {
     trigger: '.hero-block',
     start: 'top top',
-    end: '+=50%',
+    end: '+=100%',
     scrub: 1,
     pin: true,
     pinSpacing: false,
   }
 })
-
 
 // Cards Xcode
 
@@ -789,7 +818,7 @@ gsap.to('.guarantees-section', {
     trigger: '.guarantees__wrap',
     start: 'top center',
     end: '+=70%',
-    scrub: 1,
+    scrub: true,
   }
 })
 gsap.to('.feedback-form', {
@@ -1184,6 +1213,7 @@ gsap.to('.implementation .stoke-title', {
 function autoResize(textarea) {
   textarea.style.height = 'auto';
   textarea.style.height = textarea.scrollHeight + 'px';
+  updateScroll()
 }
 
 // Использование
@@ -1199,92 +1229,282 @@ textarea.addEventListener('input', () => autoResize(textarea));
 
 // Cursor Trail
 
-(function () {
-  const DOTS = 10;
-  const FOLLOW_SPEED = 0.15;
-  const SPEED_THRESHOLD = 1.5;
+// (function () {
+//   const DOTS = 10;
+//   const FOLLOW_SPEED = 0.15;
+//   const SPEED_THRESHOLD = 1.5;
 
-  const pointer = {
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-    prevX: window.innerWidth / 2,
-    prevY: window.innerHeight / 2,
-    speed: 0
-  };
+//   const pointer = {
+//     x: window.innerWidth / 2,
+//     y: window.innerHeight / 2,
+//     prevX: window.innerWidth / 2,
+//     prevY: window.innerHeight / 2,
+//     speed: 0,
+//     isHovering: false // Добавляем флаг для отслеживания наведения
+//   };
 
-  const trailRoot = document.getElementById('cursorTrail');
-  const dots = [];
+//   const trailRoot = document.getElementById('cursorTrail');
+//   const dots = [];
 
-  // Первая точка
-  const first = document.createElement('div');
-  first.className = 'cursor-dot center';
-  trailRoot.appendChild(first);
-  dots.push({ el: first, x: pointer.x, y: pointer.y, scale: 1, opacity: 1 });
+//   // Первая точка
+//   const first = document.createElement('div');
+//   first.className = 'cursor-dot center';
+//   trailRoot.appendChild(first);
+//   dots.push({ el: first, x: pointer.x, y: pointer.y, scale: 1, opacity: 1 });
 
-  // Хвост
-  for (let i = 0; i < DOTS; i++) {
-    const el = document.createElement('div');
-    el.className = 'cursor-dot tail';
-    trailRoot.appendChild(el);
-    dots.push({ el, x: pointer.x, y: pointer.y, scale: 1, opacity: 0 });
-  }
+//   // Хвост
+//   for (let i = 0; i < DOTS; i++) {
+//     const el = document.createElement('div');
+//     el.className = 'cursor-dot tail';
+//     trailRoot.appendChild(el);
+//     dots.push({ el, x: pointer.x, y: pointer.y, scale: 1, opacity: 0 });
+//   }
 
-  function onPointerMove(e) {
-    const x = e.clientX || (e.touches && e.touches[0].clientX) || pointer.x;
-    const y = e.clientY || (e.touches && e.touches[0].clientY) || pointer.y;
+//   function onPointerMove(e) {
+//     const x = e.clientX || (e.touches && e.touches[0].clientX) || pointer.x;
+//     const y = e.clientY || (e.touches && e.touches[0].clientY) || pointer.y;
 
-    pointer.speed = Math.hypot(x - pointer.prevX, y - pointer.prevY);
-    pointer.prevX = pointer.x;
-    pointer.prevY = pointer.y;
+//     pointer.speed = Math.hypot(x - pointer.prevX, y - pointer.prevY);
+//     pointer.prevX = pointer.x;
+//     pointer.prevY = pointer.y;
 
-    pointer.x = x;
-    pointer.y = y;
-  }
+//     pointer.x = x;
+//     pointer.y = y;
 
-  window.addEventListener('pointermove', onPointerMove, { passive: true });
-  window.addEventListener('touchmove', onPointerMove, { passive: true });
+//     // Проверяем, наведен ли курсор на интерактивный элемент
+//     checkHoverState(x, y);
+//   }
 
-  function lerp(a, b, t) { return a + (b - a) * t; }
+//   function checkHoverState(x, y) {
+//     const element = document.elementFromPoint(x, y);
+    
+//     if (element) {
+//       const isInteractive = 
+//         element.tagName === 'A' || 
+//         element.tagName === 'BUTTON' || 
+//         element.style.cursor === 'pointer' ||
+//         window.getComputedStyle(element).cursor === 'pointer';
+      
+//       pointer.isHovering = isInteractive;
+//     } else {
+//       pointer.isHovering = false;
+//     }
+//   }
 
-  // плавное затухание скорости
-  function updateSpeedDecay() {
-    pointer.speed *= 0.85;
-    requestAnimationFrame(updateSpeedDecay);
-  }
-  updateSpeedDecay();
+//   window.addEventListener('pointermove', onPointerMove, { passive: true });
+//   window.addEventListener('touchmove', onPointerMove, { passive: true });
 
-  function animate() {
-    // Первая точка всегда на месте
-    dots[0].x = lerp(dots[0].x, pointer.x, FOLLOW_SPEED * 1.5);
-    dots[0].y = lerp(dots[0].y, pointer.y, FOLLOW_SPEED * 1.5);
-    dots[0].el.style.transform = `translate3d(${dots[0].x}px, ${dots[0].y}px,0) translate(-50%, -50%) scale(1)`;
+//   // Также обрабатываем события для элементов, которые могут появляться/исчезать
+//   document.addEventListener('mouseover', (e) => {
+//     const target = e.target;
+//     const isInteractive = 
+//       target.tagName === 'A' || 
+//       target.tagName === 'BUTTON' || 
+//       target.style.cursor === 'pointer' ||
+//       window.getComputedStyle(target).cursor === 'pointer';
+    
+//     if (isInteractive) {
+//       pointer.isHovering = true;
+//     }
+//   });
 
-    const fastMove = pointer.speed > SPEED_THRESHOLD;
+//   document.addEventListener('mouseout', (e) => {
+//     const target = e.target;
+//     const isInteractive = 
+//       target.tagName === 'A' || 
+//       target.tagName === 'BUTTON' || 
+//       target.style.cursor === 'pointer' ||
+//       window.getComputedStyle(target).cursor === 'pointer';
+    
+//     if (isInteractive) {
+//       pointer.isHovering = false;
+//     }
+//   });
 
-    for (let i = 1; i < dots.length; i++) {
-      const prev = dots[i - 1];
-      const cur = dots[i];
+//   function lerp(a, b, t) { return a + (b - a) * t; }
 
-      cur.x = lerp(cur.x, prev.x, FOLLOW_SPEED + i * 0.015);
-      cur.y = lerp(cur.y, prev.y, FOLLOW_SPEED + i * 0.015);
+//   // плавное затухание скорости
+//   function updateSpeedDecay() {
+//     pointer.speed *= 0.85;
+//     requestAnimationFrame(updateSpeedDecay);
+//   }
+//   updateSpeedDecay();
 
-      let targetScale = 1;
-      if (fastMove) {
-        const speedFactor = Math.min(pointer.speed / 25, 1);
-        targetScale += speedFactor * (1 - i / dots.length) * 1.6;
-      }
-      cur.scale = lerp(cur.scale, targetScale, 0.08);
+//   function animate() {
+//     // Первая точка всегда на месте, но с учетом наведения
+//     dots[0].x = lerp(dots[0].x, pointer.x, FOLLOW_SPEED * 1.5);
+//     dots[0].y = lerp(dots[0].y, pointer.y, FOLLOW_SPEED * 1.5);
+    
+//     // Масштаб первой точки зависит от состояния наведения
+//     const targetScale = pointer.isHovering ? 1.2 : 1;
+//     dots[0].scale = lerp(dots[0].scale, targetScale, 0.15);
+    
+//     dots[0].el.style.transform = `translate3d(${dots[0].x}px, ${dots[0].y}px,0) translate(-50%, -50%) scale(${dots[0].scale})`;
 
-      cur.el.style.transform = `translate3d(${cur.x}px, ${cur.y}px,0) translate(-50%, -50%) scale(${cur.scale})`;
+//     const fastMove = pointer.speed > SPEED_THRESHOLD;
 
-      // плавное исчезновение хвоста
-      const targetOpacity = pointer.speed < 0.1 ? 0 : 0.2 * (1 - i / dots.length);
-      cur.opacity = lerp(cur.opacity, targetOpacity, 0.1);
-      cur.el.style.opacity = cur.opacity.toFixed(1);
+//     for (let i = 1; i < dots.length; i++) {
+//       const prev = dots[i - 1];
+//       const cur = dots[i];
+
+//       cur.x = lerp(cur.x, prev.x, FOLLOW_SPEED + i * 0.015);
+//       cur.y = lerp(cur.y, prev.y, FOLLOW_SPEED + i * 0.015);
+
+//       let targetTailScale = 1;
+//       if (fastMove) {
+//         const speedFactor = Math.min(pointer.speed / 25, 1);
+//         targetTailScale += speedFactor * (1 - i / dots.length) * 1.6;
+//       }
+//       cur.scale = lerp(cur.scale, targetTailScale, 0.08);
+
+//       cur.el.style.transform = `translate3d(${cur.x}px, ${cur.y}px,0) translate(-50%, -50%) scale(${cur.scale})`;
+
+//       // плавное исчезновение хвоста
+//       const targetOpacity = pointer.speed < 0.1 ? 0 : 0.2 * (1 - i / dots.length);
+//       cur.opacity = lerp(cur.opacity, targetOpacity, 0.1);
+//       cur.el.style.opacity = cur.opacity.toFixed(1);
+//     }
+
+//     requestAnimationFrame(animate);
+//   }
+
+//   requestAnimationFrame(animate);
+// })();
+
+
+
+// Ancor
+
+document.querySelector('.ancor-form').addEventListener('click', function () {
+  gsap.to(window, {
+    duration: 1,
+    ease: 'power1.inOut',
+    scrollTo: { y: "#feedback-form", offsetY: -500 }
+  });
+});
+
+
+// File
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const fileWrap = document.querySelector('.file-wrap');
+  const fileInput = fileWrap.querySelector('input[type="file"]');
+  const clearBtn = fileWrap.querySelector('.clear-file');
+  const fileName = fileWrap.querySelector('.file-name');
+
+  fileInput.addEventListener('change', function () {
+    if (this.files && this.files.length > 0) {
+      fileWrap.classList.add('has-file');
+      fileName.textContent = this.files[0].name;
+    } else {
+      fileWrap.classList.remove('has-file');
+      fileName.textContent = 'Прикрепить файл';
     }
+  });
 
-    requestAnimationFrame(animate);
+  clearBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    fileInput.value = '';
+
+    fileWrap.classList.remove('has-file');
+    fileName.textContent = 'Прикрепить файл';
+  });
+
+});
+
+$('.wrap-answer .item').on('click', function (e) {
+  let text = $(this).text()
+  $('#custom-select').val(text)
+})
+
+
+let col = 0;
+$('.form-action button').on('click', function (e) {
+  let $items = document.querySelectorAll('.input-wrap input, .input-wrap textarea')
+  $items.forEach(($element, index) => {
+    if ($element.value === '') {
+      $element.classList.add('error')
+      $element.classList.remove('has-val')
+    } else {
+      col++
+      $element.classList.remove('error')
+      $element.classList.add('has-val')
+    }
+  })
+  if (col == 5) {
+    $('.feedback-form-main').remove()
+    $('.form-send').fadeIn(300)
+    $('.form-default').remove()
   }
+})
 
-  requestAnimationFrame(animate);
-})();
+
+
+// Ancor Indicator
+
+
+// Функция для определения видимости секции
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top <= window.innerHeight * 0.6 &&
+    rect.bottom >= window.innerHeight * 0.4
+  );
+}
+
+// Функция обновления активного пункта навигации
+function updateActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.navbar .ancor-item');
+  const homeLink = document.querySelector('.home-btn');
+  
+  // Если вверху страницы - активна домашняя ссылка
+  if (window.scrollY < 50) {
+    navLinks.forEach(link => link.parentElement.classList.remove('current'));
+    if (homeLink) homeLink.parentElement.classList.add('current');
+    return;
+  }
+  
+  let foundActive = false;
+  
+  // Проверяем секции сверху вниз
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const section = sections[i];
+    if (isElementInViewport(section)) {
+      const sectionId = section.getAttribute('id');
+      const correspondingLink = document.querySelector(`.navbar .ancor-item[href="#${sectionId}"]`);
+      
+      // Удаляем класс current со всех элементов
+      navLinks.forEach(link => link.parentElement.classList.remove('current'));
+      
+      // Добавляем класс current к активному элементу
+      if (correspondingLink) {
+        correspondingLink.parentElement.classList.add('current');
+        homeLink.parentElement.classList.remove('current')
+        foundActive = true;
+      }
+      break;
+    }
+  }
+  
+  // Если не найдено активной секции
+  if (!foundActive) {
+    navLinks.forEach(link => link.parentElement.classList.remove('current'));
+  }
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', function() {
+  updateActiveNav();
+});
+
+// Обновляем при скролле Lenis
+if (typeof lenis !== 'undefined') {
+  lenis.on('scroll', updateActiveNav);
+}
+
+// Обновляем при ресайзе
+window.addEventListener('resize', updateActiveNav);

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="cursor-trail" id="cursorTrail"></div>
+    <!-- <div class="cursor-trail" id="cursorTrail"></div> -->
     <header class="header">
         <div class="container">
             <div class="header__body">
@@ -864,22 +864,45 @@
                             разработки, дизайна и
                             поддержки вашего проекта. Без навязчивых менеджеров
                         </p>
-                        <a href="" class="frame">
+                        <div class="frame ancor-form">
                             <div class="wrap">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
+                                <svg class="item-animate" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg class="item-animate" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <svg class="item-animate" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
                             </div>
                             <span class="soft-title">Заполните форму обращения</span>
-                        </a>
+                        </div>
                     </div>
-                    <div class="feedback-form">
+                    <div id="feedback-form" class="feedback-form">
                         <img class="rotate-img" src="../images/dist/form.png" alt="">
-                        <h3 class="main-title">
-                            <span>Заявка</span> на расчёт <br>
-                            проекта
+                        <h3 class="main-title split-light form-default">
+                            Заявка
+                            <span>на расчёт</span><br>
+                            <span>проекта</span>
+                        </h3>
+                        <h3 class="main-title split-light form-send">
+                            Спасибо!
+                            <span>Ваша заявка</span><br>
+                            <span>успешно отправлена.</span> <br>
+                            <span>Наш менеджер свяжется</span> <br>
+                            <span>с вами в ближайшее время</span>
                         </h3>
                         <form class="feedback-form-main">
                             <div class="input-wrap">
@@ -896,21 +919,33 @@
                             </div>
                             <div class="input-wrap">
                                 <span class="soft-title">Предмет обращения</span>
-                                <select class="soft-description" name="" id="">
-                                    <option value="Дизайн цифрового продукта">Дизайн цифрового продукта</option>
-                                    <option value="Дизайн цифрового продукта">Дизайн цифрового продукта</option>
-                                    <option value="Дизайн цифрового продукта">Дизайн цифрового продукта</option>
-                                </select>
+                                <input class="soft-description" readonly id="custom-select"
+                                    placeholder="Дизайн цифрового продукта" value="" type="text">
+                                <div class="wrap-answer soft-description">
+                                    <div class="item">Дизайн цифрового продукта1</div>
+                                    <div class="item">Дизайн цифрового продукта2</div>
+                                    <div class="item">Дизайн цифрового продукта3</div>
+                                    <div class="item">Дизайн цифрового продукта4</div>
+                                </div>
                             </div>
                             <div class="input-wrap">
                                 <span class="soft-title">Текст заявки</span>
-                                <textarea maxlength="300"
+                                <textarea maxlength="1000"
                                     placeholder="Здравствуйте. Компании Яндекс необходимо обновить интерфейс личного кабинета преподавателей в нашем сервисе «Яндекс.Практикум»"
                                     class="soft-description" name="" id=""></textarea>
                             </div>
                             <div class="file-wrap">
                                 <input type="file">
-                                <span class="soft-description">Прикрепить файл</span>
+                                <div class="soft-description">
+                                    <span class="file-name">Прикрепить файл</span>
+                                    <button class="clear-file">
+                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 1L1 9M9 9L1 1" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
                                 <div class="plus">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -920,7 +955,7 @@
                                 </div>
                             </div>
                             <div class="form-action">
-                                <button class="soft-description">
+                                <button type="button" class="soft-description">
                                     Отправить
                                 </button>
                                 <p class="soft-title">

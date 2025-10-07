@@ -10,10 +10,15 @@
     font-family: 'Regular';
     src: url('../fonts/Stem-Regular.woff');
 }
+@font-face {
+    font-family: 'Light';
+    src: url('../fonts/Stem-Light.woff');
+}
 :root{
     --bold: 'Bold';
     --medium: 'Medium';
     --regular: 'Regular';
+    --light: 'Light';
 }
 
 @mixin main-title($size,$wieght,$height){

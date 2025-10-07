@@ -1,4 +1,4 @@
-@media (max-width: 1920px) {
+@media (max-width: 1920rem) {
     html {
         font-size: calc(100vw / 1440);
     }
@@ -123,12 +123,12 @@
 
     .hero-block {
         width: 100%;
-        height: 110vh;
+        height: 115vh;
         background: var(--black);
         position: relative;
 
         &__body {
-            padding: 122rem 0px 122rem 0px;
+            padding: 122rem 0rem 122rem 0rem;
             width: 100%;
 
             .hero__body-items {
@@ -524,6 +524,7 @@
                     justify-content: center;
                     gap: 20.5rem;
                     cursor: pointer;
+
                     img {
                         width: 472rem;
                         height: 550rem;
@@ -560,7 +561,7 @@
         position: absolute;
         width: 1004rem;
         height: 1004rem;
-        bottom: 150rem;
+        bottom: -50rem;
         transform: translateX(-50%);
         left: 50%;
     }
@@ -694,7 +695,7 @@
 
             .guarantees-circle {
                 position: absolute;
-                bottom: -1032rem;
+                bottom: -932rem;
                 align-self: center;
                 width: 832rem;
                 height: 832rem;
@@ -838,7 +839,6 @@
                     width: 100%;
                     padding: 64rem 0rem;
                     border-top: 1rem solid #FFFFFF33;
-                    transition: all 0.4s ease;
                     display: flex;
                     flex-direction: column;
                     cursor: pointer;
@@ -992,6 +992,7 @@
         width: 100%;
         background: var(--black);
         padding-top: 100rem;
+
         &__body {
             display: flex;
             flex-direction: column;
@@ -1023,14 +1024,33 @@
                     gap: 16rem;
 
                     .wrap {
-                        padding: 8rem 16rem;
+                        width: 48rem;
+                        height: 32rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         background: transparent;
                         border: 1rem solid #FFFFFF1F;
                         border-radius: 40rem;
+                        overflow: hidden;
+                        position: relative;
+
+                        .item-animate {
+                            animation: dotFlow 1.5s infinite linear;
+                        }
+
+                        .item-animate:nth-child(2) {
+                            animation-delay: 0.5s;
+                        }
+
+                        .item-animate:nth-child(3) {
+                            animation-delay: 1s;
+                        }
 
                         svg {
-                            width: 16rem;
-                            height: 16rem;
+                            width: 16px;
+                            height: 16px;
+                            position: absolute;
                         }
                     }
 
@@ -1071,9 +1091,9 @@
                 }
 
                 h3 {
-                    color: var(--grey);
+                    color: var(--white);
 
-                    span {
+                    p {
                         color: var(--white) !important;
                     }
                 }
@@ -1108,6 +1128,36 @@
                             color: var(--white);
                         }
 
+                        .wrap-answer {
+                            width: 100%;
+                            height: auto;
+                            position: absolute;
+                            top: 110%;
+                            left: 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4rem;
+                            padding: 0 4rem;
+                            background: #8F919A;
+                            border-radius: 26rem;
+                            z-index: 5;
+                            max-height: 0;
+                            transition: all 0.3s ease;
+                            overflow: hidden;
+
+                            .item:hover {
+                                background: #15151933;
+                            }
+
+                            .item {
+                                padding: 10rem 20rem;
+                                transition: all 0.3s ease;
+                                background: transparent;
+                                border-radius: 24rem;
+                                color: var(--white);
+                            }
+                        }
+
                         input::placeholder {
                             color: var(--white);
                         }
@@ -1121,14 +1171,27 @@
                             color: var(--white);
                             resize: none;
                             min-height: 56rem;
-                            max-height: 150rem;
+                            max-height: 450rem;
                         }
-                        textarea::-webkit-scrollbar{
+
+                        textarea::-webkit-scrollbar {
                             width: 0;
                             height: 0;
                         }
+
                         textarea::placeholder {
                             color: var(--white);
+                        }
+                    }
+
+                    .file-wrap.has-file {
+                        .soft-description {
+                            padding: 6rem 8rem 6rem 20rem;
+                            background: #8F919A66;
+
+                            button {
+                                display: flex;
+                            }
                         }
                     }
 
@@ -1148,8 +1211,33 @@
                             left: 0;
                         }
 
-                        span {
+                        div {
                             color: var(--white);
+                            font-family: var(--light);
+                            position: relative;
+                            border-radius: 20rem;
+                            transition: all 0.3s ease;
+                            display: flex;
+                            align-items: center;
+                            gap: 12rem;
+
+                            button {
+                                width: 24rem;
+                                height: 24rem;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                background: #FFFFFF33;
+                                display: none;
+                                position: relative;
+                                z-index: 5;
+
+                                svg {
+                                    width: 10rem;
+                                    height: 10rem;
+                                }
+                            }
                         }
 
                         .plus {
