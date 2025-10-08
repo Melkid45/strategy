@@ -1253,7 +1253,7 @@ gsap.to('.implementation .stoke-title', {
 function autoResize(textarea) {
   textarea.style.height = 'auto';
   textarea.style.height = textarea.scrollHeight + 'px';
-  updateScroll()
+  updateScrollDelayed()
 }
 
 // Использование
