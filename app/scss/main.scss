@@ -15,18 +15,22 @@
         color: var(--white);
     }
 }
-
+.page-transition {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    transform: translateY(100%);
+    z-index: 9999;
+  }
 
 .hero-block {
     width: 100%;
     height: 115vh;
     background: var(--black);
-    position: relative;
-
+    overflow: hidden;
     &__body {
         padding: 122px 0px 122px 0px;
         width: 100%;
-
         .hero__body-items {
             display: flex;
             flex-direction: column;
@@ -42,7 +46,6 @@
                 align-items: center;
                 gap: 20px;
                 justify-content: center;
-
                 .line {
                     position: absolute;
                     top: -90px;
@@ -107,7 +110,6 @@
                     overflow: hidden;
                     border-radius: 60px;
                     position: relative;
-
                     .stroke-wrap {
                         display: flex;
                         gap: 40px;
@@ -130,7 +132,6 @@
         display: flex;
         align-items: center;
         gap: 16px;
-        z-index: 1;
 
         span {
             color: var(--grey);
@@ -155,7 +156,6 @@
                     width: 10px;
                     height: 10px;
                     position: absolute;
-                    z-index: 1;
                 }
 
                 .item-animate {
@@ -259,10 +259,10 @@
     padding-top: 200px;
     width: 100%;
     overflow: hidden;
-    position: relative;
-    background: var(--grey);
     padding-bottom: 200px;
-
+    background: var(--grey);
+    position: relative;
+    z-index: 1;
     .content {
         position: absolute;
         top: 0;
@@ -302,17 +302,16 @@
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
         position: relative;
-
+        z-index: 2;
         .main-description {
             color: var(--white);
         }
     }
 
     .agency__text {
-        display: flex;
-        flex-direction: column;
         padding: 0 40px;
-
+        position: relative;
+        z-index: 2;
         span {
             color: var(--text-grey);
         }
@@ -342,7 +341,7 @@
 
 .xcode {
     position: relative;
-
+    z-index: 2;
     &__body {
         border-top: 1px solid #FFFFFF33;
         width: 100%;
@@ -503,10 +502,9 @@
     padding-top: 200px;
     padding-bottom: 200px;
     overflow: hidden;
-    background: var(--grey);
     position: relative;
     z-index: 1;
-
+    background: var(--grey);
 
 
     &__body {
@@ -550,7 +548,8 @@
 .guarantees {
     width: 100%;
     padding-bottom: 1200px;
-
+    position: relative;
+    z-index: 1;
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -651,7 +650,8 @@
         border-top: 1px solid #FFFFFF33;
         display: flex;
         flex-direction: column;
-
+        position: relative;
+        z-index: 3;
         .case__top {
             display: flex;
             gap: 274px;
@@ -677,7 +677,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
+                position: relative;
+                z-index: 5;
                 img {
                     width: 100%;
                     height: 100%;
@@ -881,6 +882,7 @@
                     transition: all 0.4s ease;
                     max-height: 0;
                     overflow: hidden;
+                    font-family: var(--light);
                 }
             }
         }
@@ -997,7 +999,7 @@
     position: relative;
     z-index: 2;
     padding-top: 100rem;
-
+    padding-bottom: 200px;
     &__body {
         display: flex;
         flex-direction: column;
@@ -1217,6 +1219,7 @@
                             background: transparent;
                             border-radius: 24px;
                             color: var(--white);
+                            font-family: var(--light);
                         }
                     }
 
@@ -1433,6 +1436,7 @@
                     transition: all 0.4s ease;
                     max-height: 0;
                     overflow: hidden;
+                    font-family: var(--light);
                 }
             }
         }
@@ -1463,7 +1467,6 @@
             .item {
                 width: 100%;
                 padding: 64px 0px;
-                border-top: 1px solid #FFFFFF33;
                 display: flex;
                 flex-direction: column;
                 gap: 24px;
@@ -1481,7 +1484,6 @@
 
             .action {
                 padding-top: 64px;
-                border-top: 1px solid #FFFFFF33;
                 display: flex;
                 gap: 40px;
 
