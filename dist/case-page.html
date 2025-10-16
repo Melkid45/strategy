@@ -12,7 +12,21 @@
 <body>
     <div class="cursor" id="cursorDot"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
-    <div class="page-transition"></div>
+    <div class="preloader">
+        <canvas class=""
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <div class="line">
+            <span></span>
+        </div>
+        <div class="text soft-description">
+            Успешная реализация <br>
+            начинается со Стратегии
+        </div>
+        <div class="procent main-stroke">
+            37%
+        </div>
+    </div>
+    <div class="transition-overlay"></div>
     <header class="header">
         <div class="container">
             <div class="header__body">
@@ -32,451 +46,472 @@
             </div>
         </div>
     </header>
-    <main>
-        <section class="about">
-            <img class="about_back" src="images/dist/about_back.webp" alt="">
-            <img class="about_device" src="images/dist/device.webp" alt="">
-            <div class="about-stroke ">
-                <span class="stroke-item main-stroke">Anymarkets -</span>
-                <span class="stroke-item main-stroke">Anymarkets -</span>
-            </div>
-            <div class="about-action">
-                <a href="">
-                    <div class="wrap">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.5 12.5L12.5 7.5" stroke="white" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                            <path
-                                d="M8.75 5.94611L11.0984 3.60236C11.8036 2.90856 12.7544 2.52152 13.7437 2.52554C14.7329 2.52957 15.6805 2.92434 16.3801 3.62386C17.0796 4.32338 17.4743 5.27098 17.4784 6.26024C17.4824 7.24951 17.0954 8.20029 16.4016 8.90548L14.0531 11.25"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M5.94598 8.75L3.60223 11.0984C2.90843 11.8036 2.52139 12.7544 2.52542 13.7437C2.52945 14.7329 2.92422 15.6805 3.62374 16.3801C4.32326 17.0796 5.27086 17.4743 6.26012 17.4784C7.24938 17.4824 8.20016 17.0954 8.90536 16.4016L11.2499 14.0531"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <span class="soft-title">Anymarkets.ru</span>
-                </a>
-                <div class="about-action-scroll">
-                    <span class="soft-title">Скролльте вниз</span>
-                    <div class="block-scroll-animation">
-                        <div class="items">
-                            <div class="item"></div>
-                            <div class="item item-animate"></div>
-                            <div class="item item-animate"></div>
-                            <div class="item item-animate"></div>
+    <div data-barba="wrapper">
+        <main data-barba="container" data-barba-namespace="home">
+            <section class="about">
+                <img class="about_back" src="images/dist/about_back.webp" alt="">
+                <img class="about_device" src="images/dist/device.webp" alt="">
+                <div class="about-stroke ">
+                    <span class="stroke-item main-stroke">Anymarkets -</span>
+                    <span class="stroke-item main-stroke">Anymarkets -</span>
+                </div>
+                <div class="about-action">
+                    <a href="">
+                        <div class="wrap">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 12.5L12.5 7.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M8.75 5.94611L11.0984 3.60236C11.8036 2.90856 12.7544 2.52152 13.7437 2.52554C14.7329 2.52957 15.6805 2.92434 16.3801 3.62386C17.0796 4.32338 17.4743 5.27098 17.4784 6.26024C17.4824 7.24951 17.0954 8.20029 16.4016 8.90548L14.0531 11.25"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M5.94598 8.75L3.60223 11.0984C2.90843 11.8036 2.52139 12.7544 2.52542 13.7437C2.52945 14.7329 2.92422 15.6805 3.62374 16.3801C4.32326 17.0796 5.27086 17.4743 6.26012 17.4784C7.24938 17.4824 8.20016 17.0954 8.90536 16.4016L11.2499 14.0531"
+                                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span class="soft-title">Anymarkets.ru</span>
+                    </a>
+                    <div class="about-action-scroll">
+                        <span class="soft-title">Скролльте вниз</span>
+                        <div class="block-scroll-animation">
+                            <div class="items">
+                                <div class="item"></div>
+                                <div class="item item-animate"></div>
+                                <div class="item item-animate"></div>
+                                <div class="item item-animate"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="project">
-            <div class="container">
-                <div class="project__body">
-                    <div class="top">
-                        <div class="title">
-                            <div class="circle"></div>
-                            <h3 class="soft-title">О проекте</h3>
+            </section>
+            <section class="project">
+                <div class="container">
+                    <div class="project__body">
+                        <div class="top">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <h3 class="soft-title">О проекте</h3>
+                            </div>
+                            <p class="main-description">Anymarkets — сервис,</p>
                         </div>
-                        <p class="main-description">Anymarkets — сервис,</p>
-                    </div>
-                    <div class="project_description split-dark main-description">
-                        <span>позволяющий продавцу хранить товар</span>
-                        <span>в одном месте и управлять его публикацией</span>
-                        <span>во множестве маркетплейсов</span>
-                    </div>
-                    <div class="project_hero">
-                        <img src="images/dist/case.webp" alt="">
-                    </div>
-                    <div class="project_information">
-                        <span>
-                            Особое внимание было уделено <br>
-                            UX и UI — они должны были быть понятны<br>
-                            и удобны для любой аудитории
-                        </span>
-                        <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
-                            публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
-                            Яндекс Маркете и Беру!
-                            <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
-                            на
-                            Wildberries, и так далее.
-                            <br><br>
-                            Таким образом Anymarkets экономит уйму вашего времени!
-                        </p>
-                    </div>
-                    <div class="project_screens">
-                        <img src="images/dist/project_screens/1.png" alt="">
-                        <img src="images/dist/project_screens/2.png" alt="">
-                        <img src="images/dist/project_screens/3.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="longest different">
-            <img class="dot-patern" src="images/dist/dot-patern-black.svg" alt="">
-            <div class="container">
-                <div class="longest__body">
-                    <p>
-                        уложились ровно <br>
-                        за месяц — время <br>
-                        на разработку
-                    </p>
-                    <svg class="item-rotate" width="104" height="104" viewBox="0 0 104 104" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M13 2.1665H91M13 101.833H91M23.8333 101.833V75.8332L36.2105 68.4067C41.9737 64.9491 45.5 58.7208 45.5 51.9998C45.5 45.2788 41.9737 39.0507 36.2105 35.5928L23.8333 28.1665V2.1665M80.1667 2.1665V28.1665L67.7894 35.5928C62.0265 39.0507 58.5 45.2788 58.5 51.9998C58.5 58.7208 62.0265 64.9491 67.7894 68.4067L80.1667 75.8332V101.833"
-                            stroke="#FD4B03" stroke-width="4" />
-                    </svg>
-    
-                    <div class="stroke-wrap main-stroke">
-                        <div class="stroke-wrap-item">
-                            30 дней -
+                        <div class="project_description split-dark main-description">
+                            <span>позволяющий продавцу хранить товар</span>
+                            <span>в одном месте и управлять его публикацией</span>
+                            <span>во множестве маркетплейсов</span>
                         </div>
-                        <div class="stroke-wrap-item">
-                            30 дней -
+                        <div class="project_hero">
+                            <img src="images/dist/case.webp" alt="">
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="user">
-            <div class="container">
-                <div class="user__body">
-                    <div class="top">
-                        <div class="title">
-                            <div class="circle"></div>
-                            <h3 class="soft-title">Личный кабинет</h3>
-                        </div>
-                        <p class="main-description">Простая регистрация</p>
-                    </div>
-                    <div class="user_description main-description split-dark">
-                        <span>позволяет за 3 простых шага получить доступ</span>
-                        <span>к полному функционалу сервиса. Также, </span>
-                        <span>доступен демо-доступ, в котором можно</span>
-                        <span>ознакомиться с сервисом</span>
-                    </div>
-                    <div class="user_photo">
-                        <img src="images/dist/user_lc.webp" alt="">
-                        <p class="soft-description">
-                            Вам необходимо заполнить одну единственную карточку товара
-                            в Anymarkets и она появится во всех вышеперечисленных системах
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="project">
-            <div class="container">
-                <div class="project__body">
-                    <div class="top">
-                        <div class="title">
-                            <div class="circle"></div>
-                            <h3 class="soft-title">Страница 404</h3>
-                        </div>
-                        <p class="main-description">Отдельного внимания</p>
-                    </div>
-                    <div class="project_description split-dark main-description">
-                        <span>заслуживает незначительная, но в то же время</span>
-                        <span>крайне оригинальная страница ошибки 404.</span>
-                        <span>Просто посмотрите на эту красоту!</span>
-                    </div>
-                    <div class="project_hero">
-                        <img src="images/dist/404.webp" alt="">
-                    </div>
-                    <div class="project_information">
-                        <span>
-                            Особое внимание было уделено <br>
-                            UX и UI — они должны были быть понятны<br>
-                            и удобны для любой аудитории
-                        </span>
-                        <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
-                            публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
-                            Яндекс Маркете и Беру!
-                            <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
-                            на
-                            Wildberries, и так далее.
-                            <br><br>
-                            Таким образом Anymarkets экономит уйму вашего времени!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="gallery">
-            <div class="container">
-                <div class="gallery__body">
-                    <div class="top">
-                        <div class="title">
-                            <div class="circle"></div>
-                            <h3 class="soft-title">Прочие разделы</h3>
-                        </div>
-                        <p class="main-description">Anymarkets — сервис,</p>
-                    </div>
-                    <div class="gallery-description split-dark main-description">
-                        позволяющий продавцу хранить товар
-                        в одном месте и управлять его публикацией
-                        во множестве маркетплейсов
-                    </div>
-                    <div class="splide gallery-splide" role="group" aria-label="Splide Basic HTML Example">
-                        <div class="splide__arrows">
-                            <button class="splide__arrow splide__arrow--prev">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 10H18M18 10L10 2M18 10L10 18" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                            <button class="splide__arrow splide__arrow--next">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 10H18M18 10L10 2M18 10L10 18" stroke="white" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="splide__track">
-                            <ul class="splide__list">
-                                <li class="splide__slide">
-                                    <img src="images/dist/gallery.webp" alt="">
-                                    <span class="soft-description">Интерфейс личного кабинета1</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <img src="images/dist/gallery.webp" alt="">
-                                    <span class="soft-description">Интерфейс личного кабинета2</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <img src="images/dist/gallery.webp" alt="">
-                                    <span class="soft-description">Интерфейс личного кабинета3</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <img src="images/dist/gallery.webp" alt="">
-                                    <span class="soft-description">Интерфейс личного кабинета4</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="longest different">
-            <img class="dot-patern" src="images/dist/dot-patern-black.svg" alt="">
-            <div class="container">
-                <div class="longest__body">
-                    <p>
-                        Примите ваше <br>
-                        лучшее решение <br>
-                        прямо сейчас
-                    </p>
-                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M30.5311 35.2669C38.1675 27.1214 48.8347 22.5 60 22.5C71.1655 22.5 81.8325 27.1214 89.469 35.2669L102.5 50C107.5 55 113.62 60 120 60C113.62 60 107.5 65 102.5 70L89.469 84.733C81.8325 92.8785 71.1655 97.5 60 97.5C48.8347 97.5 38.1674 92.8785 30.5311 84.733L17.5 70C12.5 65 6.38015 60 0 60C6.38015 60 12.5 55 17.5 50L30.5311 35.2669Z"
-                            stroke="#FD4B03" stroke-width="4.61538" />
-                        <circle id="pupil" cx="60" cy="60" r="12" fill="none" stroke="#FD4B03" stroke-width="3" />
-                    </svg>
-    
-                    <div class="stroke-wrap main-stroke">
-                        <div class="stroke-wrap-item">
-                            Верный выбор -
-                        </div>
-                        <div class="stroke-wrap-item">
-                            Верный выбор -
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="feedback" class="feedback">
-            <canvas id="dotCanvas"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
-            <div class="container">
-                <div class="feedback__body">
-                    <div class="feedback__top">
-                        <div class="title">
-                            <div class="circle"></div>
-                            <span class="soft-title">
-                                Заявка
+                        <div class="project_information">
+                            <span>
+                                Особое внимание было уделено <br>
+                                UX и UI — они должны были быть понятны<br>
+                                и удобны для любой аудитории
                             </span>
+                            <p class="soft-description">
+                                Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и
+                                управлять
+                                его
+                                публикацией
+                                во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это
+                                так:
+                                Вы
+                                продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                                размещаетесь на
+                                Яндекс Маркете и Беру!
+                                <br><br>
+                                Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится
+                                во
+                                всех
+                                вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                                отдельную —
+                                на
+                                Wildberries, и так далее.
+                                <br><br>
+                                Таким образом Anymarkets экономит уйму вашего времени!
+                            </p>
                         </div>
-                        <h2 class="main-description">Опишите вашу задачу</h2>
+                        <div class="project_screens">
+                            <img src="images/dist/project_screens/1.png" alt="">
+                            <img src="images/dist/project_screens/2.png" alt="">
+                            <img src="images/dist/project_screens/3.png" alt="">
+                        </div>
                     </div>
-                    <div class="feedback-stroke main-description split-dark">
-                        <span>или проект своими словами. Приложите</span>
-                        <span>документацию, если таковая имеется</span>
-                    </div>
-                    <div class="feedback-wrap">
-                        <p class="soft-description">
-                            Мы готовы провести для вас полноценную бесплатную независимую консультацию по вопросам
-                            разработки, дизайна и
-                            поддержки вашего проекта. Без навязчивых менеджеров
+                </div>
+            </section>
+            <section class="longest different">
+                <img class="dot-patern" src="images/dist/dot-patern-black.svg" alt="">
+                <div class="container">
+                    <div class="longest__body">
+                        <p>
+                            уложились ровно <br>
+                            за месяц — время <br>
+                            на разработку
                         </p>
-                        <div class="frame ancor-form">
-                            <div class="wrap">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
+                        <svg class="item-rotate" width="104" height="104" viewBox="0 0 104 104" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13 2.1665H91M13 101.833H91M23.8333 101.833V75.8332L36.2105 68.4067C41.9737 64.9491 45.5 58.7208 45.5 51.9998C45.5 45.2788 41.9737 39.0507 36.2105 35.5928L23.8333 28.1665V2.1665M80.1667 2.1665V28.1665L67.7894 35.5928C62.0265 39.0507 58.5 45.2788 58.5 51.9998C58.5 58.7208 62.0265 64.9491 67.7894 68.4067L80.1667 75.8332V101.833"
+                                stroke="#FD4B03" stroke-width="4" />
+                        </svg>
+
+                        <div class="stroke-wrap main-stroke">
+                            <div class="stroke-wrap-item">
+                                30 дней -
                             </div>
-                            <span class="soft-title">Заполните форму обращения</span>
+                            <div class="stroke-wrap-item">
+                                30 дней -
+                            </div>
                         </div>
                     </div>
-                    <div id="feedback-form" class="feedback-form">
-                        <img class="rotate-img" src="images/dist/form.png" alt="">
-                        <h3 class="main-title split-light form-default">
-                            Заявка
-                            <span>на расчёт</span><br>
-                            <span>проекта</span>
-                        </h3>
-                        <h3 class="main-title split-light form-send">
-                            Спасибо!
-                            <span>Ваша заявка</span><br>
-                            <span>успешно отправлена.</span> <br>
-                            <span>Наш менеджер свяжется</span> <br>
-                            <span>с вами в ближайшее время</span>
-                        </h3>
-                        <form class="feedback-form-main">
-                            <div class="input-wrap">
-                                <span class="soft-title">Как вас зовут?</span>
-                                <input placeholder="Константин" class="soft-description" type="text">
+                </div>
+            </section>
+            <section class="user">
+                <div class="container">
+                    <div class="user__body">
+                        <div class="top">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <h3 class="soft-title">Личный кабинет</h3>
                             </div>
-                            <div class="input-wrap">
-                                <span class="soft-title">Телефон или Telegram</span>
-                                <input placeholder="@konstantinipolsky" class="soft-description" type="text">
+                            <p class="main-description">Простая регистрация</p>
+                        </div>
+                        <div class="user_description main-description split-dark">
+                            <span>позволяет за 3 простых шага получить доступ</span>
+                            <span>к полному функционалу сервиса. Также, </span>
+                            <span>доступен демо-доступ, в котором можно</span>
+                            <span>ознакомиться с сервисом</span>
+                        </div>
+                        <div class="user_photo">
+                            <img src="images/dist/user_lc.webp" alt="">
+                            <p class="soft-description">
+                                Вам необходимо заполнить одну единственную карточку товара
+                                в Anymarkets и она появится во всех вышеперечисленных системах
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="project">
+                <div class="container">
+                    <div class="project__body">
+                        <div class="top">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <h3 class="soft-title">Страница 404</h3>
                             </div>
-                            <div class="input-wrap">
-                                <span class="soft-title">Email</span>
-                                <input placeholder="konstantinipolsky@yandex.ru" class="soft-description" type="text">
+                            <p class="main-description">Отдельного внимания</p>
+                        </div>
+                        <div class="project_description split-dark main-description">
+                            <span>заслуживает незначительная, но в то же время</span>
+                            <span>крайне оригинальная страница ошибки 404.</span>
+                            <span>Просто посмотрите на эту красоту!</span>
+                        </div>
+                        <div class="project_hero">
+                            <img src="images/dist/404.webp" alt="">
+                        </div>
+                        <div class="project_information">
+                            <span>
+                                Особое внимание было уделено <br>
+                                UX и UI — они должны были быть понятны<br>
+                                и удобны для любой аудитории
+                            </span>
+                            <p class="soft-description">
+                                Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и
+                                управлять
+                                его
+                                публикацией
+                                во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это
+                                так:
+                                Вы
+                                продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                                размещаетесь на
+                                Яндекс Маркете и Беру!
+                                <br><br>
+                                Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится
+                                во
+                                всех
+                                вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                                отдельную —
+                                на
+                                Wildberries, и так далее.
+                                <br><br>
+                                Таким образом Anymarkets экономит уйму вашего времени!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="gallery">
+                <div class="container">
+                    <div class="gallery__body">
+                        <div class="top">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <h3 class="soft-title">Прочие разделы</h3>
                             </div>
-                            <div class="input-wrap">
-                                <span class="soft-title">Предмет обращения</span>
-                                <input class="soft-description" readonly id="custom-select"
-                                    placeholder="Дизайн цифрового продукта" value="" type="text">
-                                <div class="wrap-answer soft-description">
-                                    <div class="item">Дизайн цифрового продукта1</div>
-                                    <div class="item">Дизайн цифрового продукта2</div>
-                                    <div class="item">Дизайн цифрового продукта3</div>
-                                    <div class="item">Дизайн цифрового продукта4</div>
-                                </div>
-                            </div>
-                            <div class="input-wrap">
-                                <span class="soft-title">Текст заявки</span>
-                                <textarea maxlength="1000"
-                                    placeholder="Здравствуйте. Компании Яндекс необходимо обновить интерфейс личного кабинета преподавателей в нашем сервисе «Яндекс.Практикум»"
-                                    class="soft-description" name="" id=""></textarea>
-                            </div>
-                            <div class="file-wrap">
-                                <input type="file">
-                                <div class="soft-description">
-                                    <span class="file-name">Прикрепить файл</span>
-                                    <button class="clear-file">
-                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9 1L1 9M9 9L1 1" stroke="white" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="plus">
+                            <p class="main-description">Anymarkets — сервис,</p>
+                        </div>
+                        <div class="gallery-description split-dark main-description">
+                            позволяющий продавцу хранить товар
+                            в одном месте и управлять его публикацией
+                            во множестве маркетплейсов
+                        </div>
+                        <div class="splide gallery-splide" role="group" aria-label="Splide Basic HTML Example">
+                            <div class="splide__arrows">
+                                <button class="splide__arrow splide__arrow--prev">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3.125 10H16.875M10 3.125V16.875" stroke="white" stroke-width="2"
+                                        <path d="M2 10H18M18 10L10 2M18 10L10 18" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <button class="splide__arrow splide__arrow--next">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 10H18M18 10L10 2M18 10L10 18" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <img src="images/dist/gallery.webp" alt="">
+                                        <span class="soft-description">Интерфейс личного кабинета1</span>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="images/dist/gallery.webp" alt="">
+                                        <span class="soft-description">Интерфейс личного кабинета2</span>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="images/dist/gallery.webp" alt="">
+                                        <span class="soft-description">Интерфейс личного кабинета3</span>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="images/dist/gallery.webp" alt="">
+                                        <span class="soft-description">Интерфейс личного кабинета4</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="longest different">
+                <img class="dot-patern" src="images/dist/dot-patern-black.svg" alt="">
+                <div class="container">
+                    <div class="longest__body">
+                        <p>
+                            Примите ваше <br>
+                            лучшее решение <br>
+                            прямо сейчас
+                        </p>
+                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M30.5311 35.2669C38.1675 27.1214 48.8347 22.5 60 22.5C71.1655 22.5 81.8325 27.1214 89.469 35.2669L102.5 50C107.5 55 113.62 60 120 60C113.62 60 107.5 65 102.5 70L89.469 84.733C81.8325 92.8785 71.1655 97.5 60 97.5C48.8347 97.5 38.1674 92.8785 30.5311 84.733L17.5 70C12.5 65 6.38015 60 0 60C6.38015 60 12.5 55 17.5 50L30.5311 35.2669Z"
+                                stroke="#FD4B03" stroke-width="4.61538" />
+                            <circle id="pupil" cx="60" cy="60" r="12" fill="none" stroke="#FD4B03" stroke-width="3" />
+                        </svg>
+
+                        <div class="stroke-wrap main-stroke">
+                            <div class="stroke-wrap-item">
+                                Верный выбор -
+                            </div>
+                            <div class="stroke-wrap-item">
+                                Верный выбор -
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="feedback" class="feedback">
+                <canvas id="dotCanvas"
+                    style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+                <div class="container">
+                    <div class="feedback__body">
+                        <div class="feedback__top">
+                            <div class="title">
+                                <div class="circle"></div>
+                                <span class="soft-title">
+                                    Заявка
+                                </span>
+                            </div>
+                            <h2 class="main-description">Опишите вашу задачу</h2>
+                        </div>
+                        <div class="feedback-stroke main-description split-dark">
+                            <span>или проект своими словами. Приложите</span>
+                            <span>документацию, если таковая имеется</span>
+                        </div>
+                        <div class="feedback-wrap">
+                            <p class="soft-description">
+                                Мы готовы провести для вас полноценную бесплатную независимую консультацию по вопросам
+                                разработки, дизайна и
+                                поддержки вашего проекта. Без навязчивых менеджеров
+                            </p>
+                            <div class="frame ancor-form">
+                                <div class="wrap">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 4V12M8 12L4 8M8 12L12 8" stroke="#8F919A" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
+                                <span class="soft-title">Заполните форму обращения</span>
                             </div>
-                            <div class="form-action">
-                                <button type="button" class="soft-description">
-                                    Отправить
-                                </button>
-                                <p class="soft-title">
-                                    Нажимая на кнопку «Отправить», вы даёте согласие <br>
-                                    на правила обработки персональных данных
-                                </p>
+                        </div>
+                        <div id="feedback-form" class="feedback-form">
+                            <img class="rotate-img" src="images/dist/form.png" alt="">
+                            <h3 class="main-title split-light form-default">
+                                Заявка
+                                <span>на расчёт</span><br>
+                                <span>проекта</span>
+                            </h3>
+                            <h3 class="main-title split-light form-send">
+                                Спасибо!
+                                <span>Ваша заявка</span><br>
+                                <span>успешно отправлена.</span> <br>
+                                <span>Наш менеджер свяжется</span> <br>
+                                <span>с вами в ближайшее время</span>
+                            </h3>
+                            <form class="feedback-form-main">
+                                <div class="input-wrap">
+                                    <span class="soft-title">Как вас зовут?</span>
+                                    <input placeholder="Константин" class="soft-description" type="text">
+                                </div>
+                                <div class="input-wrap">
+                                    <span class="soft-title">Телефон или Telegram</span>
+                                    <input placeholder="@konstantinipolsky" class="soft-description" type="text">
+                                </div>
+                                <div class="input-wrap">
+                                    <span class="soft-title">Email</span>
+                                    <input placeholder="konstantinipolsky@yandex.ru" class="soft-description"
+                                        type="text">
+                                </div>
+                                <div class="input-wrap">
+                                    <span class="soft-title">Предмет обращения</span>
+                                    <input class="soft-description" readonly id="custom-select"
+                                        placeholder="Дизайн цифрового продукта" value="" type="text">
+                                    <div class="wrap-answer soft-description">
+                                        <div class="item">Дизайн цифрового продукта1</div>
+                                        <div class="item">Дизайн цифрового продукта2</div>
+                                        <div class="item">Дизайн цифрового продукта3</div>
+                                        <div class="item">Дизайн цифрового продукта4</div>
+                                    </div>
+                                </div>
+                                <div class="input-wrap">
+                                    <span class="soft-title">Текст заявки</span>
+                                    <textarea maxlength="1000"
+                                        placeholder="Здравствуйте. Компании Яндекс необходимо обновить интерфейс личного кабинета преподавателей в нашем сервисе «Яндекс.Практикум»"
+                                        class="soft-description" name="" id=""></textarea>
+                                </div>
+                                <div class="file-wrap">
+                                    <input type="file">
+                                    <div class="soft-description">
+                                        <span class="file-name">Прикрепить файл</span>
+                                        <button class="clear-file">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 1L1 9M9 9L1 1" stroke="white" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="plus">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3.125 10H16.875M10 3.125V16.875" stroke="white" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="form-action">
+                                    <button type="button" class="soft-description">
+                                        Отправить
+                                    </button>
+                                    <p class="soft-title">
+                                        Нажимая на кнопку «Отправить», вы даёте согласие <br>
+                                        на правила обработки персональных данных
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="longest">
+                <img class="dot-patern" src="images/dist/dot-patern.svg" alt="">
+                <div class="container">
+                    <div class="longest__body">
+                        <p>
+                            Успешная реализация <br>
+                            проекта начинается <br>
+                            со стратегии
+                        </p>
+                        <svg class="item-rotate" width="104" height="104" viewBox="0 0 104 104" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2.1665 28.1673L51.4582 58.5007H52.5415L101.833 28.1673M101.833 17.334V88.834H99.6665C86.6665 86.6673 64.9998 85.584 51.9998 85.584C38.9998 85.584 17.3332 86.6673 4.33317 88.834H2.1665V17.334C15.1665 15.1673 38.9998 14.084 51.9998 14.084C64.9998 14.084 88.8332 15.1673 101.833 17.334Z"
+                                stroke="#FD4B03" stroke-width="4" />
+                        </svg>
+
+                        <div class="stroke-wrap main-stroke">
+                            <div class="stroke-wrap-item">
+                                hey@strategia.io -
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="longest">
-            <img class="dot-patern" src="images/dist/dot-patern.svg" alt="">
-            <div class="container">
-                <div class="longest__body">
-                    <p>
-                        Успешная реализация <br>
-                        проекта начинается <br>
-                        со стратегии
-                    </p>
-                    <svg class="item-rotate" width="104" height="104" viewBox="0 0 104 104" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M2.1665 28.1673L51.4582 58.5007H52.5415L101.833 28.1673M101.833 17.334V88.834H99.6665C86.6665 86.6673 64.9998 85.584 51.9998 85.584C38.9998 85.584 17.3332 86.6673 4.33317 88.834H2.1665V17.334C15.1665 15.1673 38.9998 14.084 51.9998 14.084C64.9998 14.084 88.8332 15.1673 101.833 17.334Z"
-                            stroke="#FD4B03" stroke-width="4" />
-                    </svg>
-    
-                    <div class="stroke-wrap main-stroke">
-                        <div class="stroke-wrap-item">
-                            hey@strategia.io -
-                        </div>
-                        <div class="stroke-wrap-item">
-                            hey@strategia.io -
+                            <div class="stroke-wrap-item">
+                                hey@strategia.io -
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section id="contact" class="contact">
-            <canvas id="dotCanvas"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
-            <div class="container">
-                <div class="contact__body">
-                    <div class="title">
-                        <div class="circle"></div>
-                        <span class="soft-title">Контакты</span>
-                    </div>
-                    <div class="contact-frame">
-                        <div class="item">
-                            <p class="soft-title">Российская Федерация</p>
-                            <span class="main-title">
-                                Москва, <br>
-                                Красная Поляна, 25 <br>
-                                +7 999 99-204-88
-                            </span>
-                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
-                                <path d="M0 100 L2000 100" stroke="#FFFFFF66" stroke-opacity="0.3" stroke-width="2"
-                                    fill="none" />
-                            </svg>
+            </section>
+            <section id="contact" class="contact">
+                <canvas id="dotCanvas"
+                    style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+                <div class="container">
+                    <div class="contact__body">
+                        <div class="title">
+                            <div class="circle"></div>
+                            <span class="soft-title">Контакты</span>
                         </div>
-                        <div class="item">
-                            <p class="soft-title">United States of America</p>
-                            <span class="main-title">
-                                Santa Monica, <br>
-                                67, 208, Linkoln ave, <br>
-                                CA 90404
-                            </span>
-                            <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
-                                <path d="M0 100 L2000 100" stroke="#FFFFFF66" stroke-opacity="0.3" stroke-width="2"
-                                    fill="none" />
-                            </svg>
-                        </div>
-                        <div class="action">
-                            <a class="soft-description" href="">Telegram</a>
-                            <a class="soft-description" href="">Написать письмо</a>
+                        <div class="contact-frame">
+                            <div class="item">
+                                <p class="soft-title">Российская Федерация</p>
+                                <span class="main-title">
+                                    Москва, <br>
+                                    Красная Поляна, 25 <br>
+                                    +7 999 99-204-88
+                                </span>
+                                <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                    <path d="M0 100 L2000 100" stroke="#FFFFFF66" stroke-opacity="0.3" stroke-width="2"
+                                        fill="none" />
+                                </svg>
+                            </div>
+                            <div class="item">
+                                <p class="soft-title">United States of America</p>
+                                <span class="main-title">
+                                    Santa Monica, <br>
+                                    67, 208, Linkoln ave, <br>
+                                    CA 90404
+                                </span>
+                                <svg class="line" viewBox="0 0 2000 200" preserveAspectRatio="none">
+                                    <path d="M0 100 L2000 100" stroke="#FFFFFF66" stroke-opacity="0.3" stroke-width="2"
+                                        fill="none" />
+                                </svg>
+                            </div>
+                            <div class="action">
+                                <a class="soft-description" href="">Telegram</a>
+                                <a class="soft-description" href="">Написать письмо</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
     <footer class="footer">
         <div class="footer-stroke main-stroke">
             <span class="stroke-item">Стратегия -</span>
@@ -484,7 +519,7 @@
         </div>
         <div class="footer-policy">
             <p class="rights soft-title">
-                © Стратегия, 2013 - 2025 
+                © Стратегия, 2013 - 2025
             </p>
             <div class="wrap">
                 <a href="" class="soft-title">Политика конфиденциальности</a>
@@ -493,7 +528,10 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js" integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js"
+        integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
     <script src="js/libs.min.js"></script>
     <script src="js/main.min.js"></script>
 </body>

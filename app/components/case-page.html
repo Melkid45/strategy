@@ -12,7 +12,21 @@
 <body>
     <div class="cursor" id="cursorDot"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
-    <div class="page-transition"></div>
+    <div class="preloader">
+        <canvas class=""
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <div class="line">
+            <span></span>
+        </div>
+        <div class="text soft-description">
+            Успешная реализация <br>
+            начинается со Стратегии
+        </div>
+        <div class="procent main-stroke">
+            37%
+        </div>
+    </div>
+    <div class="transition-overlay"></div>
     <header class="header">
         <div class="container">
             <div class="header__body">
@@ -32,7 +46,7 @@
             </div>
         </div>
     </header>
-    <main>
+    <main data-barba="container" data-barba-namespace="home">
         <section class="about">
             <img class="about_back" src="../images/dist/about_back.webp" alt="">
             <img class="about_device" src="../images/dist/device.webp" alt="">
@@ -94,14 +108,19 @@
                             и удобны для любой аудитории
                         </span>
                         <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
+                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять
+                            его
                             публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
+                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так:
+                            Вы
+                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                            размещаетесь на
                             Яндекс Маркете и Беру!
                             <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
+                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во
+                            всех
+                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                            отдельную —
                             на
                             Wildberries, и так далее.
                             <br><br>
@@ -131,7 +150,7 @@
                             d="M13 2.1665H91M13 101.833H91M23.8333 101.833V75.8332L36.2105 68.4067C41.9737 64.9491 45.5 58.7208 45.5 51.9998C45.5 45.2788 41.9737 39.0507 36.2105 35.5928L23.8333 28.1665V2.1665M80.1667 2.1665V28.1665L67.7894 35.5928C62.0265 39.0507 58.5 45.2788 58.5 51.9998C58.5 58.7208 62.0265 64.9491 67.7894 68.4067L80.1667 75.8332V101.833"
                             stroke="#FD4B03" stroke-width="4" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             30 дней -
@@ -194,14 +213,19 @@
                             и удобны для любой аудитории
                         </span>
                         <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
+                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять
+                            его
                             публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
+                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так:
+                            Вы
+                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                            размещаетесь на
                             Яндекс Маркете и Беру!
                             <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
+                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во
+                            всех
+                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                            отдельную —
                             на
                             Wildberries, и так далее.
                             <br><br>
@@ -282,7 +306,7 @@
                             stroke="#FD4B03" stroke-width="4.61538" />
                         <circle id="pupil" cx="60" cy="60" r="12" fill="none" stroke="#FD4B03" stroke-width="3" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             Верный выбор -
@@ -422,7 +446,7 @@
                             d="M2.1665 28.1673L51.4582 58.5007H52.5415L101.833 28.1673M101.833 17.334V88.834H99.6665C86.6665 86.6673 64.9998 85.584 51.9998 85.584C38.9998 85.584 17.3332 86.6673 4.33317 88.834H2.1665V17.334C15.1665 15.1673 38.9998 14.084 51.9998 14.084C64.9998 14.084 88.8332 15.1673 101.833 17.334Z"
                             stroke="#FD4B03" stroke-width="4" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             hey@strategia.io -
@@ -484,7 +508,7 @@
         </div>
         <div class="footer-policy">
             <p class="rights soft-title">
-                © Стратегия, 2013 - 2025 
+                © Стратегия, 2013 - 2025
             </p>
             <div class="wrap">
                 <a href="" class="soft-title">Политика конфиденциальности</a>
@@ -493,7 +517,9 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js" integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js"
+        integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../js/libs.min.js"></script>
     <script src="../js/main.min.js"></script>
 </body>

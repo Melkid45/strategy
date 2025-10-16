@@ -21,10 +21,8 @@ function setupMarquee(container, {
     if (st.trigger === container) st.kill();
   });
 
-  // стартовое состояние
   gsap.set(container, { x: 0 });
 
-  // бесконечная анимация
   gsap.to(container, {
     x: -totalWidth,
     duration,
@@ -38,7 +36,6 @@ function setupMarquee(container, {
     }
   });
 
-  // анимация появления контейнера при скролле
   gsap.fromTo(
     container,
     { xPercent: enterX },
@@ -73,8 +70,10 @@ function initMarquees() {
 
   // специальные
   document.querySelectorAll('.special-margue-container').forEach((wrap) => {
+    let wrapElement = wrap;
+    wrapElement.style.transform = 'translateX(-60%)';
     const el = wrap.querySelector('.agency-stroke');
-    if (el) setupMarquee(el, { duration: 15, enterX: -60 });
+    if (el) setupMarquee(el, { duration: 15, enterX: 60 });
   });
 }
 

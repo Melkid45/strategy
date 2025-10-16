@@ -7,18 +7,18 @@
 if (document.querySelector('.hero-block')) {
   gsap.to('.hero-block .circle-hero', {
     scale: 15,
-    yPercent: -50,
+    yPercent: 100,
     xPercent: -70,
     scrollTrigger: {
       trigger: '.hero-block',
       start: 'top top',
-      end: '+=100%',
+      end: '+=75%',
       scrub: 1,
       pin: true,
       pinSpacing: false,
       onUpdate: (process) => {
         let StartProgress = process.progress
-        let Opacity = 1 - (StartProgress * 5)
+        let Opacity = 1 - (StartProgress * 10)
         let OpacityScroll = 1 - (StartProgress * 10)
         $('.hero-block .stoke-title').css({ opacity: Opacity })
         $('.hero-block-scroll').css({ opacity: OpacityScroll })

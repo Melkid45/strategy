@@ -64,28 +64,3 @@ if (document.querySelector('.gallery')) {
   })
 }
 
-
-
-
-const items = document.querySelectorAll('.case-frame .item');
-const overlay = document.querySelector('.page-transition');
-items.forEach((element, index) => {
-  element.addEventListener('click', () => {
-    gsap.to(element, {
-      y: -100,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.inOut',
-    });
-
-    gsap.to(overlay, {
-      y: 0,
-      duration: 0.8,
-      ease: 'power4.inOut',
-      delay: 0.2,
-      onComplete: () => {
-        window.location.href = 'newpage.html';
-      },
-    });
-  });
-})

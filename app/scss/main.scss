@@ -15,22 +15,98 @@
         color: var(--white);
     }
 }
+
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+}
+.preloader {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+        text-align: center;
+    }
+
+    .procent {
+        color: var(--grey);
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+    }
+
+    .line {
+        position: absolute;
+        width: 95%;
+        left: 40px;
+        height: 1px;
+        background: #8F919A33;
+        top: 40px;
+        overflow: hidden;
+
+        span {
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+    }
+}
+
+.btn-hover {
+    position: relative;
+}
+
+.btn-hover::before {
+    background: linear-gradient(0deg, rgba(21, 21, 25, 0.2), rgba(21, 21, 25, 0.2));
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.btn-hover:hover::before {
+    opacity: 1;
+}
+
 .page-transition {
     position: fixed;
     inset: 0;
     background: var(--black);
     transform: translateY(100%);
     z-index: 9999;
-  }
+}
 
 .hero-block {
     width: 100%;
     height: 115vh;
     background: var(--black);
     overflow: hidden;
+
     &__body {
         padding: 122px 0px 122px 0px;
         width: 100%;
+
         .hero__body-items {
             display: flex;
             flex-direction: column;
@@ -46,6 +122,7 @@
                 align-items: center;
                 gap: 20px;
                 justify-content: center;
+
                 .line {
                     position: absolute;
                     top: -90px;
@@ -110,6 +187,7 @@
                     overflow: hidden;
                     border-radius: 60px;
                     position: relative;
+
                     .stroke-wrap {
                         display: flex;
                         gap: 40px;
@@ -263,6 +341,7 @@
     background: var(--grey);
     position: relative;
     z-index: 1;
+
     .content {
         position: absolute;
         top: 0;
@@ -303,6 +382,7 @@
         border-top: 1px solid #FFFFFF33;
         position: relative;
         z-index: 2;
+
         .main-description {
             color: var(--white);
         }
@@ -312,6 +392,7 @@
         padding: 0 40px;
         position: relative;
         z-index: 2;
+
         span {
             color: var(--text-grey);
         }
@@ -342,6 +423,7 @@
 .xcode {
     position: relative;
     z-index: 2;
+
     &__body {
         border-top: 1px solid #FFFFFF33;
         width: 100%;
@@ -550,6 +632,7 @@
     padding-bottom: 1200px;
     position: relative;
     z-index: 1;
+
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -577,6 +660,7 @@
 
             p {
                 max-width: 427px;
+                font-weight: 400;
             }
 
             &-soft {
@@ -652,6 +736,7 @@
         flex-direction: column;
         position: relative;
         z-index: 3;
+
         .case__top {
             display: flex;
             gap: 274px;
@@ -679,6 +764,7 @@
                 justify-content: center;
                 position: relative;
                 z-index: 5;
+
                 img {
                     width: 100%;
                     height: 100%;
@@ -710,11 +796,26 @@
                         white-space: nowrap;
                     }
                 }
+
+                .case-open {
+                    padding: 14px 22px;
+                    background: var(--white);
+                    position: absolute;
+                    bottom: 40px;
+                    right: 40px;
+                    border-radius: 40px;
+                    backdrop-filter: blur(10px);
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
             }
         }
 
         .want-order:hover {
-            background:#fff, #15151933;
+            background: #fff, #15151933;
             /*.circle-want {
                 transform: translate(0px, 0px) scale(1);
             }
@@ -810,6 +911,16 @@
             align-self: flex-end;
             margin-top: 64px;
 
+            .item:hover {
+                button {
+                    background: var(--white);
+
+                    span {
+                        background: var(--black);
+                    }
+                }
+            }
+
             .item.open {
                 button {
                     background: var(--white);
@@ -840,7 +951,6 @@
                     display: flex;
                     width: 100%;
                     justify-content: space-between;
-                    transition: all 0.4s ease;
                     align-items: center;
 
                     h3 {
@@ -1000,6 +1110,7 @@
     z-index: 2;
     padding-top: 100rem;
     padding-bottom: 200px;
+
     &__body {
         display: flex;
         flex-direction: column;
@@ -1175,7 +1286,6 @@
                     display: flex;
                     flex-direction: column;
                     gap: 4px;
-                    padding-bottom: 28px;
                     border-bottom: 1px solid #8F919A33;
                     transition: all 0.3s ease;
                     position: relative;
@@ -1186,7 +1296,7 @@
 
                     input {
                         width: 100%;
-                        height: 28px;
+                        height: 56px;
                         background: transparent;
                         font-family: var(--light);
                         color: var(--white);
@@ -1349,7 +1459,12 @@
         .faq-frame {
             width: 893px;
             align-self: flex-end;
-            margin-top: 64px;
+
+            .item:hover {
+                button {
+                    background: #8F919A33;
+                }
+            }
 
             .item.open {
                 button {
@@ -1400,9 +1515,11 @@
                         color: var(--grey);
                         transition: all 0.4s ease;
                     }
-                    button:hover{
+
+                    button:hover {
                         background: #8F919A33;
                     }
+
                     button {
                         width: 64px;
                         height: 48px;
@@ -1414,6 +1531,7 @@
                         border-radius: 40px;
                         border: 1px solid #FFFFFF33;
                         transition: all 0.4s ease;
+
                         span {
                             width: 16px;
                             height: 2px;

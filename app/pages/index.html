@@ -12,12 +12,32 @@
 <body>
     <div class="cursor" id="cursorDot"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
-    <div class="page-transition"></div>
+    <div class="preloader">
+        <canvas class=""
+            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <div class="line">
+            <span></span>
+        </div>
+        <div class="text soft-description">
+            Успешная реализация <br>
+            начинается со Стратегии
+        </div>
+        <div class="procent main-stroke">
+            37%
+        </div>
+    </div>
+    <div class="transition-overlay"></div>
     <!--=include header.html -->
+    <div data-barba="wrapper">
+
+    </div>
     <!--=include main.html -->
     <!--=include footer.html -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js" integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js"
+        integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
     <script src="../js/libs.min.js"></script>
     <script src="../js/main.min.js"></script>
 </body>

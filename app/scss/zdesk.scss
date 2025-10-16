@@ -3,6 +3,46 @@
         font-size: calc(100vw / 1440);
     }
 
+
+    .preloader {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999999;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .text {
+            text-align: center;
+        }
+
+        .procent {
+            color: var(--grey);
+            position: absolute;
+            bottom: 40rem;
+            right: 40rem;
+        }
+
+        .line {
+            position: absolute;
+            width: 95%;
+            left: 40rem;
+            height: 1rem;
+            background: #8F919A33;
+            top: 40rem;
+
+            span {
+                width: 0%;
+                height: 100%;
+                background: var(--white);
+            }
+        }
+    }
+
     .cursor {
         width: 16rem;
         height: 16rem;
@@ -154,7 +194,7 @@
 
     .hero-block {
         width: 100%;
-        height: 115vh;
+        height: 110vh;
         background: var(--black);
 
         &__body {
@@ -801,6 +841,21 @@
                             white-space: nowrap;
                         }
                     }
+
+                    .case-open {
+                        padding: 14rem 22rem;
+                        background: var(--white);
+                        position: absolute;
+                        bottom: 40rem;
+                        right: 40rem;
+                        border-radius: 40rem;
+                        backdrop-filter: blur(10px);
+
+                        svg {
+                            width: 20rem;
+                            height: 20rem;
+                        }
+                    }
                 }
             }
 
@@ -875,7 +930,6 @@
                         display: flex;
                         width: 100%;
                         justify-content: space-between;
-                        transition: all 0.4s ease;
                         align-items: center;
 
                         h3 {
@@ -1146,7 +1200,6 @@
                         display: flex;
                         flex-direction: column;
                         gap: 4rem;
-                        padding-bottom: 28rem;
                         border-bottom: 1rem solid #8F919A33;
 
                         span {
@@ -1155,9 +1208,10 @@
 
                         input {
                             width: 100%;
-                            height: 28rem;
+                            height: 56rem;
                             background: transparent;
                             color: var(--white);
+
                         }
 
                         .wrap-answer {
@@ -1323,7 +1377,6 @@
             .faq-frame {
                 width: 893rem;
                 align-self: flex-end;
-                margin-top: 64rem;
 
                 .item.open {
                     button {
