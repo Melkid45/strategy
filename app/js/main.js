@@ -26,21 +26,23 @@ let lastScrollTop = 0;
 let isScrollingDown = false;
 const scrollThreshold = 5;
 const activationThreshold = 50;
-lenis.on('scroll', ({ scroll }) => {
-  ScrollTrigger.update()
-  currentScroll = scroll;
-  const header = document.querySelector('.header');
-  if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
-    isScrollingDown = currentScroll > lastScrollTop;
-    lastScrollTop = currentScroll;
-  }
+if (window.innerWidth > 750) {
+  lenis.on('scroll', ({ scroll }) => {
+    ScrollTrigger.update()
+    currentScroll = scroll;
+    const header = document.querySelector('.header');
+    if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
+      isScrollingDown = currentScroll > lastScrollTop;
+      lastScrollTop = currentScroll;
+    }
 
-  if (isScrollingDown && currentScroll > activationThreshold) {
-    header.classList.add('back');
-  } else {
-    header.classList.remove('back');
-  }
-});
+    if (isScrollingDown && currentScroll > activationThreshold) {
+      header.classList.add('back');
+    } else {
+      header.classList.remove('back');
+    }
+  });
+}
 
 if (document.querySelector('.gallery')) {
   let gallery = new Splide('.gallery-splide', {

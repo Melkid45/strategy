@@ -1,3 +1,5 @@
+
+if (width > 750) {
 (function () {
   const DOTS = 10;
   const FOLLOW_SPEED = 0.15;
@@ -98,6 +100,8 @@
 
     requestAnimationFrame(animate);
   }
-
-  requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 })();
+
+
+}

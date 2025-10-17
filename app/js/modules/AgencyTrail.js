@@ -337,5 +337,7 @@ class AgencyTrailManager {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  new AgencyTrailManager();
+  if (width > 750) {
+    new AgencyTrailManager();
+  }
 });

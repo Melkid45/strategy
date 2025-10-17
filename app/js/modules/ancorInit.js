@@ -12,7 +12,10 @@ window.addEventListener('load', () => {
     gsap.delayedCall(0.3, () => {
       ScrollTrigger.refresh(true);
 
-      lenis.scrollTo(0, { immediate: true });
+      lenis.scrollTo(0, { 
+        immediate: true ,
+        duration: 0.1
+      });
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -59,7 +62,8 @@ function initAnchorLinks() {
 
         lenis.scrollTo(scrollTarget, {
           lerp: 0.1,
-          duration: 6
+          duration: 6,
+          easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
         });
 
         setTimeout(() => {

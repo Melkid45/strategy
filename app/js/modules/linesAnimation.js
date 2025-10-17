@@ -1,5 +1,6 @@
 /*<-----Lines Animation---->*/
 
+if (width > 750){
 const lines = document.querySelectorAll('.line path');
 
 const lineAnimations = new Map();
@@ -95,3 +96,5 @@ document.addEventListener('mouseleave', () => {
     });
   });
 });
+
+}

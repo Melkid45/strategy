@@ -95,5 +95,5 @@ class DotCanvas {
 
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('dotCanvas');
-  if (canvas) new DotCanvas(canvas);
+  if (canvas && width > 750) new DotCanvas(canvas);
 });

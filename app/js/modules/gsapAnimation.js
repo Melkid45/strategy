@@ -2,13 +2,18 @@
 
 
 
-
+let IsDestop = width > 750;
 // Hero Block
 if (document.querySelector('.hero-block')) {
+  let HeroConfig = {
+    scale: IsDestop ? 15 : 25,
+    yPercent: IsDestop ? 100 : 350,
+    xPercent: IsDestop ? -70 : -0
+  }
   gsap.to('.hero-block .circle-hero', {
-    scale: 15,
-    yPercent: 100,
-    xPercent: -70,
+    scale: HeroConfig.scale,
+    yPercent: HeroConfig.yPercent,
+    xPercent: HeroConfig.xPercent,
     scrollTrigger: {
       trigger: '.hero-block',
       start: 'top top',
@@ -80,9 +85,9 @@ if (document.querySelector('.xcode')) {
 
 
 // Guarantees Block
-if (document.querySelector('.feedback')) {
+if (document.querySelector('.feedback') && width > 750) {
   gsap.set('.feedback-form, .guarantees-section', {
-    yPercent: -85,
+    yPercent: -92,
     scale: 0.3,
     xPercent: -35
   })
@@ -121,10 +126,15 @@ if (document.querySelector('.guarantees')) {
 
 // Implementation Block
 if (document.querySelector('.implementation')) {
+  let ImplementationConfig = {
+    scale: IsDestop ? 15 : 25,
+    yPercent: IsDestop ? 100 : 350,
+    xPercent: IsDestop ? -70 : -0
+  }
   gsap.to('.implementation .circle-hero', {
-    scale: 15,
-    yPercent: -50,
-    xPercent: -70,
+    scale: ImplementationConfig.scale,
+    yPercent: ImplementationConfig.yPercent,
+    xPercent: ImplementationConfig.xPercent,
     scrollTrigger: {
       trigger: '.implementation',
       start: 'top top',
@@ -146,7 +156,7 @@ if (document.querySelector('.implementation')) {
 
 // Feedback Block
 
-if (document.querySelector('.feedback-form')) {
+if (document.querySelector('.feedback-form') && width > 750) {
   gsap.to('.feedback-form', {
     yPercent: 0,
     xPercent: 0,
@@ -169,38 +179,111 @@ function splitLetters() {
   const sections = document.querySelectorAll('.split-light, .split-dark');
 
   sections.forEach(section => {
-    const letters = section.textContent.split('');
-    section.innerHTML = letters
-      .map(letter => `<span class="char">${letter}</span>`)
-      .join('');
+    if (section.querySelector('.char')) return;
+
+    const text = section.textContent;
+    let newHTML = '';
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+
+      if (char === ' ' || char === '\n' || char === '\t') {
+        newHTML += char;
+      } else {
+        newHTML += `<span class="char">${char}</span>`;
+      }
+    }
+
+    section.innerHTML = newHTML;
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  splitLetters();
+function initScrollAnimations() {
   let Config = {
     colorLight: "#BEBFC3",
     colorDark: "#8F919A"
   };
+
   const sections = document.querySelectorAll('.split-light, .split-dark');
 
   sections.forEach(section => {
     const chars = section.querySelectorAll('.char');
     let color = section.classList.contains('split-light') ? Config.colorLight : Config.colorDark;
-    gsap.fromTo(
-      chars,
-      { color: color },
-      {
-        color: "#fff",
-        ease: "none",
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          end: "bottom 40%",
-          scrub: true,
+
+    gsap.set(chars, { color: color });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+        onEnter: () => {
+          tl.play();
+        },
+        onEnterBack: () => {
+          tl.play();
+        },
+        onLeave: () => {
+          tl.progress(1);
+        },
+        onLeaveBack: () => {
+          tl.progress(0);
         }
       }
-    );
+    });
+
+    tl.to(chars, {
+      color: "#fff",
+      ease: "power2.out",
+      stagger: {
+        amount: 0.5,
+        from: "start"
+      },
+      duration: 0.8
+    });
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  splitLetters();
+
+  setTimeout(() => {
+    initScrollAnimations();
+  }, 100);
 });
+
+window.addEventListener('resize', () => {
+  ScrollTrigger.refresh();
+});
+
+
+
+if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
+  const xcodeContainers = document.querySelectorAll('.wrap-agency-animation .content');
+
+  xcodeContainers.forEach((container, containerIndex) => {
+    let xcodeItems = container.querySelectorAll('.content__img');
+    let xcodeItemWidth, xcodeGap, formula;
+
+    function updateXcodeMetrics() {
+      xcodeItemWidth = xcodeItems[0].offsetWidth;
+      xcodeGap = parseFloat(getComputedStyle(container).gap) || 0;
+      formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - xcodeGap * 2);
+    }
+    updateXcodeMetrics();
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top bottom',
+        end: () => `+=100%`,
+        scrub: 1,
+      }
+    });
+    tl.to(container, {
+      x: -formula,
+      ease: 'none',
+    });
+  });
+}
