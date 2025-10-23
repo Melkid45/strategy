@@ -121,22 +121,29 @@
         @include soft-description(16rem, 400, 120%);
         color: var(--white);
     }
-
+    .header.open {
+        background: #151519;
+        height: 100vh;
+        mix-blend-mode: normal;
+    }
     .header {
         width: 100%;
         padding-top: 20rem;
-        z-index: 99;
+        z-index: 90;
         transition: all 0.5s ease;
         mix-blend-mode: difference;
         position: fixed;
         top: 0;
         left: 0;
-
+        height: 72rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
         &__body {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            position: relative;
 
             &-logo {
                 @include main-title(20rem, 700, 20rem);
@@ -170,6 +177,59 @@
                     }
                 }
             }
+
+            .header-menu-mob {
+                display: flex;
+                flex-direction: column;
+                gap: 40rem;
+                position: absolute;
+                top: 92rem;
+                z-index: 90;
+                nav {
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12rem;
+
+                        li {
+                            font-family: var(--medium);
+                            font-weight: 500;
+                            font-size: 28rem;
+                            line-height: 32rem;
+                            letter-spacing: 0%;
+                            color: var(--white);
+                        }
+                    }
+                }
+
+                .header-menu-action {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20rem;
+
+                    .item {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8rem;
+                        p{
+                            color: var(--grey);
+                        }
+                        a {
+                            font-family: var(--medium);
+                            font-weight: 500;
+                            font-size: 14rem;
+                            line-height: 20rem;
+                            letter-spacing: 0%;
+                            color: var(--white);
+                        }
+
+                        .wrap {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -194,9 +254,10 @@
 
     .hero-block {
         width: 100%;
-        height: 110vh;
+        height: 130vh;
         background: var(--black);
         overflow: hidden;
+
         &__body {
             padding: 102rem 0rem 102rem 0rem;
             width: 100%;
@@ -261,6 +322,7 @@
                         overflow: hidden;
                         border-radius: 60rem;
                         z-index: 2;
+
                         .stroke-wrap {
                             display: flex;
                             gap: 40rem;
@@ -277,17 +339,72 @@
         }
     }
 
+    .menu-scrolling {
+        position: fixed;
+        bottom: 20rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 14rem 24rem;
+        display: flex;
+        align-items: center;
+        gap: 12rem;
+        background: #8F919A66;
+        z-index: 100;
+        border-radius: 40rem;
+        backdrop-filter: blur(10rem);
+        span {
+            color: var(--white);
+        }
+
+        .burger.open {
+            justify-content: center;
+
+            span {
+                position: absolute;
+            }
+
+            span:nth-child(1) {
+                rotate: 45deg;
+            }
+
+            span:nth-child(2) {
+                rotate: -45deg;
+            }
+        }
+
+        .burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 18rem;
+            height: 8rem;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+
+            span {
+                width: 100%;
+                height: 2rem;
+                background: var(--white);
+                border-radius: 2rem;
+                transition: all 0.3s ease;
+            }
+        }
+    }
+
 
     .agency {
         padding-top: 80rem;
         width: 100%;
         overflow: hidden;
         padding-bottom: 80rem;
-        .content{
+
+        .content {
             display: flex;
             gap: 20rem;
             position: static;
         }
+
         .content__img-inner {
             border-radius: 12rem;
         }
@@ -310,6 +427,7 @@
             padding: 0 20rem;
             padding-top: 40rem;
             border-top: 1rem solid #FFFFFF33;
+
             .main-description {
                 color: var(--white);
             }
@@ -340,6 +458,7 @@
             width: 100%;
             flex-wrap: nowrap;
             margin-top: 40rem;
+
             .stroke-item {
                 white-space: nowrap;
                 text-transform: uppercase;
@@ -349,6 +468,7 @@
 
     .xcode {
         overflow: hidden;
+
         .dot-patern {
             bottom: -200rem;
         }
@@ -557,8 +677,9 @@
 
     .guarantees {
         width: 100%;
-        padding-bottom: 335rem;
+        padding-bottom: 385rem;
         overflow: hidden;
+
         &__body {
             padding-top: 40rem;
             border-top: 1rem solid #FFFFFF33;
@@ -641,7 +762,7 @@
 
             .guarantees-circle {
                 position: absolute;
-                bottom: -335rem;
+                bottom: -435rem;
                 align-self: center;
                 width: 335rem;
                 height: 335rem;
@@ -860,11 +981,12 @@
         width: 100%;
         padding-bottom: 80rem;
         padding-top: 80rem;
-        height: 115vh;
+        height: 130vh;
         position: relative;
         z-index: 1;
         background: var(--grey);
         overflow: hidden;
+
         &__body {
             display: flex;
             flex-direction: column;
@@ -1029,7 +1151,7 @@
                 gap: 40rem;
                 margin-top: 80rem;
                 position: relative;
-
+                min-height: auto;
 
                 h3 {
                     color: var(--white);
@@ -1217,7 +1339,8 @@
                         p {
                             color: var(--grey);
                             font-size: 12rem;
-                            br{
+
+                            br {
                                 display: none;
                             }
                         }
@@ -1363,6 +1486,7 @@
                     gap: 8rem;
                     position: relative;
                     border-top: 1rem solid #FFFFFF33;
+
                     .line {
                         position: absolute;
                         bottom: -100rem;
@@ -1410,6 +1534,7 @@
             }
         }
     }
+
     .footer {
         width: 100%;
         display: flex;

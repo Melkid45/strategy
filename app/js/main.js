@@ -66,3 +66,13 @@ if (document.querySelector('.gallery')) {
   })
 }
 
+
+$('.menu-scrolling').on('click', function(e){
+  $(this).children('.burger').toggleClass('open')
+  $('.header').toggleClass('open')
+})
+
+$('.header-menu-mob li').on('click', function(e){
+  $('.menu-scrolling').children('.burger').removeClass('open')
+  $('.header').removeClass('open')
+})

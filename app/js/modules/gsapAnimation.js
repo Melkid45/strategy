@@ -6,9 +6,10 @@ let IsDestop = width > 750;
 // Hero Block
 if (document.querySelector('.hero-block')) {
   let HeroConfig = {
-    scale: IsDestop ? 15 : 25,
+    scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 100 : 350,
-    xPercent: IsDestop ? -70 : -0
+    xPercent: IsDestop ? -70 : -0,
+    end: IsDestop ? '+=75%' : '+=100%'
   }
   gsap.to('.hero-block .circle-hero', {
     scale: HeroConfig.scale,
@@ -16,8 +17,8 @@ if (document.querySelector('.hero-block')) {
     xPercent: HeroConfig.xPercent,
     scrollTrigger: {
       trigger: '.hero-block',
-      start: 'top top',
-      end: '+=75%',
+      start: 'top+=1%',
+      end: HeroConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
@@ -39,20 +40,23 @@ if (document.querySelector('.hero-block')) {
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
-  let xcodeItemWidth, xcodeGap, formula;
+  let xcodeItemWidth, xcodeGap, formula, formulaMobile;
 
   function updateXcodeMetrics() {
     xcodeItemWidth = xcodeItems[0].offsetWidth;
     xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
     formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
+    formulaMobile = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - (xcodeGap * 8 - 10));
   }
   updateXcodeMetrics();
-
+  let XcodeConsig = {
+    start: IsDestop ? 'top+=40%' : 'top+=30%'
+  }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: 'top+=40%',
-      end: () => `+=${formula}`,
+      start: XcodeConsig.start,
+      end: () => `+=${IsDestop ? formula : formulaMobile}`,
       pin: true,
       scrub: 1,
       onUpdate: self => {
@@ -107,18 +111,24 @@ if (document.querySelector('.guarantees')) {
       scrub: true,
     }
   })
+  let GuaranteesConfig = {
+    scale: IsDestop ? 16 : 25,
+    yPercent: IsDestop ? -60 : -80,
+    start: IsDestop ? '+=45%' : '+=20%',
+    end: IsDestop ? '+=200%' : '+=50%'
+  }
   gsap.to('.guarantees-circle', {
-    yPercent: -60,
-    scale: 16,
+    yPercent: GuaranteesConfig.yPercent,
+    scale: GuaranteesConfig.scale,
     ease: 'power1.inOut',
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees',
-      start: '+=45%',
-      end: '+=200%',
+      start: GuaranteesConfig.start,
+      end: GuaranteesConfig.end,
       scrub: 1,
       pin: true,
-      pinSpacing: false
+      pinSpacing: false,
     }
   })
 }
