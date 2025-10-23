@@ -6,7 +6,7 @@ if (document.querySelector('.ancor-form')) {
     gsap.to(window, {
       duration: 1,
       ease: 'power1.inOut',
-      scrollTo: { y: "#feedback-form", offsetY: -500 }
+      scrollTo: { y: "#feedback-form", offsetY: IsDestop ? -500 : 0 }
     });
   });
 }

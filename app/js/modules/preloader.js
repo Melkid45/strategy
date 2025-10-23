@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressLine = document.querySelector('.line span');
     const procentElement = document.querySelector('.procent');
     
-    // Симуляция прогресса загрузки
     let progress = 0;
     const targetProgress = 100;
-    const duration = 3000; // 3 секунды
-    const interval = 30; // обновление каждые 30ms
+    const duration = 2000;
+    const interval = 30;
     const increment = (targetProgress / duration) * interval;
     
     const progressInterval = setInterval(() => {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         procentElement.textContent = Math.round(currentProgress) + '%';
         
         if (document.readyState === 'complete') {
-            progress = Math.max(progress, 90);
+            progress = Math.max(progress, 0);
         }
         
         if (currentProgress >= targetProgress) {

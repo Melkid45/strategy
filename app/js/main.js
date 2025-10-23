@@ -26,23 +26,21 @@ let lastScrollTop = 0;
 let isScrollingDown = false;
 const scrollThreshold = 5;
 const activationThreshold = 50;
-if (window.innerWidth > 750) {
-  lenis.on('scroll', ({ scroll }) => {
-    ScrollTrigger.update()
-    currentScroll = scroll;
-    const header = document.querySelector('.header');
-    if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
-      isScrollingDown = currentScroll > lastScrollTop;
-      lastScrollTop = currentScroll;
-    }
+lenis.on('scroll', ({ scroll }) => {
+  ScrollTrigger.update()
+  currentScroll = scroll;
+  const header = document.querySelector('.header');
+  if (Math.abs(currentScroll - lastScrollTop) > scrollThreshold) {
+    isScrollingDown = currentScroll > lastScrollTop;
+    lastScrollTop = currentScroll;
+  }
 
-    if (isScrollingDown && currentScroll > activationThreshold) {
-      header.classList.add('back');
-    } else {
-      header.classList.remove('back');
-    }
-  });
-}
+  if (isScrollingDown && currentScroll > activationThreshold && window.innerWidth > 750) {
+    header.classList.add('back');
+  } else {
+    header.classList.remove('back');
+  }
+});
 
 if (document.querySelector('.gallery')) {
   let gallery = new Splide('.gallery-splide', {
@@ -67,12 +65,12 @@ if (document.querySelector('.gallery')) {
 }
 
 
-$('.menu-scrolling').on('click', function(e){
+$('.menu-scrolling').on('click', function (e) {
   $(this).children('.burger').toggleClass('open')
   $('.header').toggleClass('open')
 })
 
-$('.header-menu-mob li').on('click', function(e){
+$('.header-menu-mob li').on('click', function (e) {
   $('.menu-scrolling').children('.burger').removeClass('open')
   $('.header').removeClass('open')
 })

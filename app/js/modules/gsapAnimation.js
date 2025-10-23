@@ -17,7 +17,7 @@ if (document.querySelector('.hero-block')) {
     xPercent: HeroConfig.xPercent,
     scrollTrigger: {
       trigger: '.hero-block',
-      start: 'top+=1%',
+      start: 'top+=0.5%',
       end: HeroConfig.end,
       scrub: 1,
       pin: true,
@@ -68,7 +68,7 @@ if (document.querySelector('.xcode')) {
   });
 
   tl.to('.xcode-cards', {
-    x: -formula,
+    x: -(IsDestop ? formula : formulaMobile),
     ease: 'none'
   });
 

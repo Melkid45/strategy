@@ -121,11 +121,13 @@
         @include soft-description(16rem, 400, 120%);
         color: var(--white);
     }
+
     .header.open {
         background: #151519;
         height: 100vh;
         mix-blend-mode: normal;
     }
+
     .header {
         width: 100%;
         padding-top: 20rem;
@@ -138,6 +140,7 @@
         height: 72rem;
         overflow: hidden;
         transition: all 0.3s ease;
+
         &__body {
             display: flex;
             align-items: center;
@@ -185,6 +188,7 @@
                 position: absolute;
                 top: 92rem;
                 z-index: 90;
+
                 nav {
                     ul {
                         display: flex;
@@ -211,9 +215,11 @@
                         display: flex;
                         flex-direction: column;
                         gap: 8rem;
-                        p{
+
+                        p {
                             color: var(--grey);
                         }
+
                         a {
                             font-family: var(--medium);
                             font-weight: 500;
@@ -352,6 +358,7 @@
         z-index: 100;
         border-radius: 40rem;
         backdrop-filter: blur(10rem);
+
         span {
             color: var(--white);
         }
@@ -1584,10 +1591,11 @@
         width: 100%;
         height: 100vh;
         position: relative;
-        padding: 44rem 40rem;
+        padding: 24rem 20rem;
         display: flex;
         align-items: flex-end;
         justify-content: center;
+        overflow: hidden;
 
         &_back {
             width: 100%;
@@ -1600,11 +1608,11 @@
         }
 
         &_device {
-            width: 1127rem;
-            height: 690rem;
+            width: 563rem;
+            height: 345rem;
             position: absolute;
             bottom: 0;
-            right: 40rem;
+            right: -80rem;
             object-fit: cover;
             z-index: 1;
         }
@@ -1629,7 +1637,7 @@
         &-action {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             width: 100%;
             position: relative;
             z-index: 2;
@@ -1700,19 +1708,20 @@
 
     .project {
         width: 100%;
-        padding-top: 200rem;
+        padding-top: 80rem;
         background: var(--black);
-        padding-bottom: 200rem;
-
+        padding-bottom: 80rem;
+        overflow: hidden;
         &__body {
-            padding-top: 64rem;
+            padding-top: 40rem;
             border-top: 1rem solid #8F919A33;
             display: flex;
             flex-direction: column;
 
             .top {
                 display: flex;
-                gap: 274rem;
+                flex-direction: column;
+                gap: 20rem;
 
                 p {
                     color: var(--white);
@@ -1720,14 +1729,14 @@
             }
 
             .project_hero {
-                margin-top: 80rem;
+                margin-top: 40rem;
                 width: 100%;
-                height: 840rem;
+                height: 210rem;
 
                 img {
                     width: 100%;
                     height: 100%;
-                    border-radius: 40rem;
+                    border-radius: 20rem;
                     object-fit: cover;
                 }
             }
@@ -1735,19 +1744,19 @@
             .project_information {
                 align-self: flex-end;
                 max-width: 893rem;
-                margin-top: 80rem;
+                margin-top: 40rem;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
-                gap: 64rem;
+                gap: 40rem;
 
                 span {
                     font-family: var(--medium);
                     font-weight: 500;
                     font-style: Medium;
-                    font-size: 40rem;
+                    font-size: 20rem;
                     leading-trim: NONE;
-                    line-height: 48rem;
+                    line-height: 24rem;
                     letter-spacing: 0%;
                     color: var(--white);
                 }
@@ -1760,19 +1769,19 @@
             .project_screens {
                 position: relative;
                 display: flex;
-                gap: 40rem;
-                margin-top: 444rem;
+                gap: 14rem;
+                margin-top: 150rem;
                 align-self: center;
 
                 img {
-                    width: 310rem;
-                    height: 648rem;
+                    width: 103rem;
+                    height: 216rem;
                     object-fit: cover;
-                    border-radius: 40rem;
+                    border-radius: 10rem;
                 }
 
                 img:nth-child(2) {
-                    margin-top: -324rem;
+                    margin-top: -108rem;
                 }
             }
         }
@@ -1781,16 +1790,17 @@
     .user {
         width: 100%;
         background: var(--black);
-
+        overflow: hidden;
         &__body {
-            padding-top: 64rem;
+            padding-top: 40rem;
             border-top: 1rem solid #8F919A33;
             display: flex;
             flex-direction: column;
 
             .top {
                 display: flex;
-                gap: 274rem;
+                flex-direction: column;
+                gap: 20rem;
 
                 p {
                     color: var(--white);
@@ -1801,20 +1811,20 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 80rem;
+                gap: 40rem;
                 align-self: flex-end;
-                margin-top: 100rem;
+                margin-top: 40rem;
                 width: 100%;
 
                 img {
-                    width: 854rem;
+                    width: 100%;
                     object-fit: cover;
-                    border-radius: 40rem;
+                    border-radius: 10rem;
                 }
 
                 p {
                     align-self: flex-end;
-                    max-width: 427rem;
+                    max-width: 227rem;
                     width: 100%;
                 }
             }
@@ -1824,34 +1834,39 @@
     .gallery {
         width: 100%;
         background: var(--black);
-
+        overflow: hidden;
         &__body {
-            padding-top: 64rem;
+            padding-top: 40rem;
             border-top: 1rem solid #8F919A33;
 
             .top {
                 display: flex;
-                gap: 274rem;
+                flex-direction: column;
+                gap: 20rem;
 
                 p {
                     color: var(--white);
                 }
             }
 
+            .splide__pagination li {
+                display: flex !important;
+            }
+
             .splide {
                 width: 100%;
-                height: 760rem;
+                height: 380rem;
                 background: #2B2B32;
-                border-radius: 40rem;
-                margin-top: 80rem;
+                border-radius: 20rem;
+                margin-top: 40rem;
 
                 .splide__pagination {
                     bottom: auto;
-                    top: 40rem;
+                    top: 20rem;
                     right: auto;
                     margin: 0 auto;
-                    padding: 0rem 40rem;
-                    gap: 40rem;
+                    padding: 0rem 19rem;
+                    gap: 20rem;
                     width: 100%;
 
                     .splide__pagination__page {
@@ -1859,6 +1874,7 @@
                         height: 2rem;
                         margin: 0;
                         opacity: .2;
+                        border-radius: 2rem;
                     }
                 }
 
@@ -1869,24 +1885,24 @@
 
                 .splide__arrows {
                     position: absolute;
-                    bottom: 40rem;
-                    right: 40rem;
+                    bottom: 20rem;
+                    right: 20rem;
                     display: flex;
                     align-items: center;
                     gap: 4rem;
 
                     .splide__arrow {
                         position: static;
-                        width: 64rem;
-                        height: 48rem;
+                        width: 48rem;
+                        height: 32rem;
                         border: 1rem solid #8F919A33;
                         background: transparent;
                         transform: translateY(0%);
                         border-radius: 40rem;
 
                         svg {
-                            width: 20rem;
-                            height: 20rem;
+                            width: 16rem;
+                            height: 16rem;
                             fill: none;
                         }
                     }
@@ -1894,21 +1910,22 @@
 
                 .splide__slide {
                     width: 100%;
-                    height: 760rem;
+                    height: 380rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     position: relative;
 
                     img {
-                        max-width: 900rem;
+                        max-width: 300rem;
                         object-fit: cover;
                     }
 
                     span {
                         position: absolute;
-                        bottom: 40rem;
-                        left: 40rem;
+                        bottom: 20rem;
+                        left: 20rem;
+                        font-size: 12rem;
                     }
                 }
             }
