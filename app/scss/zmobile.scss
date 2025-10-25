@@ -3,6 +3,10 @@
         font-size: calc(100vw / 375);
     }
 
+    .btn-hover::before {
+        border-radius: 40rem;
+    }
+
     .preloader {
         width: 100%;
         height: 100%;
@@ -1373,7 +1377,7 @@
             .faq-frame {
                 width: 100%;
                 align-self: flex-end;
-
+                margin-top: 0;
                 .item.open {
                     button {
                         background: var(--white);
@@ -1712,6 +1716,7 @@
         background: var(--black);
         padding-bottom: 80rem;
         overflow: hidden;
+
         &__body {
             padding-top: 40rem;
             border-top: 1rem solid #8F919A33;
@@ -1791,6 +1796,7 @@
         width: 100%;
         background: var(--black);
         overflow: hidden;
+
         &__body {
             padding-top: 40rem;
             border-top: 1rem solid #8F919A33;
@@ -1835,6 +1841,7 @@
         width: 100%;
         background: var(--black);
         overflow: hidden;
+
         &__body {
             padding-top: 40rem;
             border-top: 1rem solid #8F919A33;

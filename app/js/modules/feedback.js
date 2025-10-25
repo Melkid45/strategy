@@ -1,15 +1,17 @@
 /*<-----Feedback----->*/
 
 // Ancor
-if (document.querySelector('.ancor-form')) {
-  document.querySelector('.ancor-form').addEventListener('click', function () {
-    gsap.to(window, {
-      duration: 1,
-      ease: 'power1.inOut',
-      scrollTo: { y: "#feedback-form", offsetY: IsDestop ? -500 : 0 }
-    });
-  });
-}
+// if (document.querySelector('.ancor-form')) {
+//   let offset = window.innerWidth > 750 ? 500 : 0;
+//   console.log(offset)
+//   document.querySelector('.ancor-form').addEventListener('click', function () {
+//     gsap.to(window, {
+//       duration: 1,
+//       ease: 'power1.inOut',
+//       scrollTo: { y: "#feedback-form", offsetY: offset }
+//     });
+//   });
+// }
 
 
 

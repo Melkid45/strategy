@@ -27,6 +27,7 @@
     pointer-events: none;
     opacity: 0;
 }
+
 .preloader {
     width: 100%;
     height: 100%;
@@ -72,7 +73,12 @@
 .btn-hover {
     position: relative;
 }
-
+.btn-white{
+    transition: all 0.3s ease;
+}
+.btn-white:hover{
+    color: var(--text-grey) !important;
+}
 .btn-hover::before {
     background: linear-gradient(0deg, rgba(21, 21, 25, 0.2), rgba(21, 21, 25, 0.2));
     content: '';
@@ -83,6 +89,7 @@
     height: 100%;
     opacity: 0;
     transition: all 0.3s ease;
+    border-radius: 40px;
 }
 
 .btn-hover:hover::before {
@@ -1365,6 +1372,12 @@
                     }
                 }
 
+                .file-wrap:hover {
+                    .plus {
+                        background: var(--so-grey) !important;
+                    }
+                }
+
                 .file-wrap {
                     display: flex;
                     align-items: center;
@@ -1414,6 +1427,7 @@
                         padding: 10px 18px;
                         background: var(--grey);
                         border-radius: 40px;
+                        transition: all 0.3s ease;
 
                         svg {
                             width: 20px;
@@ -1459,7 +1473,7 @@
         .faq-frame {
             width: 893px;
             align-self: flex-end;
-
+            margin-top: -12px;
             .item:hover {
                 button {
                     background: #8F919A33;

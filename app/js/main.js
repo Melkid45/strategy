@@ -72,11 +72,9 @@ if (isMobile) {
 window.addEventListener('resize', () => {
   isMobile = window.innerWidth <= 750;
   
-  lenis.destroy();
   lenis.options.duration = isMobile ? 0.8 : 1.2;
   lenis.options.smoothTouch = !isMobile;
   lenis.options.touchMultiplier = isMobile ? 1 : 2;
-  lenis.init();
   
   ScrollTrigger.refresh();
 });
