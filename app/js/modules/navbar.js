@@ -40,9 +40,6 @@ function updateActiveNav() {
     }
   }
   
-  if (!foundActive) {
-    navLinks.forEach(link => link.parentElement.classList.remove('current'));
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {

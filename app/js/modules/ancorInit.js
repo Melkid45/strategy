@@ -43,6 +43,15 @@ function initAnchorLinks() {
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
 
+      const currentPath = window.location.pathname;
+      const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
+
+      if (!isHomePage) {
+        const homeUrl = `${window.location.origin}${href}`;
+        window.location.href = homeUrl;
+        return;
+      }
+
       const target = document.querySelector(href);
       if (!target) return;
 
@@ -62,7 +71,7 @@ function initAnchorLinks() {
 
         lenis.scrollTo(scrollTarget, {
           lerp: 0.1,
-          duration: 6,
+          duration: 3,
           easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
         });
 

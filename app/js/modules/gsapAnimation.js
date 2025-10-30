@@ -7,7 +7,7 @@ let IsDestop = width > 750;
 if (document.querySelector('.hero-block')) {
   let HeroConfig = {
     scale: IsDestop ? 15 : 30,
-    yPercent: IsDestop ? 100 : 350,
+    yPercent: IsDestop ? 100 : 450,
     xPercent: IsDestop ? -70 : -0,
     end: IsDestop ? '+=75%' : '+=100%'
   }
@@ -137,9 +137,10 @@ if (document.querySelector('.guarantees')) {
 // Implementation Block
 if (document.querySelector('.implementation')) {
   let ImplementationConfig = {
-    scale: IsDestop ? 15 : 25,
-    yPercent: IsDestop ? 100 : 350,
-    xPercent: IsDestop ? -70 : -0
+    scale: IsDestop ? 15 : 30,
+    yPercent: IsDestop ? 100 : 450,
+    xPercent: IsDestop ? -70 : -0,
+    end: IsDestop ? '+=75%' : '+=100%'
   }
   gsap.to('.implementation .circle-hero', {
     scale: ImplementationConfig.scale,
@@ -148,7 +149,7 @@ if (document.querySelector('.implementation')) {
     scrollTrigger: {
       trigger: '.implementation',
       start: 'top top',
-      end: '+=75%',
+      end: ImplementationConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,

@@ -5,8 +5,8 @@
 
     .btn-hover::before {
         border-radius: 40rem;
+        opacity: 0 !important;
     }
-
     .preloader {
         width: 100%;
         height: 100%;
@@ -278,7 +278,7 @@
                 width: 100%;
 
                 .item {
-                    padding: 8rem 0rem;
+                    padding: 12rem 0rem;
                     width: 100%;
                     display: flex;
                     align-items: center;
@@ -603,6 +603,7 @@
                         height: 275rem;
                         object-fit: cover;
                         z-index: 1;
+                        display: none;
                     }
 
                     span {
@@ -955,7 +956,7 @@
                             align-items: center;
                             justify-content: center;
                             position: relative;
-                            background: transparent;
+                            background: transparent !important;
                             border-radius: 40rem;
                             border: 1rem solid #FFFFFF33;
                             transition: all 0.4s ease;
@@ -963,7 +964,7 @@
                             span {
                                 width: 10rem;
                                 height: 2rem;
-                                background: var(--white);
+                                background: var(--white) !important;
                                 position: absolute;
                                 border-radius: 2rem;
                                 transition: all 0.4s ease;
@@ -1005,7 +1006,7 @@
 
 
             .item {
-                padding: 8rem 0rem;
+                padding: 12rem 0rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -1433,7 +1434,7 @@
                             align-items: center;
                             justify-content: center;
                             position: relative;
-                            background: transparent;
+                            background: transparent !important;
                             border-radius: 40rem;
                             border: 1rem solid #FFFFFF33;
                             transition: all 0.4s ease;
@@ -1441,7 +1442,7 @@
                             span {
                                 width: 10rem;
                                 height: 2rem;
-                                background: var(--white);
+                                background: var(--white) !important;
                                 position: absolute;
                                 border-radius: 2rem;
                                 transition: all 0.4s ease;

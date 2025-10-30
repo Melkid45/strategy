@@ -71,5 +71,8 @@ $('.form-action button').on('click', function (e) {
     $('.feedback-form-main').remove()
     $('.form-send').fadeIn(300)
     $('.form-default').remove()
+    lenis.scrollTo('.ancor-form', {
+      duration: 0.3,
+    })
   }
 })
