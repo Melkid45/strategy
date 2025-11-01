@@ -7,7 +7,7 @@ let IsDestop = width > 750;
 if (document.querySelector('.hero-block')) {
   let HeroConfig = {
     scale: IsDestop ? 15 : 30,
-    yPercent: IsDestop ? 100 : 450,
+    yPercent: IsDestop ? 150 : 450,
     xPercent: IsDestop ? -70 : -0,
     end: IsDestop ? '+=75%' : '+=100%'
   }
@@ -17,7 +17,7 @@ if (document.querySelector('.hero-block')) {
     xPercent: HeroConfig.xPercent,
     scrollTrigger: {
       trigger: '.hero-block',
-      start: 'top+=0.5%',
+      start: 'top+=0.1%',
       end: HeroConfig.end,
       scrub: 1,
       pin: true,
@@ -210,62 +210,33 @@ function splitLetters() {
 }
 
 function initScrollAnimations() {
-  let Config = {
-    colorLight: "#BEBFC3",
-    colorDark: "#8F919A"
-  };
-
+  const Config = { colorLight: "#BEBFC3", colorDark: "#8F919A" };
   const sections = document.querySelectorAll('.split-light, .split-dark');
 
   sections.forEach(section => {
     const chars = section.querySelectorAll('.char');
-    let color = section.classList.contains('split-light') ? Config.colorLight : Config.colorDark;
+    const color = section.classList.contains('split-light') ? Config.colorLight : Config.colorDark;
 
-    gsap.set(chars, { color: color });
 
-    const tl = gsap.timeline({
+    gsap.to(chars, {
+      color: '#fff',
+      ease: "power2.out",
+      stagger: { amount: 0.5, from: "start" },
       scrollTrigger: {
         trigger: section,
         start: "top 80%",
         end: "bottom 20%",
         scrub: 1,
-        onEnter: () => {
-          tl.play();
-        },
-        onEnterBack: () => {
-          tl.play();
-        },
-        onLeave: () => {
-          tl.progress(1);
-        },
-        onLeaveBack: () => {
-          tl.progress(0);
-        }
       }
-    });
-
-    tl.to(chars, {
-      color: "#fff",
-      ease: "power2.out",
-      stagger: {
-        amount: 0.5,
-        from: "start"
-      },
-      duration: 0.8
-    });
+    })
   });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   splitLetters();
-
   setTimeout(() => {
     initScrollAnimations();
   }, 100);
-});
-
-window.addEventListener('resize', () => {
-  ScrollTrigger.refresh();
 });
 
 

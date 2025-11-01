@@ -2,9 +2,6 @@
 
 function updateScrollDelayed() {
   gsap.delayedCall(0.35, () => {
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh(true);
-    }
 
     if (typeof lenis !== "undefined") {
       if (typeof lenis.resize === "function") lenis.resize();

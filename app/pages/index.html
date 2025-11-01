@@ -13,7 +13,7 @@
     <div class="cursor desk" id="cursorDot"></div>
     <div class="cursor-trail desk" id="cursorTrail"></div>
     <div class="preloader">
-        <canvas class=""
+        <canvas class="dot-canvas"
             style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="line">
             <span></span>
@@ -33,10 +33,40 @@
             <span></span>
         </div>
     </div>
+    
     <!--=include header.html -->
+    <div class="navbar desk">
+        <nav>
+            <ul>
+                <li class="current">
+                    <a class="home-btn" href="">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 17.5H15C16.1046 17.5 17 16.6046 17 15.5V8.41987C17 7.83602 16.7449 7.28132 16.3016 6.90136L11.3016 2.61564C10.5526 1.97366 9.4474 1.97366 8.69842 2.61564L3.69842 6.90136C3.25513 7.28132 3 7.83602 3 8.41987V15.5C3 16.6046 3.89543 17.5 5 17.5Z"
+                                stroke="white" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="soft-title">
+                    <a class="ancor-item" href="#agency">Агентство</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#case">Кейсы</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#services">Услуги</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#faq">FAQ</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#contact">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <!--=include main.html -->
     <!--=include footer.html -->
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js"
         integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

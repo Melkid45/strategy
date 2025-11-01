@@ -73,12 +73,15 @@
 .btn-hover {
     position: relative;
 }
-.btn-white{
+
+.btn-white {
     transition: all 0.3s ease;
 }
-.btn-white:hover{
+
+.btn-white:hover {
     color: var(--text-grey) !important;
 }
+
 .btn-hover::before {
     background: linear-gradient(0deg, rgba(21, 21, 25, 0.2), rgba(21, 21, 25, 0.2));
     content: '';
@@ -103,15 +106,14 @@
     transform: translateY(100%);
     z-index: 9999;
 }
-
 .hero-block {
     width: 100%;
-    height: 115vh;
-    background: var(--black);
+    height: 110vh;
     overflow: hidden;
-
+    background: var(--black);
+    position: relative;
     &__body {
-        padding: 122px 0px 122px 0px;
+        padding: 122px 0px 0px 0px;
         width: 100%;
 
         .hero__body-items {
@@ -135,7 +137,7 @@
                     top: -90px;
                     width: 100%;
                     height: 200px;
-                    z-index: -1;
+                    z-index: 0;
                 }
 
                 .line-bottom {
@@ -181,7 +183,6 @@
                         position: absolute;
                         top: 0;
                         left: 0;
-                        z-index: 0;
                     }
                 }
 
@@ -345,10 +346,6 @@
     width: 100%;
     overflow: hidden;
     padding-bottom: 200px;
-    background: var(--grey);
-    position: relative;
-    z-index: 1;
-
     .content {
         position: absolute;
         top: 0;
@@ -387,8 +384,6 @@
         gap: 274px;
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
-        position: relative;
-        z-index: 2;
 
         .main-description {
             color: var(--white);
@@ -397,8 +392,6 @@
 
     .agency__text {
         padding: 0 40px;
-        position: relative;
-        z-index: 2;
 
         span {
             color: var(--text-grey);
@@ -572,7 +565,8 @@
 .longest.different {
     background: var(--black);
     padding-bottom: 200px;
-
+    position: relative;
+    z-index: 3;
     .stroke-wrap {
         color: #8F919A;
     }
@@ -584,6 +578,7 @@
     height: 1004px;
     transform: translateX(-50%);
     left: 50%;
+    z-index: 2;
 }
 
 .longest {
@@ -592,9 +587,6 @@
     padding-bottom: 200px;
     overflow: hidden;
     position: relative;
-    z-index: 1;
-    background: var(--grey);
-
 
     &__body {
         display: flex;
@@ -639,7 +631,7 @@
     padding-bottom: 1200px;
     position: relative;
     z-index: 1;
-
+    overflow: hidden;
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -727,15 +719,17 @@
         }
     }
 }
-
+.dot-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .case {
     width: 100%;
     background: var(--black);
     overflow: hidden;
     padding-bottom: 200px;
     position: relative;
-    z-index: 1;
-
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -894,9 +888,7 @@
 
 .services {
     width: 100%;
-    background: var(--grey);
     position: relative;
-    z-index: 1;
 
     &__body {
         padding-top: 64px;
@@ -1462,7 +1454,8 @@
     width: 100%;
     background: var(--black);
     padding-bottom: 200px;
-
+    position: relative;
+    z-index: 2;
     &__body {
         padding-top: 64px;
         display: flex;
@@ -1473,7 +1466,8 @@
         .faq-frame {
             width: 893px;
             align-self: flex-end;
-            margin-top: -12px;
+            margin-top: -16px;
+
             .item:hover {
                 button {
                     background: #8F919A33;

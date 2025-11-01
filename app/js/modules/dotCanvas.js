@@ -1,99 +1,84 @@
-// // /*<-----DotCanvas Animation----->*/
-
-class DotCanvas {
+class DotGrid {
   constructor(canvas) {
     this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
+    this.ctx = canvas.getContext("2d");
+
+    this.mouse = { x: 0, y: 0, active: false };
+    this.spacing = 36;
+    this.baseR = 1.2;
+    this.maxR = 2.8;
 
     this.resize();
-    this.spacing = 48;
-    this.dots = [];
-    this.initDots();
-
-    this.cursor = {
-      x: this.w / 2,
-      y: this.h / 2,
-      tx: this.w / 2,
-      ty: this.h / 2,
-      vx: 0, vy: 0, speed: 0
-    };
-
-    this.setupEventListeners();
+    this.createDots();
+    this.bindEvents();
     this.animate();
   }
 
-  resize() {
-    this.w = this.canvas.width = this.canvas.offsetWidth;
-    this.h = this.canvas.height = this.canvas.offsetHeight;
+  bindEvents() {
+    window.addEventListener("mousemove", e => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+      this.mouse.active = true;
+    });
+
+    window.addEventListener("mouseleave", () => this.mouse.active = false);
   }
 
-  initDots() {
-    if (this.w === 0 || this.h === 0) return;
-    for (let y = this.spacing / 2; y < this.h; y += this.spacing) {
-      for (let x = this.spacing / 2; x < this.w; x += this.spacing) {
-        this.dots.push({ x, y, r: 2, targetR: 2, opacity: 0.5, targetOpacity: 0.5 });
+  resize() {
+    const dpr = window.devicePixelRatio || 1;
+    this.canvas.width = this.canvas.offsetWidth * dpr;
+    this.canvas.height = this.canvas.offsetHeight * dpr;
+    this.ctx.scale(dpr, dpr);
+  }
+
+  createDots() {
+    this.dots = [];
+    const width = this.canvas.offsetWidth;
+    const height = this.canvas.offsetHeight;
+
+    for (let x = 0; x < width; x += this.spacing) {
+      for (let y = 0; y < height; y += this.spacing) {
+        this.dots.push({
+          x,
+          y,
+          r: this.baseR,
+          opacity: 0
+        });
       }
     }
   }
 
-  setupEventListeners() {
-    this.handleMouseMove = e => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.cursor.tx = e.clientX - rect.left;
-      this.cursor.ty = e.clientY - rect.top;
-    };
-    this.handleResize = () => {
-      this.resize();
-      this.dots = [];
-      this.initDots();
-    };
-    window.addEventListener('mousemove', this.handleMouseMove);
-    window.addEventListener('resize', this.handleResize);
-  }
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight);
 
-  draw() {
-    this.ctx.clearRect(0, 0, this.w, this.h);
+    const rect = this.canvas.getBoundingClientRect();
+    const influence = 110;
 
-    let dx = this.cursor.tx - this.cursor.x;
-    let dy = this.cursor.ty - this.cursor.y;
-    this.cursor.vx += dx * 0.2;
-    this.cursor.vy += dy * 0.2;
-    this.cursor.vx *= 0.7;
-    this.cursor.vy *= 0.7;
-    this.cursor.x += this.cursor.vx;
-    this.cursor.y += this.cursor.vy;
+    for (const dot of this.dots) {
+      const dx = this.mouse.x - (rect.left + dot.x);
+      const dy = this.mouse.y - (rect.top + dot.y);
+      const dist = Math.hypot(dx, dy);
+      const minOpacity = 0;
 
-    this.dots.forEach(dot => {
-      const dist = Math.hypot(dot.x - this.cursor.x, dot.y - this.cursor.y);
-      if (dist < 120) {
-        dot.targetR = 1 + (120 - dist) / 50;
-        dot.targetOpacity = 0.5;
+      if (dist < influence && this.mouse.active) {
+        dot.r = this.baseR + (this.maxR - this.baseR) * (1 - dist / influence);
+        dot.opacity += (1 - dot.opacity) * 0.15;
       } else {
-        dot.targetR = 0.5;
-        dot.targetOpacity = 0;
+        dot.r += (this.baseR - dot.r) * 0.1;
+        dot.opacity += (minOpacity - dot.opacity) * 0.08;
       }
-      dot.r += (dot.targetR - dot.r) * 0.1;
-      dot.opacity += (dot.targetOpacity - dot.opacity) * 0.1;
 
       this.ctx.beginPath();
       this.ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
       this.ctx.fillStyle = `rgba(255,255,255,${dot.opacity})`;
       this.ctx.fill();
-    });
-  }
+    }
 
-  animate() {
-    this.draw();
     requestAnimationFrame(() => this.animate());
-  }
-
-  destroy() {
-    window.removeEventListener('mousemove', this.handleMouseMove);
-    window.removeEventListener('resize', this.handleResize);
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('dotCanvas');
-  if (canvas && width > 750) new DotCanvas(canvas);
+// Инициализация
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".dot-canvas").forEach(c => new DotGrid(c));
 });

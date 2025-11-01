@@ -55,33 +55,27 @@ function initAnchorLinks() {
       const target = document.querySelector(href);
       if (!target) return;
 
-      ScrollTrigger.refresh(true);
+      const parent = target.parentNode;
+      let scrollTarget = target;
 
-      requestAnimationFrame(() => {
-        const parent = target.parentNode;
-        let scrollTarget = target;
-
-        if (parent.classList.contains('pin-spacer')) {
-          const previous = parent.previousElementSibling;
-          if (previous) {
-            const height = previous.clientHeight || 0;
-            scrollTarget = previous.offsetTop + height;
-          }
+      if (parent.classList.contains('pin-spacer')) {
+        const previous = parent.previousElementSibling;
+        if (previous) {
+          const height = previous.clientHeight || 0;
+          scrollTarget = previous.offsetTop + height;
         }
+      }
 
-        lenis.scrollTo(scrollTarget, {
-          lerp: 0.1,
-          duration: 3,
-          easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-        });
-
-        setTimeout(() => {
-          ScrollTrigger.refresh(true);
-        }, 500);
+      // Гарантированно обновляем ScrollTrigger после завершения прокрутки
+      lenis.scrollTo(scrollTarget, {
+        lerp: 0.1,
+        duration: 3,
+        easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
       });
     });
   });
 }
+
 
 window.addEventListener("resize", () => {
   if (typeof controller !== 'undefined') controller.update(true);

@@ -13,7 +13,7 @@
     <div class="cursor desk" id="cursorDot"></div>
     <div class="cursor-trail desk" id="cursorTrail"></div>
     <div class="preloader">
-        <canvas class=""
+        <canvas class="dot-canvas"
             style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="line">
             <span></span>
@@ -33,63 +33,92 @@
             <span></span>
         </div>
     </div>
-    <header class="header">
-        <div class="container">
-            <div class="header__body">
-                <a href="/" class="header__body-logo">
-                    Стратегия
-                </a>
-                <a href="#feedback" class="header__body-action">
-                    <span class="soft-description desk">Написать нам</span>
-                    <button class="action-write">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M2 10C2 5.58172 5.58172 2 10 2V2C14.4183 2 18 5.58172 18 10V10C18 14.4183 14.4183 18 10 18H4C2.89543 18 2 17.1046 2 16V10Z"
-                                stroke="white" stroke-width="2" />
-                        </svg>
-                    </button>
-                </a>
-                <div class="header-menu-mob mob">
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="#agency">Агентство</a>
-                            </li>
-                            <li>
-                                <a href="#case">Кейсы</a>
-                            </li>
-                            <li>
-                                <a href="#services">Услуги</a>
-                            </li>
-                            <li>
-                                <a href="#faq">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="#contact">Контакты</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="header-menu-action">
-                        <div class="item">
-                            <p class="soft-title">Офис в Москве</p>
-                            <a href="">Москва, Красная Поляна, 25</a>
-                        </div>
-                        <div class="item">
-                            <p class="soft-title">Для связи</p>
-                            <div class="wrap">
-                                <a href="">hey@strategia.io</a>
-                                <a href="">+7 999 99-204-88</a>
+        <header class="header">
+            <div class="container">
+                <div class="header__body">
+                    <a href="/" class="header__body-logo">
+                        Стратегия
+                    </a>
+                    <a href="#feedback" class="header__body-action">
+                        <span class="soft-title desk">Написать нам</span>
+                        <button class="action-write">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2 10C2 5.58172 5.58172 2 10 2V2C14.4183 2 18 5.58172 18 10V10C18 14.4183 14.4183 18 10 18H4C2.89543 18 2 17.1046 2 16V10Z"
+                                    stroke="white" stroke-width="2" />
+                            </svg>
+                        </button>
+                    </a>
+                    <div class="header-menu-mob mob">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#agency">Агентство</a>
+                                </li>
+                                <li>
+                                    <a href="#case">Кейсы</a>
+                                </li>
+                                <li>
+                                    <a href="#services">Услуги</a>
+                                </li>
+                                <li>
+                                    <a href="#faq">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="#contact">Контакты</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="header-menu-action">
+                            <div class="item">
+                                <p class="soft-title">Офис в Москве</p>
+                                <a href="">Москва, Красная Поляна, 25</a>
+                            </div>
+                            <div class="item">
+                                <p class="soft-title">Для связи</p>
+                                <div class="wrap">
+                                    <a href="">hey@strategia.io</a>
+                                    <a href="">+7 999 99-204-88</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    <div class="navbar desk">
+        <nav>
+            <ul>
+                <li class="current">
+                    <a class="home-btn" href="">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5 17.5H15C16.1046 17.5 17 16.6046 17 15.5V8.41987C17 7.83602 16.7449 7.28132 16.3016 6.90136L11.3016 2.61564C10.5526 1.97366 9.4474 1.97366 8.69842 2.61564L3.69842 6.90136C3.25513 7.28132 3 7.83602 3 8.41987V15.5C3 16.6046 3.89543 17.5 5 17.5Z"
+                                stroke="white" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="soft-title">
+                    <a class="ancor-item" href="#agency">Агентство</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#case">Кейсы</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#services">Услуги</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#faq">FAQ</a>
+                </li>
+                <li class=" soft-title">
+                    <a class="ancor-item" href="#contact">Контакты</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <main class="main" data-barba="container" data-barba-namespace="home">
         <section class="hero-block">
-            <canvas id="dotCanvas"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <canvas class="dot-canvas" style="position:absolute; top: 0;left: 0; width:100%; height:110vh; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="hero-block__body">
                     <div class="hero__body-items">
@@ -185,40 +214,8 @@
                 </div>
             </div>
         </section>
-        
-        <div class="navbar desk">
-            <nav>
-                <ul>
-                    <li class="current">
-                        <a class="home-btn" href="">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M5 17.5H15C16.1046 17.5 17 16.6046 17 15.5V8.41987C17 7.83602 16.7449 7.28132 16.3016 6.90136L11.3016 2.61564C10.5526 1.97366 9.4474 1.97366 8.69842 2.61564L3.69842 6.90136C3.25513 7.28132 3 7.83602 3 8.41987V15.5C3 16.6046 3.89543 17.5 5 17.5Z"
-                                    stroke="white" stroke-width="2" />
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="soft-description">
-                        <a class="ancor-item" href="#agency">Агентство</a>
-                    </li>
-                    <li class=" soft-description">
-                        <a class="ancor-item" href="#case">Кейсы</a>
-                    </li>
-                    <li class=" soft-description">
-                        <a class="ancor-item" href="#services">Услуги</a>
-                    </li>
-                    <li class=" soft-description">
-                        <a class="ancor-item" href="#faq">FAQ</a>
-                    </li>
-                    <li class=" soft-description">
-                        <a class="ancor-item" href="#contact">Контакты</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
         <section id="agency" class="agency pd-0">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+                
             <div class="agency__top">
                 <div class="title">
                     <div class="circle"></div>
@@ -473,8 +470,6 @@
             </div>
         </section>
         <section class="guarantees">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="guarantees__body">
                     <div class="guarantees__top">
@@ -514,8 +509,7 @@
             </div>
         </section>
         <section id="case" class="case">
-            <canvas id="dotCanvas"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="case__body">
                     <div class="case__top">
@@ -677,16 +671,9 @@
                             </a>
                         </div>
                     </div>
-                    <button class="want-order soft-description btn-hover">
-                        <!-- <div class="circle-want"></div>
-                        <p class="black-mode soft-description">
-                            <span>Заказать смету проекта</span>
-                        </p>
-                        <p class="white-mode soft-description">
-                            <span>Заказать смету проекта</span>
-                        </p> -->
+                    <a href="#feedback-form" class="want-order soft-description btn-hover">
                         Заказать смету проекта
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -811,8 +798,6 @@
             </div>
         </section>
         <section class="agency">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="agency__top">
                 <div class="title">
                     <div class="circle"></div>
@@ -867,8 +852,6 @@
             </div>
         </section>
         <section class="implementation">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="implementation__body">
                     <div class="item">
@@ -982,6 +965,7 @@
             </div>
         </section>
         <section class="longest different pd-0">
+            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="longest__body">
                     <p>
@@ -1008,8 +992,7 @@
             </div>
         </section>
         <section id="feedback" class="feedback">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="feedback__body">
                     <div class="feedback__top">
@@ -1121,7 +1104,7 @@
             </div>
         </section>
         <section class="longest different">
-            <img class="dot-patern" src="../images/dist/dot-patern-black.svg" alt="">
+            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="longest__body">
                     <p>
@@ -1147,6 +1130,7 @@
             </div>
         </section>
         <section id="faq" class="faq">
+            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="faq__body">
                     <div class="title">
@@ -1255,8 +1239,6 @@
             </div>
         </section>
         <section id="contact" class="contact">
-            <canvas id="dotCanvas" class="desk"
-                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="contact__body">
                     <div class="title">
@@ -1312,7 +1294,6 @@
             </div>
         </div>
     </footer>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js"
         integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

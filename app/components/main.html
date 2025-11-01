@@ -1,7 +1,6 @@
 <main class="main" data-barba="container" data-barba-namespace="home">
     <section class="hero-block">
-        <canvas id="dotCanvas"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+    <canvas class="dot-canvas" style="position:absolute; top: 0;left: 0; width:100%; height:110vh; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="hero-block__body">
                 <div class="hero__body-items">
@@ -97,40 +96,8 @@
             </div>
         </div>
     </section>
-    
-    <div class="navbar desk">
-        <nav>
-            <ul>
-                <li class="current">
-                    <a class="home-btn" href="">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5 17.5H15C16.1046 17.5 17 16.6046 17 15.5V8.41987C17 7.83602 16.7449 7.28132 16.3016 6.90136L11.3016 2.61564C10.5526 1.97366 9.4474 1.97366 8.69842 2.61564L3.69842 6.90136C3.25513 7.28132 3 7.83602 3 8.41987V15.5C3 16.6046 3.89543 17.5 5 17.5Z"
-                                stroke="white" stroke-width="2" />
-                        </svg>
-                    </a>
-                </li>
-                <li class="soft-description">
-                    <a class="ancor-item" href="#agency">Агентство</a>
-                </li>
-                <li class=" soft-description">
-                    <a class="ancor-item" href="#case">Кейсы</a>
-                </li>
-                <li class=" soft-description">
-                    <a class="ancor-item" href="#services">Услуги</a>
-                </li>
-                <li class=" soft-description">
-                    <a class="ancor-item" href="#faq">FAQ</a>
-                </li>
-                <li class=" soft-description">
-                    <a class="ancor-item" href="#contact">Контакты</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
     <section id="agency" class="agency pd-0">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            
         <div class="agency__top">
             <div class="title">
                 <div class="circle"></div>
@@ -385,8 +352,6 @@
         </div>
     </section>
     <section class="guarantees">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="guarantees__body">
                 <div class="guarantees__top">
@@ -426,8 +391,7 @@
         </div>
     </section>
     <section id="case" class="case">
-        <canvas id="dotCanvas"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="case__body">
                 <div class="case__top">
@@ -589,16 +553,9 @@
                         </a>
                     </div>
                 </div>
-                <button class="want-order soft-description btn-hover">
-                    <!-- <div class="circle-want"></div>
-                    <p class="black-mode soft-description">
-                        <span>Заказать смету проекта</span>
-                    </p>
-                    <p class="white-mode soft-description">
-                        <span>Заказать смету проекта</span>
-                    </p> -->
+                <a href="#feedback-form" class="want-order soft-description btn-hover">
                     Заказать смету проекта
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -723,8 +680,6 @@
         </div>
     </section>
     <section class="agency">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="agency__top">
             <div class="title">
                 <div class="circle"></div>
@@ -779,8 +734,6 @@
         </div>
     </section>
     <section class="implementation">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="implementation__body">
                 <div class="item">
@@ -894,6 +847,7 @@
         </div>
     </section>
     <section class="longest different pd-0">
+        <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="longest__body">
                 <p>
@@ -920,8 +874,7 @@
         </div>
     </section>
     <section id="feedback" class="feedback">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+        <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="feedback__body">
                 <div class="feedback__top">
@@ -1033,7 +986,7 @@
         </div>
     </section>
     <section class="longest different">
-        <img class="dot-patern" src="../images/dist/dot-patern-black.svg" alt="">
+        <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="longest__body">
                 <p>
@@ -1059,6 +1012,7 @@
         </div>
     </section>
     <section id="faq" class="faq">
+        <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="faq__body">
                 <div class="title">
@@ -1167,8 +1121,6 @@
         </div>
     </section>
     <section id="contact" class="contact">
-        <canvas id="dotCanvas" class="desk"
-            style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
         <div class="container">
             <div class="contact__body">
                 <div class="title">

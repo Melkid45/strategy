@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let progress = 0;
     const targetProgress = 100;
-    const duration = 2000;
+    const duration = 3000;
     const interval = 30;
     const increment = (targetProgress / duration) * interval;
     
