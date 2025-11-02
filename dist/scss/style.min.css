@@ -5727,22 +5727,27 @@ a {
         height: 16rem
     }
 
-    .header__body .header-menu-mob {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        gap: 40rem;
-        position: absolute;
-        top: 92rem;
-        z-index: 9999;
-        
+    .header-menu-mob.open {
+        transform: translateX(0%);
     }
 
-    .header__body .header-menu-mob nav ul {
+    .header-menu-mob {
+        position: fixed;
+        inset: 0;
+        height: 100svh;
+        min-height: 100svh;
+        height: 100vh;
+        min-height: -webkit-fill-available;
+        padding: 92rem 20rem calc(92rem + env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        z-index: 9999;
+        transform: translateX(100%);
+        transition: transform .5s ease;
+        overflow-y: auto;
+    }
+
+
+    .header-menu-mob nav ul {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -5753,7 +5758,7 @@ a {
         gap: 12rem
     }
 
-    .header__body .header-menu-mob nav ul li {
+    .header-menu-mob nav ul li {
         font-family: var(--medium);
         font-weight: 500;
         font-size: 28rem;
@@ -5762,7 +5767,7 @@ a {
         color: var(--white)
     }
 
-    .header__body .header-menu-mob .header-menu-action {
+    .header-menu-mob .header-menu-action {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -5773,7 +5778,7 @@ a {
         gap: 20rem
     }
 
-    .header__body .header-menu-mob .header-menu-action .item {
+    .header-menu-mob .header-menu-action .item {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -5784,11 +5789,11 @@ a {
         gap: 8rem
     }
 
-    .header__body .header-menu-mob .header-menu-action .item p {
+    .header-menu-mob .header-menu-action .item p {
         color: var(--grey)
     }
 
-    .header__body .header-menu-mob .header-menu-action .item a {
+    .header-menu-mob .header-menu-action .item a {
         font-family: var(--medium);
         font-weight: 500;
         font-size: 14rem;
@@ -5797,7 +5802,7 @@ a {
         color: var(--white)
     }
 
-    .header__body .header-menu-mob .header-menu-action .item .wrap {
+    .header-menu-mob .header-menu-action .item .wrap {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
