@@ -5743,10 +5743,8 @@ a {
         z-index: 89;
         background: var(--black);
 
-        height: 100vh;
-        height: 100dvh;
-        min-height: -webkit-fill-available;
-        min-height: 100dvh;
+        height: 100svh;
+        min-height: 100svh;
 
         transform: translateX(100%);
         transition: all .5s ease;
