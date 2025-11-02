@@ -5738,7 +5738,8 @@ a {
         gap: 40rem;
         position: absolute;
         top: 92rem;
-        z-index: 90
+        z-index: 9999;
+        
     }
 
     .header__body .header-menu-mob nav ul {
