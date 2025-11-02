@@ -5646,7 +5646,7 @@ a {
 
     .header.open {
         background: #151519;
-        height: 100dvh;
+        height: 100%;
         mix-blend-mode: normal
     }
 

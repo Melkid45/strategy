@@ -99,7 +99,7 @@ if (document.querySelector('.feedback') && width > 750) {
 }
 
 if (document.querySelector('.guarantees')) {
-  let IsSmallMobile = window.innerWidth < 450;
+  let IsSmallMobile = window.innerWidth < 380;
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
