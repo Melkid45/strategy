@@ -5729,7 +5729,7 @@ a {
 
     .header-menu-mob.open {
         height: 100vh;
-        padding-top: 92rem 20rem;
+        padding: 92rem 20rem;
     }
 
     .header-menu-mob {
