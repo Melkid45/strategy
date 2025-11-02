@@ -5732,23 +5732,20 @@ a {
     }
 
     .header-menu-mob {
-        display: flex;
-        flex-direction: column;
-        gap: 40rem;
         position: fixed;
-        width: 100%;
-        top: 0rem;
-        left: 0;
-        padding: 92rem 20rem 190rem 20rem;
-        z-index: 89;
-        background: var(--black);
-
+        inset: 0;
         height: 100svh;
         min-height: 100svh;
-
+        height: 100vh;
+        min-height: -webkit-fill-available;
+        padding: 92rem 20rem calc(92rem + env(safe-area-inset-bottom));
+        box-sizing: border-box;
+        z-index: 9999;
         transform: translateX(100%);
-        transition: all .5s ease;
+        transition: transform .5s ease;
+        overflow-y: auto;
     }
+
 
     .header-menu-mob nav ul {
         display: -webkit-box;
