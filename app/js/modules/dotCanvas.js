@@ -32,21 +32,25 @@ class DotGrid {
   }
 
   createDots() {
-    this.dots = [];
-    const width = this.canvas.offsetWidth;
-    const height = this.canvas.offsetHeight;
+  this.dots = [];
 
-    for (let x = 0; x < width; x += this.spacing) {
-      for (let y = 0; y < height; y += this.spacing) {
-        this.dots.push({
-          x,
-          y,
-          r: this.baseR,
-          opacity: 0
-        });
-      }
+  const width = this.canvas.offsetWidth;
+  const height = this.canvas.offsetHeight;
+
+  const offset = this.spacing / 2; // Сдвиг, чтобы точки были полностью внутри
+
+  for (let x = offset; x < width - offset; x += this.spacing) {
+    for (let y = offset; y < height - offset; y += this.spacing) {
+      this.dots.push({
+        x,
+        y,
+        r: this.baseR,
+        opacity: 0
+      });
     }
   }
+}
+
 
   animate() {
     this.ctx.clearRect(0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight);
@@ -62,7 +66,7 @@ class DotGrid {
 
       if (dist < influence && this.mouse.active) {
         dot.r = this.baseR + (this.maxR - this.baseR) * (1 - dist / influence);
-        dot.opacity += (1 - dot.opacity) * 0.15;
+        dot.opacity += (0.8 - dot.opacity) * 0.15;
       } else {
         dot.r += (this.baseR - dot.r) * 0.1;
         dot.opacity += (minOpacity - dot.opacity) * 0.08;
@@ -70,7 +74,7 @@ class DotGrid {
 
       this.ctx.beginPath();
       this.ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(255,255,255,${dot.opacity})`;
+      this.ctx.fillStyle = `rgba(143,145,154,${dot.opacity})`;
       this.ctx.fill();
     }
 

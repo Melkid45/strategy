@@ -221,7 +221,7 @@
                         top: -90rem;
                         width: 100%;
                         height: 200rem;
-
+                        z-index: -1;
                     }
 
                     .line-bottom {
@@ -446,9 +446,11 @@
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
             position: relative;
+            align-items: flex-start;
             z-index: 2;
             .main-description {
                 color: var(--white);
+                margin-top: -12rem;
             }
         }
 
@@ -498,9 +500,12 @@
             .xcode__top {
                 display: flex;
                 gap: 274rem;
-
+                align-items: flex-start;
                 h2 {
                     color: var(--white);
+                }
+                .main-description{
+                    margin-top: -12rem;
                 }
             }
 
@@ -711,6 +716,9 @@
                 h2 {
                     color: var(--white);
                 }
+                .main-description{
+                    margin-top: -12rem;
+                }
             }
 
             .guarantees__wrap {
@@ -797,9 +805,12 @@
             .case__top {
                 display: flex;
                 gap: 274rem;
-
+                align-items: flex-start;
                 h2 {
                     color: var(--white);
+                }
+                .main-description{
+                    margin-top: -12rem;
                 }
             }
 
@@ -893,9 +904,12 @@
             .services__top {
                 display: flex;
                 gap: 274rem;
-
+                align-items: flex-start;
                 h2 {
                     color: var(--white);
+                }
+                .main-description{
+                    margin-top: -12rem;
                 }
             }
 
@@ -1094,9 +1108,12 @@
             .feedback__top {
                 display: flex;
                 gap: 274rem;
-
+                align-items: flex-start;
                 h2 {
                     color: var(--white);
+                }
+                .main-description{
+                    margin-top: -12rem;
                 }
             }
 
