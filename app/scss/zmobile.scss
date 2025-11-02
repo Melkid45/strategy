@@ -186,59 +186,70 @@
                 }
             }
 
-            .header-menu-mob {
+
+        }
+    }
+    .header-menu-mob.open {
+        height: 100vh;
+    }
+    .header-menu-mob {
+        display: flex;
+        flex-direction: column;
+        gap: 40rem;
+        position: fixed;
+        width: 100%;
+        top: 0rem;
+        left: 0;
+        padding: 0 20rem;
+        padding-top: 92rem;
+        z-index: 89;
+        background: var(--black);
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        nav {
+            ul {
                 display: flex;
                 flex-direction: column;
-                gap: 40rem;
-                position: absolute;
-                top: 92rem;
-                z-index: 90;
+                gap: 12rem;
 
-                nav {
-                    ul {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 12rem;
+                li {
+                    font-family: var(--medium);
+                    font-weight: 500;
+                    font-size: 28rem;
+                    line-height: 32rem;
+                    letter-spacing: 0%;
+                    color: var(--white);
+                }
+            }
+        }
 
-                        li {
-                            font-family: var(--medium);
-                            font-weight: 500;
-                            font-size: 28rem;
-                            line-height: 32rem;
-                            letter-spacing: 0%;
-                            color: var(--white);
-                        }
-                    }
+        .header-menu-action {
+            display: flex;
+            flex-direction: column;
+            gap: 20rem;
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                gap: 8rem;
+
+                p {
+                    color: var(--grey);
                 }
 
-                .header-menu-action {
+                a {
+                    font-family: var(--medium);
+                    font-weight: 500;
+                    font-size: 14rem;
+                    line-height: 20rem;
+                    letter-spacing: 0%;
+                    color: var(--white);
+                }
+
+                .wrap {
                     display: flex;
                     flex-direction: column;
-                    gap: 20rem;
-
-                    .item {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 8rem;
-
-                        p {
-                            color: var(--grey);
-                        }
-
-                        a {
-                            font-family: var(--medium);
-                            font-weight: 500;
-                            font-size: 14rem;
-                            line-height: 20rem;
-                            letter-spacing: 0%;
-                            color: var(--white);
-                        }
-
-                        .wrap {
-                            display: flex;
-                            flex-direction: column;
-                        }
-                    }
                 }
             }
         }
@@ -631,6 +642,7 @@
         background: var(--black);
         padding-bottom: 80rem;
         overflow: hidden;
+
         .stroke-wrap {
             color: #8F919A;
         }
