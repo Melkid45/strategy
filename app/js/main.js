@@ -7,15 +7,14 @@ ScrollTrigger.config({
 });
 
 const lenis = new Lenis({
-  duration: window.innerWidth <= 750 ? 1.5 : 1.2, // Увеличил duration для плавности
+  duration: window.innerWidth <= 750 ? 1.5 : 1.2,
   easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e)),
   smoothWheel: !0,
-  smoothTouch: window.innerWidth > 750, // Отключаем smoothTouch на мобилках
-  touchMultiplier: window.innerWidth <= 750 ? 0.8 : 2, // Уменьшил множитель
+  smoothTouch: window.innerWidth > 750,
+  touchMultiplier: window.innerWidth <= 750 ? 0.8 : 2,
   wheelMultiplier: 1,
   infinite: !1,
   autoRaf: !1,
-  // Добавляем оптимизации для мобилок
   gestureOrientation: window.innerWidth <= 750 ? 'vertical' : 'both',
   touchInertiaMultiplier: window.innerWidth <= 750 ? 1.5 : 2
 });

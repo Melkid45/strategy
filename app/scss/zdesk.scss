@@ -633,12 +633,14 @@
     .longest.different {
         background: var(--black);
         padding-bottom: 200rem;
-
+        overflow: visible;
         .stroke-wrap {
             color: #8F919A;
         }
     }
-
+    #imp-canvas{
+        opacity: 0;
+    }
     .dot-patern {
         position: absolute;
         width: 1004rem;

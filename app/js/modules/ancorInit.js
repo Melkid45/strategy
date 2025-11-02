@@ -46,6 +46,43 @@ function initAnchorLinks() {
       const currentPath = window.location.pathname;
       const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
 
+      // Проверяем, содержит ли ссылка слово "case"
+      const isCaseLink = anchor.textContent.toLowerCase().includes('case') || 
+                         anchor.getAttribute('class')?.toLowerCase().includes('case') ||
+                         anchor.closest('.case') !== null;
+
+      // Если ссылка содержит "case" И мы не на главной странице - делаем редирект
+      if (isCaseLink && !isHomePage) {
+        const homeUrl = `${window.location.origin}${href}`;
+        window.location.href = homeUrl;
+        return;
+      }
+
+      // Если ссылка содержит "case" И мы на главной странице - скроллим к якорю
+      if (isCaseLink && isHomePage) {
+        const target = document.querySelector(href);
+        if (!target) return;
+
+        const parent = target.parentNode;
+        let scrollTarget = target;
+
+        if (parent.classList.contains('pin-spacer')) {
+          const previous = parent.previousElementSibling;
+          if (previous) {
+            const height = previous.clientHeight || 0;
+            scrollTarget = previous.offsetTop + height;
+          }
+        }
+
+        // Гарантированно обновляем ScrollTrigger после завершения прокрутки
+        lenis.scrollTo(scrollTarget, {
+          lerp: 0.1,
+          duration: 3,
+          easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+        });
+        return;
+      }
+
       if (!isHomePage) {
         const homeUrl = `${window.location.origin}${href}`;
         window.location.href = homeUrl;
@@ -66,7 +103,6 @@ function initAnchorLinks() {
         }
       }
 
-      // Гарантированно обновляем ScrollTrigger после завершения прокрутки
       lenis.scrollTo(scrollTarget, {
         lerp: 0.1,
         duration: 3,

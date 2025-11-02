@@ -17,19 +17,37 @@ if (document.querySelector('.hero-block')) {
     xPercent: HeroConfig.xPercent,
     scrollTrigger: {
       trigger: '.hero-block',
-      start: 'top+=0.1%',
+      start: 'top top',
       end: HeroConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
       onUpdate: (process) => {
+        let fullProcess = process.progress * 10;
+        if (IsDestop) {
+          if (fullProcess > 1.5) {
+            document.querySelector('.cursor-trail').style.zIndex = '5';
+          } else {
+            document.querySelector('.cursor-trail').style.zIndex = '1';
+          }
+        }
         let StartProgress = process.progress
         let Opacity = 1 - (StartProgress * 10)
         let OpacityScroll = 1 - (StartProgress * 10)
         $('.hero-block .stoke-title').css({ opacity: Opacity })
         $('.hero-block-scroll').css({ opacity: OpacityScroll })
       }
-    }
+    },
+    onStart: () => {
+      if (IsDestop) {
+        document.querySelector('.cursor-trail').style.zIndex = '1';
+      }
+    },
+    onComplete: () => {
+      if (IsDestop) {
+        document.querySelector('.cursor-trail').style.zIndex = '1';
+      }
+    },
   })
 }
 
@@ -125,12 +143,12 @@ if (document.querySelector('.guarantees')) {
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees',
-      start: IsSmallMobile ? '+=31%' :  GuaranteesConfig.start,
+      start: IsSmallMobile ? '+=31%' : GuaranteesConfig.start,
       end: GuaranteesConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
-    }
+    },
   })
 }
 
@@ -156,6 +174,14 @@ if (document.querySelector('.implementation')) {
       pinSpacing: false,
       onUpdate: (process) => {
         let StartProgress = process.progress
+        if (IsDestop) {
+          if (StartProgress >= 0.3) {
+            document.querySelector('#imp-canvas').style.opacity = '1';
+          } else {
+            document.querySelector('#imp-canvas').style.opacity = '0';
+          }
+        }
+
         let Opacity = 1 - (StartProgress * 5)
         $('.implementation .stoke-title').css({ opacity: Opacity })
       }
