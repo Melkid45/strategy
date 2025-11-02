@@ -5728,8 +5728,7 @@ a {
     }
 
     .header-menu-mob.open {
-        height: 100vh;
-        padding: 92rem 20rem;
+        transform: translateX(0%);
     }
 
     .header-menu-mob {
@@ -5745,10 +5744,11 @@ a {
         width: 100%;
         top: 0rem;
         left: 0;
-        padding: 0 20rem;
+        padding: 92rem 20rem;
         z-index: 89;
         background: var(--black);
-        height: 0;
+        height: 100vh;
+        transform: translateX(100%);
         overflow: hidden;
         -webkit-transition: all .5s ease;
         transition: all .5s ease
