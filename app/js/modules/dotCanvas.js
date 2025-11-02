@@ -32,24 +32,24 @@ class DotGrid {
   }
 
   createDots() {
-  this.dots = [];
+    this.dots = [];
 
-  const width = this.canvas.offsetWidth;
-  const height = this.canvas.offsetHeight;
+    const width = this.canvas.offsetWidth;
+    const height = this.canvas.offsetHeight;
 
-  const offset = this.spacing / 2; // Сдвиг, чтобы точки были полностью внутри
+    const offset = this.spacing / 2; // Сдвиг, чтобы точки были полностью внутри
 
-  for (let x = offset; x < width - offset; x += this.spacing) {
-    for (let y = offset; y < height - offset; y += this.spacing) {
-      this.dots.push({
-        x,
-        y,
-        r: this.baseR,
-        opacity: 0
-      });
+    for (let x = offset; x < width - offset; x += this.spacing) {
+      for (let y = offset; y < height - offset; y += this.spacing) {
+        this.dots.push({
+          x,
+          y,
+          r: this.baseR,
+          opacity: 0
+        });
+      }
     }
   }
-}
 
 
   animate() {
@@ -84,5 +84,7 @@ class DotGrid {
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".dot-canvas").forEach(c => new DotGrid(c));
+  if (window.innerWidth > 750) {
+    document.querySelectorAll(".dot-canvas").forEach(c => new DotGrid(c));
+  }
 });

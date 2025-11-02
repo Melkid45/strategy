@@ -99,6 +99,7 @@ if (document.querySelector('.feedback') && width > 750) {
 }
 
 if (document.querySelector('.guarantees')) {
+  let IsSmallMobile = window.innerWidth < 450;
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -115,7 +116,7 @@ if (document.querySelector('.guarantees')) {
     scale: IsDestop ? 16 : 25,
     yPercent: IsDestop ? -60 : -80,
     start: IsDestop ? '+=45%' : '+=20%',
-    end: IsDestop ? '+=200%' : '+=50%'
+    end: IsDestop ? '+=200%' : '+=85%'
   }
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
@@ -124,7 +125,7 @@ if (document.querySelector('.guarantees')) {
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees',
-      start: GuaranteesConfig.start,
+      start: IsSmallMobile ? '+=31%' :  GuaranteesConfig.start,
       end: GuaranteesConfig.end,
       scrub: 1,
       pin: true,
