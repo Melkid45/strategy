@@ -5745,11 +5745,10 @@ a {
         top: 0rem;
         left: 0;
         padding: 92rem 20rem;
-        z-index: 99;
+        z-index: 89;
         background: var(--black);
         height: 100vh;
         transform: translateX(100%);
-        overflow: hidden;
         -webkit-transition: all .5s ease;
         transition: all .5s ease;
         min-height: 100vh;
