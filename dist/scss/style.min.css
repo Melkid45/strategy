@@ -5732,12 +5732,7 @@ a {
     }
 
     .header-menu-mob {
-        display: -webkit-box;
-        display: -ms-flexbox;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
         flex-direction: column;
         gap: 40rem;
         position: fixed;
@@ -5747,11 +5742,14 @@ a {
         padding: 92rem 20rem;
         z-index: 89;
         background: var(--black);
+
         height: 100vh;
+        height: 100dvh;
+        min-height: -webkit-fill-available;
+        min-height: 100dvh;
+
         transform: translateX(100%);
-        -webkit-transition: all .5s ease;
         transition: all .5s ease;
-        min-height: 100vh;
     }
 
     .header-menu-mob nav ul {
