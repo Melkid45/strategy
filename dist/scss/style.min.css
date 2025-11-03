@@ -6001,7 +6001,8 @@ a {
         padding-top: 80rem;
         width: 100%;
         overflow: hidden;
-        padding-bottom: 80rem
+        padding-bottom: 80rem;
+        z-index: 3;
     }
 
     .agency .content {
