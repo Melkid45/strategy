@@ -174,14 +174,11 @@ body {
     max-width: 1440px;
     background: var(--grey);
     margin: 0 auto;
-    overflow-x: hidden;
+    overflow: hidden !important;
     width: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
     cursor: none;
     position: relative;
-    z-index: 1
+    transform: none !important;
 }
 
 * {
@@ -3231,11 +3228,11 @@ a {
     .title span {
         color: var(--white)
     }
-
     .hero-block {
         width: 100%;
         height: 110vh;
-        overflow: hidden
+        overflow: hidden;
+        z-index: 1;
     }
 
     .hero-block__body {
@@ -5740,7 +5737,7 @@ a {
         min-height: -webkit-fill-available;
         padding: 92rem 20rem calc(92rem + env(safe-area-inset-bottom));
         box-sizing: border-box;
-        z-index: 9999;
+        z-index: 89;
         transform: translateX(100%);
         transition: transform .5s ease;
         overflow-y: auto;
@@ -5843,7 +5840,8 @@ a {
         width: 100%;
         height: 130vh;
         background: var(--black);
-        overflow: hidden
+        overflow: hidden;
+        z-index: 1;
     }
 
     .hero-block__body {
