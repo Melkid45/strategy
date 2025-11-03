@@ -5925,7 +5925,7 @@ a {
 
     .menu-scrolling {
         position: fixed;
-        bottom: 0rem;
+        bottom: 20rem;
         left: 50%;
         -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
