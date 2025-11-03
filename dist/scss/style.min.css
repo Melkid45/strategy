@@ -179,6 +179,7 @@ body {
     cursor: none;
     position: relative;
     transform: none !important;
+    height: auto !important;
 }
 
 * {
