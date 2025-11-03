@@ -5724,15 +5724,24 @@ a {
         width: 16rem;
         height: 16rem
     }
-
+    .header-menu-mob.open{
+        transform: translateX(0%);
+    }
     .header-menu-mob {
         display: flex;
         flex-direction: column;
         gap: 40rem;
-        position: absolute;
-        top: 92rem;
-        z-index: 90;
-
+        position: fixed;
+        top: 0rem;
+        left: 0;
+        padding: 92rem 20rem;
+        z-index: 89;
+        transition: all 0.5s ease;
+        transform: translateX(100%);
+        background: var(--black);
+        width: 100%;
+        height: 100dvh;
+        min-height: 100vh;
         nav {
             ul {
                 display: flex;
