@@ -35,95 +35,53 @@ function initAnchorLinks() {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
 
-      if (!isReady) {
-        console.warn('⛔ Якоря пока не готовы — ждем инициализацию Lenis/GSAP');
-        return;
-      }
-
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
 
       const currentPath = window.location.pathname;
       const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath.endsWith('/index.html');
+      const isCasePage = currentPath.includes('case-page') || document.body.classList.contains('case-page');
 
-      // Проверяем, содержит ли ссылка слово "case"
-      const isCaseLink = anchor.textContent.toLowerCase().includes('case') || 
-                         anchor.getAttribute('class')?.toLowerCase().includes('case') ||
-                         anchor.closest('.case') !== null;
-
-      // Если ссылка содержит "case" И мы не на главной странице - делаем редирект
-      if (isCaseLink && !isHomePage) {
-        const homeUrl = `${window.location.origin}${href}`;
+      if (isCasePage) {
+        const homeUrl = `${window.location.origin}/index.html${href}`;
         window.location.href = homeUrl;
         return;
       }
 
-      // Если ссылка содержит "case" И мы на главной странице - скроллим к якорю
-      if (isCaseLink && isHomePage) {
-        const target = document.querySelector(href);
-        if (!target) return;
-
-        const parent = target.parentNode;
-        let scrollTarget = target;
-
-        if (parent.classList.contains('pin-spacer')) {
-          const previous = parent.previousElementSibling;
-          if (previous) {
-            const height = previous.clientHeight || 0;
-            scrollTarget = previous.offsetTop + height;
-          }
-        }
-
-        // Гарантированно обновляем ScrollTrigger после завершения прокрутки
-        lenis.scrollTo(scrollTarget, {
-          lerp: 0.1,
-          duration: 3,
-          easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
-        });
-        return;
+      if (isHomePage) {
+        scrollToAnchor(href);
       }
-
-      if (!isHomePage) {
-        const homeUrl = `${window.location.origin}${href}`;
-        window.location.href = homeUrl;
-        return;
-      }
-
-      const target = document.querySelector(href);
-      if (!target) return;
-
-      const parent = target.parentNode;
-      let scrollTarget = target;
-
-      if (parent.classList.contains('pin-spacer')) {
-        const previous = parent.previousElementSibling;
-        if (previous) {
-          const height = previous.clientHeight || 0;
-          scrollTarget = previous.offsetTop + height;
-        }
-      }
-
-      lenis.scrollTo(scrollTarget, {
-        lerp: 0.1,
-        duration: 3,
-        easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
-      });
     });
   });
 }
 
+function scrollToAnchor(anchorId) {
+  if (!isReady) {
+    console.warn('⛔ Ожидаем инициализацию...');
+    setTimeout(() => scrollToAnchor(anchorId), 100);
+    return;
+  }
 
-window.addEventListener("resize", () => {
-  if (typeof controller !== 'undefined') controller.update(true);
-  ScrollTrigger.refresh(true);
-});
+  const target = document.querySelector(anchorId);
+  if (!target) {
+    console.warn(`⛔ Якорь ${anchorId} не найден`);
+    return;
+  }
 
-window.addEventListener("hashchange", () => {
-  ScrollTrigger.refresh(true);
-});
+  const parent = target.parentNode;
+  let scrollTarget = target;
 
-if (typeof lenis !== 'undefined') {
-  lenis.on('scroll', () => {
-    ScrollTrigger.update();
+  if (parent.classList.contains('pin-spacer')) {
+    const previous = parent.previousElementSibling;
+    if (previous) {
+      const height = previous.clientHeight || 0;
+      scrollTarget = previous.offsetTop + height;
+    }
+  }
+
+  lenis.scrollTo(scrollTarget, {
+    lerp: 0.1,
+    duration: 3,
+    easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
   });
 }

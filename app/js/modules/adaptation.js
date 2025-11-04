@@ -6,19 +6,11 @@ if (width < 750){
     $('.mob').remove()
 }
 
+let currentWidth = window.innerWidth;
 
-function isAppleDevice() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-}
-
-function isAndroidDevice() {
-  return /Android/.test(navigator.userAgent);
-}
-
-
-if (isAppleDevice()) {
-    document.querySelector('.menu-scrolling').style.bottom = '0rem';
-} else if (isAndroidDevice()) {
-    document.querySelector('.menu-scrolling').style.bottom = '20rem';
-}
+window.addEventListener('resize', function() {
+    if (window.innerWidth !== currentWidth) {
+        currentWidth = window.innerWidth;
+        location.reload();
+    }
+});

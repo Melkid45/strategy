@@ -273,7 +273,10 @@
         overflow: hidden;
 
         &__body {
-            padding: 92rem 0rem 102rem 0rem;
+            padding: 0rem;
+            height: 100vh;
+            display: flex;
+            align-items: center;
             width: 100%;
 
             .hero__body-items {
@@ -356,7 +359,7 @@
 
     .menu-scrolling {
         position: fixed;
-        bottom: 0rem;
+        bottom: 20rem;
         left: 50%;
         transform: translateX(-50%);
         padding: 14rem 24rem;

@@ -7,7 +7,7 @@ let IsDestop = width > 750;
 if (document.querySelector('.hero-block')) {
   let HeroConfig = {
     scale: IsDestop ? 15 : 30,
-    yPercent: IsDestop ? 150 : 450,
+    yPercent: IsDestop ? 150 : 150,
     xPercent: IsDestop ? -70 : -0,
     end: IsDestop ? '+=75%' : '+=100%'
   }

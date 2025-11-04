@@ -37,7 +37,7 @@ class DotGrid {
     const width = this.canvas.offsetWidth;
     const height = this.canvas.offsetHeight;
 
-    const offset = this.spacing / 2; // Сдвиг, чтобы точки были полностью внутри
+    const offset = this.spacing / 2;
 
     for (let x = offset; x < width - offset; x += this.spacing) {
       for (let y = offset; y < height - offset; y += this.spacing) {
@@ -66,7 +66,7 @@ class DotGrid {
 
       if (dist < influence && this.mouse.active) {
         dot.r = this.baseR + (this.maxR - this.baseR) * (1 - dist / influence);
-        dot.opacity += (0.8 - dot.opacity) * 0.15;
+        dot.opacity += (0.2 - dot.opacity) * 0.15;
       } else {
         dot.r += (this.baseR - dot.r) * 0.1;
         dot.opacity += (minOpacity - dot.opacity) * 0.08;
@@ -82,7 +82,6 @@ class DotGrid {
   }
 }
 
-// Инициализация
 document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth > 750) {
     document.querySelectorAll(".dot-canvas").forEach(c => new DotGrid(c));
