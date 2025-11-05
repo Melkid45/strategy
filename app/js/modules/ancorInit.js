@@ -60,14 +60,17 @@ function initAnchorLinks() {
       const isCasePage = currentPath.includes('case-page') || document.body.classList.contains('case-page');
 
       if (isCasePage) {
-        // Добавляем параметр чтобы главная страница знала что это переход
-        const homeUrl = `${window.location.origin}/index.html${href}?fromCase=true`;
+        // Разделяем якорь и параметры
+        const anchorPart = href.split('?')[0]; // Берем только часть до '?'
+        const homeUrl = `${window.location.origin}/index.html${anchorPart}?fromCase=true`;
         window.location.href = homeUrl;
         return;
       }
 
       if (isHomePage) {
-        scrollToAnchor(href);
+        // На главной странице используем только якорь без параметров
+        const anchorPart = href.split('?')[0];
+        scrollToAnchor(anchorPart);
       }
     });
   });
@@ -80,9 +83,12 @@ function scrollToAnchor(anchorId) {
     return;
   }
 
-  const target = document.querySelector(anchorId);
+  // Очищаем anchorId от любых параметров
+  const cleanAnchorId = anchorId.split('?')[0];
+  
+  const target = document.querySelector(cleanAnchorId);
   if (!target) {
-    console.warn(`⛔ Якорь ${anchorId} не найден`);
+    console.warn(`⛔ Якорь ${cleanAnchorId} не найден`);
     return;
   }
 
