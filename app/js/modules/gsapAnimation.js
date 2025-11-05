@@ -4,7 +4,7 @@
 
 let IsDestop = width > 750;
 // Hero Block
-if (document.querySelector('.hero-block')) {
+if (document.querySelector('.hero-block') && IsDestop) {
   let HeroConfig = {
     scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 150 : 150,
@@ -154,7 +154,7 @@ if (document.querySelector('.guarantees')) {
 
 
 // Implementation Block
-if (document.querySelector('.implementation')) {
+if (document.querySelector('.implementation') && IsDestop) {
   let ImplementationConfig = {
     scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 100 : 450,

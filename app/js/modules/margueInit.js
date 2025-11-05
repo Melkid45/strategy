@@ -77,15 +77,6 @@ function initMarquees() {
   });
 }
 
-// пересоздание при ресайзе
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    ScrollTrigger.refresh(true);
-    initMarquees();
-  }, 400);
-});
 
 // запуск
 window.addEventListener('load', () => {

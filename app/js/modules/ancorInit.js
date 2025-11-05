@@ -1,8 +1,14 @@
 /*<------Ancor init------>*/
 
 let isReady = false;
+let isRedirectingFromCase = false;
 
 window.addEventListener('load', () => {
+  // Проверяем, это переход с case-page?
+  const urlParams = new URLSearchParams(window.location.search);
+  isRedirectingFromCase = urlParams.get('fromCase') === 'true' || 
+                         document.referrer.includes('case-page');
+
   const waitForReady = () => {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof lenis === 'undefined') {
       console.warn('⏳ Ждем GSAP / ScrollTrigger / Lenis...');
@@ -12,15 +18,26 @@ window.addEventListener('load', () => {
     gsap.delayedCall(0.3, () => {
       ScrollTrigger.refresh(true);
 
-      lenis.scrollTo(0, { 
-        immediate: true ,
-        duration: 0.1
-      });
+      // НЕ сбрасываем скролл если это переход с case-page
+      if (!isRedirectingFromCase) {
+        lenis.scrollTo(0, { 
+          immediate: true,
+          duration: 0.1
+        });
+      }
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           initAnchorLinks();
           isReady = true;
+          
+          // Если это переход с case-page, сразу скроллим к якорю
+          if (isRedirectingFromCase && window.location.hash) {
+            setTimeout(() => {
+              scrollToAnchor(window.location.hash);
+            }, 100);
+          }
+          
           console.log('✅ Anchor links initialized (GSAP + Lenis ready)');
         });
       });
@@ -43,7 +60,8 @@ function initAnchorLinks() {
       const isCasePage = currentPath.includes('case-page') || document.body.classList.contains('case-page');
 
       if (isCasePage) {
-        const homeUrl = `${window.location.origin}/index.html${href}`;
+        // Добавляем параметр чтобы главная страница знала что это переход
+        const homeUrl = `${window.location.origin}/index.html${href}?fromCase=true`;
         window.location.href = homeUrl;
         return;
       }
