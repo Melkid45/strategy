@@ -1,4 +1,4 @@
-@media (max-width: 2560px) {
+@media (max-width: 2560px) and (min-width: 750px) {
     html {
         font-size: calc(100vw / 1440);
     }
@@ -797,7 +797,7 @@
         background: var(--black);
         overflow: hidden;
         padding-bottom: 200rem;
-
+        z-index: 1;
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let progress = 0;
     const targetProgress = 100;
-    const duration = 3000;
+    const duration = IsDestop ? 3000 : 5000;
     const interval = 30;
     const increment = (targetProgress / duration) * interval;
     

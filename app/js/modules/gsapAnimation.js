@@ -148,6 +148,14 @@ if (document.querySelector('.guarantees')) {
       scrub: 1,
       pin: true,
       pinSpacing: false,
+      onUpdate: (process) => {
+        let progress = process.progress;
+        if (document.querySelector('.guarantees-canvas') && progress >= 0.4){
+          document.querySelector('.guarantees-canvas').style.opacity = '1';
+        }else{
+          document.querySelector('.guarantees-canvas').style.opacity = '0';
+        }
+      }
     },
   })
 }
