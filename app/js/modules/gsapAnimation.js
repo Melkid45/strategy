@@ -217,26 +217,30 @@ if (document.querySelector('.feedback-form') && width > 750) {
 
 // Text Color
 
+gsap.registerPlugin(ScrollTrigger);
+
 function splitLetters() {
   const sections = document.querySelectorAll('.split-light, .split-dark');
 
   sections.forEach(section => {
     if (section.querySelector('.char')) return;
 
-    const text = section.textContent;
-    let newHTML = '';
+    const text = section.textContent.trim();
+    const frag = document.createDocumentFragment();
 
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-
-      if (char === ' ' || char === '\n' || char === '\t') {
-        newHTML += char;
+    for (const char of text) {
+      if (/\s/.test(char)) {
+        frag.append(char);
       } else {
-        newHTML += `<span class="char">${char}</span>`;
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char;
+        frag.append(span);
       }
     }
 
-    section.innerHTML = newHTML;
+    section.textContent = ''; 
+    section.appendChild(frag);
   });
 }
 
@@ -246,29 +250,44 @@ function initScrollAnimations() {
 
   sections.forEach(section => {
     const chars = section.querySelectorAll('.char');
-    const color = section.classList.contains('split-light') ? Config.colorLight : Config.colorDark;
+    if (!chars.length) return;
 
+    const isLight = section.classList.contains('split-light');
+    const baseColor = isLight ? Config.colorLight : Config.colorDark;
+
+    gsap.set(chars, { color: baseColor, willChange: 'color' });
 
     gsap.to(chars, {
       color: '#fff',
-      ease: "power2.out",
-      stagger: { amount: 0.5, from: "start" },
+      ease: 'power2.out',
+      stagger: {
+        each: 0.02,
+        from: 'start',
+      },
       scrollTrigger: {
         trigger: section,
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: 1,
-      }
-    })
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: true,
+        markers: false,
+      },
+    });
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initSplitAnimation() {
   splitLetters();
-  setTimeout(() => {
+
+  requestAnimationFrame(() => {
     initScrollAnimations();
-  }, 100);
-});
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initSplitAnimation);
+
+
+
+
 
 
 

@@ -15,8 +15,6 @@ window.addEventListener('load', () => {
     }
 
     gsap.delayedCall(0.3, () => {
-      ScrollTrigger.refresh(true);
-
       if (!isRedirectingFromCase) {
         lenis.scrollTo(0, { 
           immediate: true,

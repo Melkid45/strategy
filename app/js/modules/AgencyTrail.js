@@ -120,15 +120,17 @@ class AgencyTrail {
 
   startTracking() {
     if (!this.isValid) return;
-
-    gsap.ticker.add(() => {
+    const tick = () => {
       if (!this.isPaused) {
         this.cacheMouse.x = this.lerp(this.cacheMouse.x, this.mouse.x, 0.1);
         this.cacheMouse.y = this.lerp(this.cacheMouse.y, this.mouse.y, 0.1);
         this.checkDistanceAndSpawn();
+        requestAnimationFrame(tick);
       }
-    });
+    };
+    requestAnimationFrame(tick);
   }
+
 
   lerp(start, end, factor) {
     return start + (end - start) * factor;

@@ -1,16 +1,16 @@
 ScrollTrigger.normalizeScroll(true);
-gsap.ticker.lagSmoothing(0);
+gsap.ticker.lagSmoothing(1000, 16);
 ScrollTrigger.config({
   limitCallbacks: true,
   ignoreMobileResize: true,
   autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
 });
-
+gsap.defaults({ overwrite: "auto", duration: 0.6, ease: "power2.out" });
 const lenis = new Lenis({
-  duration: window.innerWidth <= 750 ? 1.8 : 1.2, // Увеличьте длительность для мобилок
+  duration: window.innerWidth <= 750 ? 1.8 : 1.2,
   easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e)),
   smoothWheel: true,
-  smoothTouch: window.innerWidth > 750, // Отключите smoothTouch на мобилках
+  smoothTouch: window.innerWidth > 750,
   touchMultiplier: window.innerWidth <= 750 ? 1.5 : 2,
   wheelMultiplier: 1,
   infinite: false,
@@ -33,15 +33,22 @@ document.addEventListener('visibilitychange', () => {
     rafId = requestAnimationFrame(raf);
   }
 });
-let isMobile = window.innerWidth <= 750;
 
+let isMobile = window.innerWidth <= 750;
+let ticking = false;
 let lastScrollTop = 0;
 let isScrollingDown = false;
 const scrollThreshold = 5;
 const activationThreshold = 50;
 if (!isMobile) {
   lenis.on('scroll', ({ scroll }) => {
-    ScrollTrigger.update();
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => {
+        ScrollTrigger.update();
+        ticking = false;
+      });
+    }
     requestAnimationFrame(() => {
       currentScroll = scroll;
       const header = document.querySelector('.header');

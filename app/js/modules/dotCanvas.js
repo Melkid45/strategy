@@ -25,11 +25,16 @@ class DotGrid {
   }
 
   resize() {
-    const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = this.canvas.offsetWidth * dpr;
-    this.canvas.height = this.canvas.offsetHeight * dpr;
-    this.ctx.scale(dpr, dpr);
+    clearTimeout(this.resizeTimer);
+    this.resizeTimer = setTimeout(() => {
+      const e = window.devicePixelRatio || 1;
+      this.canvas.width = this.canvas.offsetWidth * e;
+      this.canvas.height = this.canvas.offsetHeight * e;
+      this.ctx.scale(e, e);
+      this.createDots();
+    }, 300);
   }
+
 
   createDots() {
     this.dots = [];
