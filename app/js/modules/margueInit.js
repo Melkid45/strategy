@@ -1,4 +1,4 @@
-/* -------- OPTIMIZED GSAP MARQUEE -------- */
+/* -------- FIXED MOBILE GSAP MARQUEE -------- */
 gsap.registerPlugin(ScrollTrigger);
 
 function setupMarquee(container, {
@@ -14,28 +14,27 @@ function setupMarquee(container, {
   const gap = parseFloat(getComputedStyle(container).gap) || 0;
   const totalWidth = itemWidth + gap;
 
-  // Очистка предыдущих анимаций и ScrollTriggers
+  // Очистка предыдущих анимаций
   gsap.killTweensOf(container);
   ScrollTrigger.getAll().forEach(st => {
     if (st.trigger === container) st.kill();
   });
 
-  // Оптимизация: используем will-change для GPU
+  // GPU-ускорение
   container.style.willChange = 'transform';
   gsap.set(container, { x: 0 });
 
-  // Бесконечный бегунок
-  const marqueeTween = gsap.to(container, {
+  // 🔥 Используем GSAP timeline вместо чистого to — надёжнее на iOS
+  const tl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
+  tl.to(container, {
     x: -totalWidth,
     duration,
-    ease: 'none',
-    repeat: -1,
     modifiers: {
       x: x => (parseFloat(x) % -totalWidth) + 'px',
     },
   });
 
-  // Скролл-триггер для плавного входа
+  // Скролл-вход (мягкий старт)
   ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
@@ -51,9 +50,6 @@ function setupMarquee(container, {
       });
     },
   });
-
-  // Возвращаем tween (можно использовать если нужно убивать потом)
-  return marqueeTween;
 }
 
 function initMarquees() {
@@ -70,7 +66,7 @@ function initMarquees() {
 
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
-      duration: isMobile ? 35 : 15, // медленнее на мобилках
+      duration: isMobile ? 35 : 15,
       enterX: 0,
     });
   });
@@ -87,16 +83,26 @@ function initMarquees() {
   });
 }
 
-// Используем requestIdleCallback для экономии CPU
 let marqueesInitialized = false;
 function onPageReady() {
   if (marqueesInitialized) return;
   marqueesInitialized = true;
-  requestIdleCallback(() => {
+
+  // ❌ не используем requestIdleCallback — он глючит на iOS
+  // ✅ используем requestAnimationFrame для гарантии запуска
+  requestAnimationFrame(() => {
     initMarquees();
-    ScrollTrigger.refresh(true);
+    setTimeout(() => ScrollTrigger.refresh(true), 300);
   });
 }
 
-
+// ✅ гарантия запуска и на мобильных браузерах
+window.addEventListener('DOMContentLoaded', onPageReady);
 window.addEventListener('load', onPageReady);
+
+// перестраховка для iOS, если вкладка “проснулась”
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    ScrollTrigger.refresh(true);
+  }
+});
