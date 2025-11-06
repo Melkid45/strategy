@@ -25,7 +25,6 @@ if (width > 750) {
     dots.push({ el, x: pointer.x, y: pointer.y, scale: 1, opacity: 0 });
   }
 
-  // движение мыши
   function onPointerMove(e) {
     const x = e.clientX || (e.touches && e.touches[0].clientX) || pointer.x;
     const y = e.clientY || (e.touches && e.touches[0].clientY) || pointer.y;
@@ -60,7 +59,6 @@ if (width > 750) {
     return a + (b - a) * t;
   }
 
-  // плавное затухание скорости
   function updateSpeedDecay() {
     pointer.speed *= 0.85;
     requestAnimationFrame(updateSpeedDecay);
@@ -76,7 +74,6 @@ if (width > 750) {
     cursorDot.dataset.scale = dotScale;
     cursorDot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px,0) translate(-50%, -50%) scale(${dotScale})`;
 
-    // хвост
     const fastMove = pointer.speed > SPEED_THRESHOLD;
     for (let i = 0; i < dots.length; i++) {
       const prev = i === 0 ? { x: pointer.x, y: pointer.y } : dots[i - 1];

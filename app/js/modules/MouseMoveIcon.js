@@ -4,12 +4,12 @@ if (window.innerWidth > 750) {
     const icons = document.querySelectorAll(".item-rotate");
     if (!icons.length) return;
 
-    const maxRotation = 15; // максимальный угол поворота
+    const maxRotation = 15;
 
     window.addEventListener("mousemove", (e) => {
       const centerX = window.innerWidth / 2;
       const offsetX = e.clientX - centerX;
-      const percentX = offsetX / centerX; // от -1 до 1
+      const percentX = offsetX / centerX;
       const rotation = percentX * maxRotation;
 
       icons.forEach(icon => {
@@ -21,7 +21,6 @@ if (window.innerWidth > 750) {
       });
     });
 
-    // возврат при уходе мыши
     window.addEventListener("mouseleave", () => {
       icons.forEach(icon => {
         gsap.to(icon, {

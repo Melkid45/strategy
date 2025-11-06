@@ -6,7 +6,6 @@ class AgencyTrail {
     this.agency = agencyElement;
     this.animationContainer = this.agency.querySelector('.wrap-agency-animation');
 
-    // Если контейнер анимации не найден, отключаем функциональность
     if (!this.animationContainer) {
       this.isValid = false;
       return;
@@ -15,7 +14,6 @@ class AgencyTrail {
     this.isValid = true;
     this.content = this.animationContainer.querySelector('.content');
 
-    // Если внутри контейнера нет content, ищем в родительских элементах
     if (!this.content) {
       this.content = this.agency.querySelector('.content');
     }
@@ -36,7 +34,6 @@ class AgencyTrail {
     this.activationDistance = 80;
     this.animationRect = this.animationContainer.getBoundingClientRect();
 
-    // Для управления анимациями
     this.activeAnimations = new Map();
     this.hideAnimation = null;
 
@@ -54,7 +51,6 @@ class AgencyTrail {
   setupEventListeners() {
     if (!this.isValid) return;
 
-    // Основные события мыши на контейнере анимации
     this.animationContainer.addEventListener('mousemove', (e) => {
       this.updateAnimationRect();
       this.mouse.x = e.clientX - this.animationRect.left;
@@ -71,7 +67,6 @@ class AgencyTrail {
       this.lastMouse.x = this.mouse.x;
       this.lastMouse.y = this.mouse.y;
 
-      // Отменяем анимацию скрытия
       if (this.hideAnimation) {
         this.hideAnimation.kill();
         this.hideAnimation = null;
@@ -79,18 +74,15 @@ class AgencyTrail {
     });
 
     this.animationContainer.addEventListener('mouseleave', (e) => {
-      // Проверяем, что курсор действительно вышел из контейнера анимации
       if (!this.isCursorInAnimationContainer(e)) {
         this.isPaused = true;
         this.hideAllImagesSmoothly();
       }
     });
 
-    // Для фиксированной шапки - отслеживаем движение по всему документу
     document.addEventListener('mousemove', (e) => {
       if (!this.isPaused) return;
 
-      // Если анимация на паузе (мышь покинула контейнер), но курсор вернулся в контейнер
       if (this.isCursorInAnimationContainer(e)) {
         this.isPaused = false;
         if (this.hideAnimation) {
@@ -108,15 +100,11 @@ class AgencyTrail {
       }
     });
 
-    window.addEventListener('resize', () => {
-      this.updateAnimationRect();
-    });
   }
 
-  // Точная проверка нахождения курсора в контейнере анимации
   isCursorInAnimationContainer(e) {
     const rect = this.animationContainer.getBoundingClientRect();
-    const buffer = 2; // Небольшой буфер для предотвращения ложных срабатываний
+    const buffer = 2;
 
     return (
       e.clientX >= rect.left - buffer &&
@@ -202,7 +190,6 @@ class AgencyTrail {
       }
     });
 
-    // Сохраняем анимацию для возможности отмены
     this.activeAnimations.set(currentImg, timeline);
 
     timeline.to(currentImg, {
@@ -229,7 +216,6 @@ class AgencyTrail {
   hideAllImages() {
     if (!this.isValid) return;
 
-    // Мгновенное скрытие всех изображений
     this.images.forEach(img => {
       gsap.set(img, {
         opacity: 0,
@@ -237,7 +223,6 @@ class AgencyTrail {
       });
     });
 
-    // Останавливаем все активные анимации
     this.activeAnimations.forEach((animation, img) => {
       animation.kill();
     });
@@ -256,18 +241,15 @@ class AgencyTrail {
   hideAllImagesSmoothly() {
     if (!this.isValid) return;
 
-    // Останавливаем все активные анимации появления
     this.activeAnimations.forEach((animation, img) => {
       animation.kill();
     });
     this.activeAnimations.clear();
 
-    // Останавливаем предыдущую анимацию скрытия
     if (this.hideAnimation) {
       this.hideAnimation.kill();
     }
 
-    // Плавно скрываем все видимые изображения
     const visibleImages = this.images.filter(img => {
       const opacity = gsap.getProperty(img, "opacity");
       return opacity > 0;
@@ -292,12 +274,11 @@ class AgencyTrail {
       const currentScale = gsap.getProperty(img, "scale");
       const currentOpacity = gsap.getProperty(img, "opacity");
 
-      // Продолжаем с текущего состояния, а не начинаем заново
       this.hideAnimation.to(img, {
         duration: 0.3,
         ease: "power2.out",
         opacity: 0,
-        scale: currentScale * 0.5, // Плавно уменьшаем от текущего размера
+        scale: currentScale * 0.5,
         overwrite: true
       }, 0);
     });
@@ -325,7 +306,6 @@ class AgencyTrailManager {
     const agencySections = document.querySelectorAll('.agency');
 
     agencySections.forEach((agency) => {
-      // Проверяем наличие контейнера анимации
       if (agency.querySelector('.wrap-agency-animation')) {
         const trail = new AgencyTrail(agency);
         if (trail.isValid) {

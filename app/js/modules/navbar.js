@@ -49,5 +49,3 @@ document.addEventListener('DOMContentLoaded', function() {
 if (typeof lenis !== 'undefined' && width > 750) {
   lenis.on('scroll', updateActiveNav);
 }
-
-window.addEventListener('resize', updateActiveNav);

@@ -4,7 +4,6 @@ let isReady = false;
 let isRedirectingFromCase = false;
 
 window.addEventListener('load', () => {
-  // Проверяем, это переход с case-page?
   const urlParams = new URLSearchParams(window.location.search);
   isRedirectingFromCase = urlParams.get('fromCase') === 'true' || 
                          document.referrer.includes('case-page');
@@ -18,7 +17,6 @@ window.addEventListener('load', () => {
     gsap.delayedCall(0.3, () => {
       ScrollTrigger.refresh(true);
 
-      // НЕ сбрасываем скролл если это переход с case-page
       if (!isRedirectingFromCase) {
         lenis.scrollTo(0, { 
           immediate: true,
@@ -31,7 +29,6 @@ window.addEventListener('load', () => {
           initAnchorLinks();
           isReady = true;
           
-          // Если это переход с case-page, сразу скроллим к якорю
           if (isRedirectingFromCase && window.location.hash) {
             setTimeout(() => {
               scrollToAnchor(window.location.hash);
@@ -60,15 +57,13 @@ function initAnchorLinks() {
       const isCasePage = currentPath.includes('case-page') || document.body.classList.contains('case-page');
 
       if (isCasePage) {
-        // Разделяем якорь и параметры
-        const anchorPart = href.split('?')[0]; // Берем только часть до '?'
+        const anchorPart = href.split('?')[0];
         const homeUrl = `${window.location.origin}/index.html${anchorPart}?fromCase=true`;
         window.location.href = homeUrl;
         return;
       }
 
       if (isHomePage) {
-        // На главной странице используем только якорь без параметров
         const anchorPart = href.split('?')[0];
         scrollToAnchor(anchorPart);
       }
@@ -83,7 +78,6 @@ function scrollToAnchor(anchorId) {
     return;
   }
 
-  // Очищаем anchorId от любых параметров
   const cleanAnchorId = anchorId.split('?')[0];
   
   const target = document.querySelector(cleanAnchorId);

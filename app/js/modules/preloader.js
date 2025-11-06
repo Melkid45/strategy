@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentProgress >= targetProgress) {
             clearInterval(progressInterval);
             
-            // Ждем полной загрузки страницы перед скрытием
             if (document.readyState === 'complete') {
                 hidePreloader();
             } else {
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }, interval);
     
     function hidePreloader() {
-        // Плавное исчезновение прелоадера
         preloader.style.opacity = '0';
         preloader.style.transition = 'opacity 0.5s ease';
         
@@ -42,6 +40,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
     
-    // На всякий случай скрываем прелоадер через 5 секунд максимум
     setTimeout(hidePreloader, 5000);
 });

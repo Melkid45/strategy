@@ -70,16 +70,6 @@ if (isMobile) {
   });
 }
 
-window.addEventListener('resize', () => {
-  isMobile = window.innerWidth <= 750;
-
-  lenis.options.duration = isMobile ? 0.8 : 1.2;
-  lenis.options.smoothTouch = !isMobile;
-  lenis.options.touchMultiplier = isMobile ? 1 : 2;
-
-  ScrollTrigger.refresh();
-});
-
 if (document.querySelector('.gallery')) {
   let gallery = new Splide('.gallery-splide', {
     perPage: 1,

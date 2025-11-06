@@ -98,10 +98,6 @@ if (document.querySelector('.xcode')) {
     }
   }
 
-  window.addEventListener('resize', () => {
-    updateXcodeMetrics();
-    ScrollTrigger.refresh();
-  });
 }
 
 
@@ -152,7 +148,7 @@ if (document.querySelector('.guarantees')) {
         let progress = process.progress;
         if (document.querySelector('.guarantees-canvas') && progress >= 0.4){
           document.querySelector('.guarantees-canvas').style.opacity = '1';
-        }else{
+        }else if(progress < 0.4 && document.querySelector('.guarantees-canvas')){
           document.querySelector('.guarantees-canvas').style.opacity = '0';
         }
       }

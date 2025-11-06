@@ -1,4 +1,4 @@
-/* -------- GSAP MARQUEE (идеально плавный, без hidden и без дублей) -------- */
+/* -------- GSAP MARQUEE -------- */
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,12 +63,10 @@ function initMarquees() {
     '.about-stroke'
   ];
 
-  // обычные
   document.querySelectorAll(common.join(', ')).forEach((el) => {
     setupMarquee(el, { duration: 15, enterX: 0 });
   });
 
-  // специальные
   document.querySelectorAll('.special-margue-container').forEach((wrap) => {
     let wrapElement = wrap;
     wrapElement.style.transform = 'translateX(-60%)';
@@ -78,7 +76,6 @@ function initMarquees() {
 }
 
 
-// запуск
 window.addEventListener('load', () => {
   setTimeout(() => {
     initMarquees();
