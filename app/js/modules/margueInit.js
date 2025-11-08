@@ -66,7 +66,7 @@ function initMarquees() {
 
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
-      duration: isMobile ? 35 : 15,
+      duration: isMobile ? 10 : 15,
       enterX: 0,
     });
   });
@@ -76,7 +76,7 @@ function initMarquees() {
     const el = wrap.querySelector('.agency-stroke');
     if (el) {
       setupMarquee(el, {
-        duration: isMobile ? 35 : 15,
+        duration: isMobile ? 10 : 15,
         enterX: 60,
       });
     }
@@ -88,8 +88,6 @@ function onPageReady() {
   if (marqueesInitialized) return;
   marqueesInitialized = true;
 
-  // ❌ не используем requestIdleCallback — он глючит на iOS
-  // ✅ используем requestAnimationFrame для гарантии запуска
   requestAnimationFrame(() => {
     initMarquees();
     setTimeout(() => ScrollTrigger.refresh(true), 300);

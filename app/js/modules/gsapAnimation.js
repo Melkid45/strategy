@@ -24,8 +24,9 @@ if (document.querySelector('.hero-block') && IsDestop) {
       pinSpacing: false,
       onUpdate: (process) => {
         let fullProcess = process.progress * 10;
+        console.log(fullProcess)
         if (IsDestop) {
-          if (fullProcess > 1.5) {
+          if (fullProcess > 1.5 && fullProcess < 10) {
             document.querySelector('.cursor-trail').style.zIndex = '5';
           } else {
             document.querySelector('.cursor-trail').style.zIndex = '1';
@@ -36,16 +37,6 @@ if (document.querySelector('.hero-block') && IsDestop) {
         let OpacityScroll = 1 - (StartProgress * 10)
         $('.hero-block .stoke-title').css({ opacity: Opacity })
         $('.hero-block-scroll').css({ opacity: OpacityScroll })
-      }
-    },
-    onStart: () => {
-      if (IsDestop) {
-        document.querySelector('.cursor-trail').style.zIndex = '1';
-      }
-    },
-    onComplete: () => {
-      if (IsDestop) {
-        document.querySelector('.cursor-trail').style.zIndex = '1';
       }
     },
   })

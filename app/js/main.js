@@ -42,13 +42,6 @@ const scrollThreshold = 5;
 const activationThreshold = 50;
 if (!isMobile) {
   lenis.on('scroll', ({ scroll }) => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => {
-        ScrollTrigger.update();
-        ticking = false;
-      });
-    }
     requestAnimationFrame(() => {
       currentScroll = scroll;
       const header = document.querySelector('.header');
