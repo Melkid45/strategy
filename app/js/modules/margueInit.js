@@ -1,4 +1,4 @@
-/* -------- FIXED MOBILE GSAP MARQUEE -------- */
+/* -------- FIXED MOBILE SCRUB MARQUEE (NO LAGS) -------- */
 gsap.registerPlugin(ScrollTrigger);
 
 function setupMarquee(container, {
@@ -14,17 +14,14 @@ function setupMarquee(container, {
   const gap = parseFloat(getComputedStyle(container).gap) || 0;
   const totalWidth = itemWidth + gap;
 
-  // Очистка предыдущих анимаций
   gsap.killTweensOf(container);
   ScrollTrigger.getAll().forEach(st => {
     if (st.trigger === container) st.kill();
   });
 
-  // GPU-ускорение
   container.style.willChange = 'transform';
   gsap.set(container, { x: 0 });
 
-  // 🔥 Используем GSAP timeline вместо чистого to — надёжнее на iOS
   const tl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
   tl.to(container, {
     x: -totalWidth,
@@ -34,17 +31,18 @@ function setupMarquee(container, {
     },
   });
 
-  // Скролл-вход (мягкий старт)
-  ScrollTrigger.create({
+  const st = ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
     end: scrollEnd,
     scrub: 1,
     markers: false,
     onUpdate: self => {
+      const mapped = gsap.utils.mapRange(0, 1, 0.4, 1.4, self.progress);
+      tl.timeScale(mapped);
       gsap.to(container, {
         xPercent: gsap.utils.mapRange(0, 1, enterX, 0, self.progress),
-        duration: 0.3,
+        duration: 0.25,
         ease: 'power1.out',
         overwrite: 'auto',
       });
@@ -66,7 +64,7 @@ function initMarquees() {
 
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
-      duration: isMobile ? 10 : 15,
+      duration: isMobile ? 12 : 20,
       enterX: 0,
     });
   });
@@ -76,7 +74,7 @@ function initMarquees() {
     const el = wrap.querySelector('.agency-stroke');
     if (el) {
       setupMarquee(el, {
-        duration: isMobile ? 10 : 15,
+        duration: isMobile ? 12 : 20,
         enterX: 60,
       });
     }
@@ -90,17 +88,12 @@ function onPageReady() {
 
   requestAnimationFrame(() => {
     initMarquees();
-    setTimeout(() => ScrollTrigger.refresh(true), 300);
+    setTimeout(() => ScrollTrigger.refresh(true), 200);
   });
 }
 
-// ✅ гарантия запуска и на мобильных браузерах
 window.addEventListener('DOMContentLoaded', onPageReady);
 window.addEventListener('load', onPageReady);
-
-// перестраховка для iOS, если вкладка “проснулась”
 document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) {
-    ScrollTrigger.refresh(true);
-  }
+  if (!document.hidden) ScrollTrigger.refresh(true);
 });
