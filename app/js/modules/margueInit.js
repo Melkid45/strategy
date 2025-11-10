@@ -1,4 +1,4 @@
-/* -------- FIXED MOBILE SCRUB MARQUEE (NO LAGS) -------- */
+/* -------- FIXED MOBILE SCRUB MARQUEE (NO LAGS + NO FLICKER) -------- */
 gsap.registerPlugin(ScrollTrigger);
 
 function setupMarquee(container, {
@@ -14,13 +14,14 @@ function setupMarquee(container, {
   const gap = parseFloat(getComputedStyle(container).gap) || 0;
   const totalWidth = itemWidth + gap;
 
+  // Убираем старые, если есть
   gsap.killTweensOf(container);
   ScrollTrigger.getAll().forEach(st => {
     if (st.trigger === container) st.kill();
   });
 
   container.style.willChange = 'transform';
-  gsap.set(container, { x: 0 });
+  gsap.set(container, { x: 0, force3D: true });
 
   const tl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
   tl.to(container, {
@@ -31,12 +32,18 @@ function setupMarquee(container, {
     },
   });
 
+  // === Главный фикс против дергания ===
+  // Вместо сброса, просто приостанавливаем timeline, не трогая transform
   const st = ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
     end: scrollEnd,
     scrub: 1,
     markers: false,
+    onEnter: () => tl.play(),
+    onLeave: () => tl.pause(),       // не убиваем transform
+    onEnterBack: () => tl.play(),
+    onLeaveBack: () => tl.pause(),
     onUpdate: self => {
       const mapped = gsap.utils.mapRange(0, 1, 0.4, 1.4, self.progress);
       tl.timeScale(mapped);
@@ -94,6 +101,10 @@ function onPageReady() {
 
 window.addEventListener('DOMContentLoaded', onPageReady);
 window.addEventListener('load', onPageReady);
+
+// === Доп. защита от дерганий при возврате на вкладку ===
 document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) ScrollTrigger.refresh(true);
+  if (!document.hidden) {
+    gsap.delayedCall(0.2, () => ScrollTrigger.refresh(true));
+  }
 });
