@@ -5,3 +5,16 @@ if (width < 750){
 }else{
     $('.mob').remove()
 }
+
+
+let resizeTimeout;
+let initialWidth = window.innerWidth;
+
+window.addEventListener('resize', () => {
+  if (Math.abs(window.innerWidth - initialWidth) > 50) {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      window.location.reload();
+    }, 300);
+  }
+});

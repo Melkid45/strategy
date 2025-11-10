@@ -121,15 +121,21 @@ class AgencyTrail {
   startTracking() {
     if (!this.isValid) return;
     const tick = () => {
-      if (!this.isPaused) {
+      if (!this.isPaused && document.visibilityState === 'visible') {
         this.cacheMouse.x = this.lerp(this.cacheMouse.x, this.mouse.x, 0.1);
         this.cacheMouse.y = this.lerp(this.cacheMouse.y, this.mouse.y, 0.1);
         this.checkDistanceAndSpawn();
-        requestAnimationFrame(tick);
       }
+      this.raf = requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
+
+    this.raf = requestAnimationFrame(tick);
+
+    document.addEventListener('visibilitychange', () => {
+      this.isPaused = document.visibilityState !== 'visible';
+    });
   }
+
 
 
   lerp(start, end, factor) {
@@ -319,7 +325,7 @@ class AgencyTrailManager {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (width > 750) {
+  if (window.innerWidth > 750) {
     new AgencyTrailManager();
   }
 });

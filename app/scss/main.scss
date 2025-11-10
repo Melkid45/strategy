@@ -423,7 +423,7 @@
 .xcode {
     position: relative;
     z-index: 2;
-
+    overflow: hidden;
     &__body {
         border-top: 1px solid #FFFFFF33;
         width: 100%;

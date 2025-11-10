@@ -2,7 +2,9 @@
     html {
         font-size: calc(100vw / 375);
     }
-
+    .split-light{
+        color: var(--white) !important;
+    }
     .main {
         overflow: hidden;
     }

@@ -24,7 +24,6 @@ if (document.querySelector('.hero-block') && IsDestop) {
       pinSpacing: false,
       onUpdate: (process) => {
         let fullProcess = process.progress * 10;
-        console.log(fullProcess)
         if (IsDestop) {
           if (fullProcess > 1.5 && fullProcess < 10) {
             document.querySelector('.cursor-trail').style.zIndex = '5';
@@ -274,7 +273,9 @@ function initSplitAnimation() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', initSplitAnimation);
+  if (window.innerWidth > 750) {
+    initSplitAnimation();
+  }
 
 
 
