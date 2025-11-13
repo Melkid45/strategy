@@ -1,5 +1,5 @@
 
-if (width > 750) {
+if (width > 1100) {
 (function () {
   const DOTS = 10;
   const FOLLOW_SPEED = 0.15;

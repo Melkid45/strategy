@@ -1,5 +1,5 @@
 /*<-----MouseMove Animation----->*/
-if (window.innerWidth > 750) {
+if (window.innerWidth > 1100) {
   document.addEventListener("DOMContentLoaded", () => {
     const icons = document.querySelectorAll(".item-rotate");
     if (!icons.length) return;

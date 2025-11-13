@@ -2,7 +2,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 function setupMarquee(container, {
-  duration = 25,
+  duration = 15,
   enterX = 0,
   scrollStart = 'top bottom',
   scrollEnd = '+=100%',
@@ -40,10 +40,6 @@ function setupMarquee(container, {
     end: scrollEnd,
     scrub: 1,
     markers: false,
-    onEnter: () => tl.play(),
-    onLeave: () => tl.pause(),       // не убиваем transform
-    onEnterBack: () => tl.play(),
-    onLeaveBack: () => tl.pause(),
     onUpdate: self => {
       const mapped = gsap.utils.mapRange(0, 1, 0.4, 1.4, self.progress);
       tl.timeScale(mapped);
@@ -71,7 +67,7 @@ function initMarquees() {
 
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
-      duration: isMobile ? 12 : 20,
+      duration: isMobile ? 12 : 10,
       enterX: 0,
     });
   });
@@ -81,7 +77,7 @@ function initMarquees() {
     const el = wrap.querySelector('.agency-stroke');
     if (el) {
       setupMarquee(el, {
-        duration: isMobile ? 12 : 20,
+        duration: isMobile ? 12 : 10,
         enterX: 60,
       });
     }
@@ -102,7 +98,6 @@ function onPageReady() {
 window.addEventListener('DOMContentLoaded', onPageReady);
 window.addEventListener('load', onPageReady);
 
-// === Доп. защита от дерганий при возврате на вкладку ===
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) {
     gsap.delayedCall(0.2, () => ScrollTrigger.refresh(true));

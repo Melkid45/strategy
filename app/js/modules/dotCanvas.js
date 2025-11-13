@@ -88,7 +88,7 @@ class DotGrid {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.innerWidth > 750) {
+  if (window.innerWidth > 1100) {
     document.querySelectorAll(".dot-canvas").forEach(c => new DotGrid(c));
   }
 });

@@ -1,0 +1,78 @@
+@media (max-width: 1100px) and (min-width: 750px) {
+    .hero-block{
+        height: auto;
+    }
+    .hero-block__body{
+        height: auto;
+        padding: 256rem 0rem;
+        .hero__body-items{
+            .item{
+                border-top: 1rem solid #8F919A;
+            }
+        }
+    }
+    .hero-block-scroll{
+        bottom: 80rem;
+    }
+    .implementation{
+        height: auto;
+    }
+    .longest.different{
+        padding-top: 200rem !important;
+    }
+    .agency{
+        .content{
+            width: 100%;
+            position: static;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 24rem;
+            padding-left: 40rem;
+        }
+    }
+    .content__img{
+        opacity: 1 !important;
+        scale: 1 !important;
+        position: static !important;
+        height: 266rem !important;
+        width: 416rem !important;
+        min-width: 416rem;
+        img{
+            filter: none !important;
+        }
+    }
+    .header__body-logo{
+        font-size: 42rem;
+    }
+    .header__body-action{
+        span{
+            font-size: 24rem;
+        }
+        button {
+            padding: 15rem 30rem !important;
+            svg{
+                width: 28rem !important;
+                height: 28rem !important;
+            }
+        }
+    }
+    .ancor-item{
+        padding: 20rem 36rem !important;
+    }
+    .navbar li{
+        font-size: 28rem;
+        .home-btn{
+            padding: 20rem 36rem !important;
+        }
+        svg{
+            width: 28rem !important;
+            height: 28rem !important;
+        }
+    }
+    .preloader {
+        .text{
+            font-size: 36rem;
+        }
+    }
+}

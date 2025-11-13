@@ -2,7 +2,7 @@
 
 
 
-let IsDestop = width > 750;
+let IsDestop = width > 1100;
 // Hero Block
 if (document.querySelector('.hero-block') && IsDestop) {
   let HeroConfig = {
@@ -44,7 +44,8 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 
 // Cards Xcode
-
+let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
+console.log(isTouch)
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
@@ -58,14 +59,16 @@ if (document.querySelector('.xcode')) {
   }
   updateXcodeMetrics();
   let XcodeConsig = {
-    start: IsDestop ? 'top+=40%' : 'top+=30%'
+    start: IsDestop ? 'top+=40%' : 'top+=30%',
+    end: IsDestop ? formula : formulaMobile,
   }
+  console.log(isTouch ? '50%' : XcodeConsig.end)
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: XcodeConsig.start,
-      end: () => `+=${IsDestop ? formula : formulaMobile}`,
-      pin: true,
+      start: isTouch ? 'top bottom-=45%' : XcodeConsig.start,
+      end: () => isTouch ? '50%' : `${XcodeConsig.end}px`,
+      pin: isTouch ? false : true,
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress; // 0 → 1
@@ -111,7 +114,7 @@ if (document.querySelector('.guarantees')) {
     ease: 'power1.inOut',
     scrollTrigger: {
       trigger: '.guarantees__wrap',
-      start: 'top center',
+      start: isTouch ? 'top center+=20%' : 'top center',
       end: '+=70%',
       scrub: true,
     }
@@ -124,13 +127,13 @@ if (document.querySelector('.guarantees')) {
   }
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
-    scale: GuaranteesConfig.scale,
+    scale: isTouch ? 30 : GuaranteesConfig.scale,
     ease: 'power1.inOut',
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees',
-      start: IsSmallMobile ? '+=31%' : GuaranteesConfig.start,
-      end: GuaranteesConfig.end,
+      start: isTouch ? '+=11%' : IsSmallMobile ? '+=31%' : GuaranteesConfig.start,
+      end: isTouch ? '+=100%' : GuaranteesConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
@@ -196,7 +199,7 @@ if (document.querySelector('.feedback-form') && width > 750) {
     ease: 'power1.inOut',
     scrollTrigger: {
       trigger: '.feedback-wrap',
-      start: 'top center',
+      start: isTouch ?  'top center+=20%' : 'top center',
       end: '+=70%',
       scrub: 1,
     }
@@ -259,7 +262,6 @@ function initScrollAnimations() {
         start: 'top 80%',
         end: 'bottom 20%',
         scrub: true,
-        markers: false,
       },
     });
   });
@@ -288,25 +290,30 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
 
   xcodeContainers.forEach((container, containerIndex) => {
     let xcodeItems = container.querySelectorAll('.content__img');
-    let xcodeItemWidth, xcodeGap, formula;
+    let xcodeItemWidth, xcodeGap, formula, formulaTouch;
 
     function updateXcodeMetrics() {
       xcodeItemWidth = xcodeItems[0].offsetWidth;
       xcodeGap = parseFloat(getComputedStyle(container).gap) || 0;
+      formulaTouch = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth) - xcodeItemWidth - xcodeGap * 5;
       formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - xcodeGap * 2);
     }
     updateXcodeMetrics();
-
+    console.log(formula)
+    const AgencyConfig = {
+      start: isTouch ? 'top center+=20%' : 'top bottom',
+      end: isTouch ? '+=60%' : '+=100%'
+    }
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        start: 'top bottom',
-        end: () => `+=100%`,
+        start: AgencyConfig.start,
+        end: () => AgencyConfig.end,
         scrub: 1,
       }
     });
     tl.to(container, {
-      x: -formula,
+      x: isTouch ? -formulaTouch : -formula,
       ease: 'none',
     });
   });
