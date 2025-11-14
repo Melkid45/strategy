@@ -23,17 +23,19 @@ function setupMarquee(container, {
   container.style.willChange = 'transform';
   gsap.set(container, { x: 0, force3D: true });
 
-  const tl = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
-  tl.to(container, {
-    x: -totalWidth,
-    duration,
-    modifiers: {
-      x: x => (parseFloat(x) % -totalWidth) + 'px',
-    },
+  // === ЗАМЕНА ЛОГИКИ БЕСКОНЕЧНОЙ ПРОКРУТКИ НА ЛОГИКУ ИЗ ВТОРОГО КОДА ===
+  let speed = 120;
+  let formula = totalWidth;
+  let durationStroke = formula / speed;
+  
+  gsap.to(container, {
+    x: -formula,
+    duration: durationStroke,
+    repeat: -1,
+    ease: "none",
   });
 
   // === Главный фикс против дергания ===
-  // Вместо сброса, просто приостанавливаем timeline, не трогая transform
   const st = ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
@@ -42,7 +44,6 @@ function setupMarquee(container, {
     markers: false,
     onUpdate: self => {
       const mapped = gsap.utils.mapRange(0, 1, 0.4, 1.4, self.progress);
-      tl.timeScale(mapped);
       gsap.to(container, {
         xPercent: gsap.utils.mapRange(0, 1, enterX, 0, self.progress),
         duration: 0.25,
@@ -65,13 +66,14 @@ function initMarquees() {
 
   const isMobile = window.matchMedia('(max-width: 750px)').matches;
 
+  // Обрабатываем обычные маракесы с НОВОЙ логикой бесконечной прокрутки
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
-      duration: isMobile ? 12 : 10,
       enterX: 0,
     });
   });
 
+  // special-margue-container оставляем БЕЗ ИЗМЕНЕНИЙ (старая логика)
   document.querySelectorAll('.special-margue-container').forEach(wrap => {
     wrap.style.transform = 'translateX(-60%)';
     const el = wrap.querySelector('.agency-stroke');
@@ -97,9 +99,3 @@ function onPageReady() {
 
 window.addEventListener('DOMContentLoaded', onPageReady);
 window.addEventListener('load', onPageReady);
-
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) {
-    gsap.delayedCall(0.2, () => ScrollTrigger.refresh(true));
-  }
-});

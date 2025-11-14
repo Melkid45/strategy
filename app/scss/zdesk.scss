@@ -895,7 +895,10 @@
             }
         }
     }
-
+    #newmarquee-content{
+        display: flex;
+        gap: 40rem;
+    }
     .services {
         width: 100%;
 
