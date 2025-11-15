@@ -1,7 +1,7 @@
 /*<---------Gsap All--------->*/
 
-
-
+let windowWidth = window.innerWidth
+let windowHeight = window.innerHeight
 let IsDestop = width > 1100;
 // Hero Block
 if (document.querySelector('.hero-block') && IsDestop) {
@@ -45,7 +45,6 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 // Cards Xcode
 let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
-console.log(isTouch)
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
@@ -62,7 +61,6 @@ if (document.querySelector('.xcode')) {
     start: IsDestop ? 'top+=40%' : 'top+=30%',
     end: IsDestop ? formula : formulaMobile,
   }
-  console.log(isTouch ? '50%' : XcodeConsig.end)
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
@@ -72,7 +70,7 @@ if (document.querySelector('.xcode')) {
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress; // 0 → 1
-        const index = Math.min(xcodeItems.length - 1, Math.floor(progress * xcodeItems.length));
+        const index = Math.round(self.progress * (xcodeItems.length - 1));
         setActive(index);
       }
     }
@@ -84,12 +82,15 @@ if (document.querySelector('.xcode')) {
   });
 
   function setActive(index) {
-    if (!xcodeContainer.dataset.activeIndex || xcodeContainer.dataset.activeIndex != index) {
+    index = Math.max(0, Math.min(index, xcodeItems.length - 1)); // безопасный диапазон
+
+    if (xcodeContainer.dataset.activeIndex != index) {
       xcodeItems.forEach(el => el.classList.remove('active'));
       xcodeItems[index].classList.add('active');
       xcodeContainer.dataset.activeIndex = index;
     }
   }
+
 
 }
 
@@ -104,8 +105,8 @@ if (document.querySelector('.feedback') && width > 750) {
   })
 
 }
-
 if (document.querySelector('.guarantees')) {
+  let heightGua = document.querySelector('.guarantees').clientHeight
   let IsSmallMobile = window.innerWidth < 380;
   gsap.to('.guarantees-section', {
     yPercent: 0,
@@ -139,9 +140,9 @@ if (document.querySelector('.guarantees')) {
       pinSpacing: false,
       onUpdate: (process) => {
         let progress = process.progress;
-        if (document.querySelector('.guarantees-canvas') && progress >= 0.4){
+        if (document.querySelector('.guarantees-canvas') && progress >= 0.4) {
           document.querySelector('.guarantees-canvas').style.opacity = '1';
-        }else if(progress < 0.4 && document.querySelector('.guarantees-canvas')){
+        } else if (progress < 0.4 && document.querySelector('.guarantees-canvas')) {
           document.querySelector('.guarantees-canvas').style.opacity = '0';
         }
       }
@@ -149,14 +150,16 @@ if (document.querySelector('.guarantees')) {
   })
 }
 
-
+let blockHight = document.querySelector('.implementation').clientHeight
+let ImpFormula = 5 + ((windowHeight - blockHight) / 10)
 // Implementation Block
 if (document.querySelector('.implementation') && IsDestop) {
   let ImplementationConfig = {
     scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 100 : 450,
     xPercent: IsDestop ? -70 : -0,
-    end: IsDestop ? '+=75%' : '+=100%'
+    end: IsDestop ? '+=75%' : '+=100%',
+    start: windowWidth >= 1920 ? 'top top+=7%' : `top top+=${ImpFormula}%`
   }
   gsap.to('.implementation .circle-hero', {
     scale: ImplementationConfig.scale,
@@ -164,15 +167,13 @@ if (document.querySelector('.implementation') && IsDestop) {
     xPercent: ImplementationConfig.xPercent,
     scrollTrigger: {
       trigger: '.implementation',
-      start: 'top top',
+      start: ImplementationConfig.start,
       end: ImplementationConfig.end,
       scrub: 1,
-      pin: true,
-      pinSpacing: false,
       onUpdate: (process) => {
         let StartProgress = process.progress
         if (IsDestop) {
-          if (StartProgress >= 0.3) {
+          if (StartProgress >= 0.2) {
             document.querySelector('#imp-canvas').style.opacity = '1';
           } else {
             document.querySelector('#imp-canvas').style.opacity = '0';
@@ -199,7 +200,7 @@ if (document.querySelector('.feedback-form') && width > 750) {
     ease: 'power1.inOut',
     scrollTrigger: {
       trigger: '.feedback-wrap',
-      start: isTouch ?  'top center+=20%' : 'top center',
+      start: isTouch ? 'top center+=20%' : 'top center',
       end: '+=70%',
       scrub: 1,
     }
@@ -232,7 +233,7 @@ function splitLetters() {
       }
     }
 
-    section.textContent = ''; 
+    section.textContent = '';
     section.appendChild(frag);
   });
 }
@@ -275,9 +276,9 @@ function initSplitAnimation() {
   });
 }
 
-  if (window.innerWidth > 750) {
-    initSplitAnimation();
-  }
+if (window.innerWidth > 750) {
+  initSplitAnimation();
+}
 
 
 
@@ -299,7 +300,6 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
       formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - xcodeGap * 2);
     }
     updateXcodeMetrics();
-    console.log(formula)
     const AgencyConfig = {
       start: isTouch ? 'top center+=20%' : 'top bottom',
       end: isTouch ? '+=60%' : '+=100%'

@@ -635,7 +635,7 @@
     .longest.different {
         background: var(--black);
         padding-bottom: 200rem;
-        overflow: hidden;
+        overflow: visible;
         .stroke-wrap {
             color: #8F919A;
         }
@@ -703,7 +703,6 @@
     .guarantees {
         width: 100%;
         padding-bottom: 1200rem;
-
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
@@ -1011,7 +1010,7 @@
         width: 100%;
         padding-bottom: 200rem;
         padding-top: 100rem;
-        height: 115vh;
+        height: auto;
         position: relative;
 
         &__body {
