@@ -108,6 +108,17 @@ if (document.querySelector('.feedback') && width > 750) {
 if (document.querySelector('.guarantees')) {
   let heightGua = document.querySelector('.guarantees').clientHeight
   let IsSmallMobile = window.innerWidth < 380;
+  let GuaranteesCircleStart;
+  if (isTouch) {
+    GuaranteesCircleStart = '+=11%'
+  } else if (IsSmallMobile) {
+    GuaranteesCircleStart = '+=31%'
+  } else if (IsDestop) {
+    GuaranteesCircleStart = '+=45%';
+  } else {
+    GuaranteesCircleStart = '+=20%';
+  }
+  console.log(GuaranteesCircleStart)
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -123,7 +134,7 @@ if (document.querySelector('.guarantees')) {
   let GuaranteesConfig = {
     scale: IsDestop ? 16 : 25,
     yPercent: IsDestop ? -60 : -80,
-    start: IsDestop ? '+=45%' : '+=20%',
+    start: GuaranteesCircleStart,
     end: IsDestop ? '+=200%' : '+=85%'
   }
   gsap.to('.guarantees-circle', {
@@ -133,7 +144,7 @@ if (document.querySelector('.guarantees')) {
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees',
-      start: isTouch ? '+=11%' : IsSmallMobile ? '+=31%' : GuaranteesConfig.start,
+      start: GuaranteesConfig.start,
       end: isTouch ? '+=100%' : GuaranteesConfig.end,
       scrub: 1,
       pin: true,
@@ -301,7 +312,7 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
     }
     updateXcodeMetrics();
     const AgencyConfig = {
-      start: isTouch ? 'top center+=20%' : 'top bottom',
+      start: isTouch ? 'top center+=10%' : 'top bottom',
       end: isTouch ? '+=60%' : '+=100%'
     }
     const tl = gsap.timeline({
