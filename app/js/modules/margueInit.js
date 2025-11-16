@@ -10,11 +10,22 @@ function setupMarquee(container, {
   if (!container || !container.firstElementChild) return;
 
   const item = container.firstElementChild;
-  const itemWidth = item.scrollWidth;
   const gap = parseFloat(getComputedStyle(container).gap) || 0;
-  const totalWidth = itemWidth + gap;
 
-  // Убираем старые, если есть
+  let formula = 0;
+  let speed = 120;
+  let tween;
+
+  function recalcWidth() {
+    const itemWidth = item.scrollWidth;
+    formula = itemWidth + gap;
+  }
+
+  recalcWidth();
+
+  setTimeout(recalcWidth, 50);
+  setTimeout(recalcWidth, 150);
+
   gsap.killTweensOf(container);
   ScrollTrigger.getAll().forEach(st => {
     if (st.trigger === container) st.kill();
@@ -23,27 +34,26 @@ function setupMarquee(container, {
   container.style.willChange = 'transform';
   gsap.set(container, { x: 0, force3D: true });
 
-  // === ЗАМЕНА ЛОГИКИ БЕСКОНЕЧНОЙ ПРОКРУТКИ НА ЛОГИКУ ИЗ ВТОРОГО КОДА ===
-  let speed = 120;
-  let formula = totalWidth;
-  let durationStroke = formula / speed;
-  
-  gsap.to(container, {
-    x: -formula,
-    duration: durationStroke,
-    repeat: -1,
-    ease: "none",
-  });
+  function startInfiniteLoop() {
+    const durationStroke = formula / speed;
 
-  // === Главный фикс против дергания ===
-  const st = ScrollTrigger.create({
+    tween = gsap.to(container, {
+      x: -formula,
+      duration: durationStroke,
+      repeat: -1,
+      ease: "none",
+    });
+  }
+
+  setTimeout(startInfiniteLoop, 160);
+
+  ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
     end: scrollEnd,
     scrub: 1,
     markers: false,
     onUpdate: self => {
-      const mapped = gsap.utils.mapRange(0, 1, 0.4, 1.4, self.progress);
       gsap.to(container, {
         xPercent: gsap.utils.mapRange(0, 1, enterX, 0, self.progress),
         duration: 0.25,
@@ -66,16 +76,15 @@ function initMarquees() {
 
   const isMobile = window.matchMedia('(max-width: 750px)').matches;
 
-  // Обрабатываем обычные маракесы с НОВОЙ логикой бесконечной прокрутки
   document.querySelectorAll(commonSelectors.join(', ')).forEach(el => {
     setupMarquee(el, {
       enterX: 0,
     });
   });
 
-  // special-margue-container оставляем БЕЗ ИЗМЕНЕНИЙ (старая логика)
   document.querySelectorAll('.special-margue-container').forEach(wrap => {
     wrap.style.transform = 'translateX(-60%)';
+
     const el = wrap.querySelector('.agency-stroke');
     if (el) {
       setupMarquee(el, {
@@ -84,18 +93,21 @@ function initMarquees() {
       });
     }
   });
+
+  ScrollTrigger.refresh(true);
 }
 
-let marqueesInitialized = false;
-function onPageReady() {
-  if (marqueesInitialized) return;
-  marqueesInitialized = true;
-
-  requestAnimationFrame(() => {
+function startWhenFontsReady() {
+  if (document.fonts) {
+    document.fonts.ready.then(() => {
+      setTimeout(() => {
+        initMarquees();
+      }, 50);
+    });
+  } else {
+    // fallback
     initMarquees();
-    setTimeout(() => ScrollTrigger.refresh(true), 200);
-  });
+  }
 }
 
-window.addEventListener('DOMContentLoaded', onPageReady);
-window.addEventListener('load', onPageReady);
+window.addEventListener('load', startWhenFontsReady);
