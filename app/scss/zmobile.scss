@@ -279,7 +279,7 @@
         overflow: hidden;
 
         &__body {
-            padding: 102rem 0rem;
+            padding: 80rem 0rem;
             height: auto;
             display: flex;
             align-items: center;
@@ -291,7 +291,7 @@
                 width: 100%;
 
                 .item:has(.item-rotate) {
-                    padding: 20rem 0rem;
+                    padding: 20rem 0rem 0rem;
                 }
 
                 .item {
@@ -423,10 +423,8 @@
 
 
     .agency {
-        padding-top: 80rem !important;
         width: 100%;
         overflow: hidden;
-        padding-bottom: 80rem;
 
         .content {
             display: flex;
@@ -576,7 +574,6 @@
     }
 
     .awards {
-        margin-top: 80rem;
         width: 100%;
         position: relative;
         z-index: 2;
@@ -646,8 +643,6 @@
 
     .longest.different {
         background: var(--black);
-        padding-bottom: 80rem;
-        padding-top: 80rem !important;
         overflow: visible;
 
         .stroke-wrap {
@@ -668,9 +663,7 @@
 
     .longest {
         width: 100%;
-        padding-bottom: 80rem;
         overflow: hidden;
-        padding-top: 80rem;
 
 
 
@@ -714,7 +707,6 @@
 
     .guarantees {
         width: 100%;
-        padding-bottom: 385rem;
         overflow: hidden;
 
         &__body {
@@ -811,7 +803,6 @@
         width: 100%;
         background: var(--black);
         overflow: hidden;
-        padding-bottom: 40rem;
 
         &__body {
             padding-top: 40rem;
@@ -1020,8 +1011,6 @@
 
     .implementation {
         width: 100%;
-        padding-bottom: 80rem;
-        padding-top: 0rem;
         height: auto;
         position: relative;
         z-index: 4;
@@ -1111,8 +1100,6 @@
     .feedback {
         width: 100%;
         background: var(--black);
-        padding-top: 0rem;
-        padding-bottom: 0rem;
 
         &__body {
             display: flex;
@@ -1396,7 +1383,6 @@
     .faq {
         width: 100%;
         background: var(--black);
-        padding-bottom: 80rem;
 
         &__body {
             padding-top: 40rem;
@@ -1504,7 +1490,6 @@
 
     .contact {
         width: 100%;
-        padding-bottom: 80rem;
 
         &__body {
             padding-top: 40rem;
@@ -1747,9 +1732,7 @@
 
     .project {
         width: 100%;
-        padding-top: 80rem;
         background: var(--black);
-        padding-bottom: 80rem;
         overflow: hidden;
 
         &__body {
@@ -1967,5 +1950,51 @@
                 }
             }
         }
+    }
+    section {
+        padding: 80rem 0rem;
+    }
+
+    section.xcode {
+        padding: 0rem 0rem 80rem;
+    }
+
+    section.awards {
+        padding: 0rem 0rem 0rem;
+    }
+
+    section.case {
+        padding: 0 0 80rem 0rem;
+    }
+
+    section.services {
+        padding: 0;
+    }
+
+    section.implementation {
+        padding: 0rem 0 80rem 0rem;
+    }
+
+    section.longest.different {
+        padding: 0 0 80rem 0rem;
+    }
+
+    section.feedback {
+        padding: 40rem 0 80rem 0rem;
+    }
+    section.contact {
+        padding: 0 0 80rem 0rem;
+    }
+    section.fag{
+        padding: 0 0 80rem 0;
+    }
+    section.gallery{
+        padding: 0rem 0 80rem 0rem;
+    }
+    section.user{
+        padding: 0rem;
+    }
+    .guarantees{
+        padding-top: 0 !important;
     }
 }

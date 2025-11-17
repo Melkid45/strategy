@@ -18,7 +18,6 @@
         height: auto;
     }
     .longest.different{
-        padding-top: 200rem !important;
         overflow: hidden;
         .dot-patern{
             display: flex;
@@ -84,16 +83,21 @@
     }
     .title{
         .circle {
-            width: 15rem;
-            height: 15rem;
+            width: 18rem;
+            height: 18rem;
+            min-height: 18rem;
+            min-width: 18rem;
         }
-
+        span, h3{
+            white-space: nowrap;
+        }
     }
     .soft-title{
-        font-size: 18rem;
+        font-size: 24rem;
+        line-height: 100%;
     }
     .soft-description{
-        font-size: 24rem;
+        font-size: 28rem;
     }
     .longest__body{
         p{
@@ -101,10 +105,13 @@
         }
     }
     .feedback__body .feedback-wrap p{
-        max-width: 477rem;
+        max-width: 587rem;
     }
     .faq__body .faq-frame .item__bottom{
-        max-width: 477rem;
+        max-width: 547rem;
+    }
+    .guarantees__body .guarantees__wrap p {
+        max-width: 547rem;
     }
     .contact__body .contact-frame .action a{
         padding: 22rem 160rem;

@@ -45,7 +45,7 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 // Cards Xcode
 let lastIndex = 0;
-let threshold = 0.035;
+let threshold = 0.1;
 let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
@@ -111,18 +111,18 @@ if (document.querySelector('.feedback') && width > 750) {
 
 }
 if (document.querySelector('.guarantees')) {
-  let heightGua = document.querySelector('.guarantees').clientHeight
   let IsSmallMobile = window.innerWidth < 380;
   let GuaranteesCircleStart;
   if (isTouch) {
     GuaranteesCircleStart = '+=11%'
   } else if (IsSmallMobile) {
-    GuaranteesCircleStart = '+=31%'
+    GuaranteesCircleStart = '+=20%'
   } else if (IsDestop) {
     GuaranteesCircleStart = '+=45%';
   } else {
-    GuaranteesCircleStart = '+=20%';
+    GuaranteesCircleStart = '+=13%';
   }
+  console.log(GuaranteesCircleStart)
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -139,7 +139,7 @@ if (document.querySelector('.guarantees')) {
     scale: IsDestop ? 16 : 25,
     yPercent: IsDestop ? -60 : -80,
     start: GuaranteesCircleStart,
-    end: IsDestop ? '+=200%' : '+=85%'
+    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=200%'
   }
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
@@ -149,7 +149,7 @@ if (document.querySelector('.guarantees')) {
     scrollTrigger: {
       trigger: '.guarantees',
       start: GuaranteesConfig.start,
-      end: isTouch ? '+=100%' : GuaranteesConfig.end,
+      end: isTouch ? '+=170%' : GuaranteesConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
@@ -165,17 +165,19 @@ if (document.querySelector('.guarantees')) {
   })
 }
 
-let blockHight = document.querySelector('.implementation').clientHeight
-let ImpFormula = 5 + ((windowHeight - blockHight) / 10)
+
 // Implementation Block
 if (document.querySelector('.implementation') && IsDestop) {
+  let blockHight = document.querySelector('.implementation').clientHeight
+  let ImpFormula = 5 + ((windowHeight - blockHight) / 10)
   let ImplementationConfig = {
     scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 100 : 450,
     xPercent: IsDestop ? -70 : -0,
     end: IsDestop ? '+=75%' : '+=100%',
-    start: windowWidth >= 1920 ? 'top top+=7%' : `top top+=${ImpFormula}%`
+    start: windowWidth >= 1920 ? 'top top+=20%' : `top top+=${ImpFormula}%`
   }
+  console.log(ImplementationConfig.start)
   gsap.to('.implementation .circle-hero', {
     scale: ImplementationConfig.scale,
     yPercent: ImplementationConfig.yPercent,

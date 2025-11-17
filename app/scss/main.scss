@@ -111,6 +111,7 @@
     overflow: hidden;
     background: var(--black);
     position: relative;
+    padding: 0;
     &__body {
         padding: 122px 0px 0px 0px;
         width: 100%;
@@ -336,15 +337,12 @@
     }
 }
 
-.pd-0 {
+.pin-spacer:has(.hero-block) + .agency{
     padding-top: 0 !important;
 }
-
 .agency {
-    padding-top: 200px;
     width: 100%;
     overflow: hidden;
-    padding-bottom: 200px;
     .content {
         position: absolute;
         top: 0;
@@ -495,7 +493,6 @@
 }
 
 .awards {
-    margin-top: 140px;
     width: 100%;
 
     &__body {
@@ -563,7 +560,6 @@
 
 .longest.different {
     background: var(--black);
-    padding-bottom: 200px;
     position: relative;
     z-index: 3;
     .stroke-wrap {
@@ -582,8 +578,6 @@
 
 .longest {
     width: 100%;
-    padding-top: 200px;
-    padding-bottom: 200px;
     overflow: hidden;
     position: relative;
 
@@ -727,7 +721,6 @@
     width: 100%;
     background: var(--black);
     overflow: hidden;
-    padding-bottom: 200px;
     position: relative;
     &__body {
         padding-top: 64px;
@@ -999,8 +992,6 @@
 
 .implementation {
     width: 100%;
-    padding-bottom: 200px;
-    padding-top: 100px;
     height: 115vh;
 
     &__body {
@@ -1452,7 +1443,6 @@
 .faq {
     width: 100%;
     background: var(--black);
-    padding-bottom: 200px;
     position: relative;
     z-index: 2;
     &__body {
@@ -1570,7 +1560,6 @@
 
 .contact {
     width: 100%;
-    padding-bottom: 200px;
 
     &__body {
         padding-top: 76px;

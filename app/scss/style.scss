@@ -58,10 +58,6 @@ body {
     overflow: hidden;
 }
 
-
-
-
-
 .cursor-trail {
     position: fixed;
     left: 0;
@@ -88,4 +84,35 @@ body {
     opacity: 0.8;
     box-shadow: 0 0 20px #FD4B03, 0 0 40px #FD4B03, 0 0 60px #FD4B03;
     transition: opacity 0.2s;
+}
+
+
+/*Section Heading*/
+
+section{
+    padding: 200px 0px;
+}
+section.xcode{
+    padding: 0px 0px 200px;
+}
+section.awards{
+    padding: 140px 0px 0px;
+}
+section.case{
+    padding: 0 0 200px 0px;
+}
+section.services{
+    padding: 0;
+}
+section.implementation{
+    padding: 100px 0 200px 0px;
+}
+section.longest.different{
+    padding: 0 0 200px 0px;
+}
+section.feedback{
+    padding: 100px 0 200px 0px;
+}
+section.contact{
+    padding: 0 0 200px 0px;
 }

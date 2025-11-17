@@ -1,6 +1,4 @@
 /* -------- FIXED MOBILE SCRUB MARQUEE (NO LAGS + NO FLICKER) -------- */
-gsap.registerPlugin(ScrollTrigger);
-
 function setupMarquee(container, {
   duration = 15,
   enterX = 0,
@@ -58,6 +56,7 @@ function setupMarquee(container, {
     start: scrollStart,
     end: scrollEnd,
     scrub: 1,
+    ease: 'power1.InOut',
     markers: false,
     onUpdate: self => {
       gsap.to(container, {
@@ -125,5 +124,6 @@ function startWhenFontsReady() {
     initMarquees();
   }
 }
-
-window.addEventListener('load', startWhenFontsReady);
+if (windowWidth > 750) {
+  window.addEventListener('load', startWhenFontsReady);
+}
