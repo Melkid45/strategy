@@ -22,7 +22,6 @@ function setupMarquee(container, {
   }
 
   recalcWidth();
-
   setTimeout(recalcWidth, 50);
   setTimeout(recalcWidth, 150);
 
@@ -42,11 +41,18 @@ function setupMarquee(container, {
       duration: durationStroke,
       repeat: -1,
       ease: "none",
+      paused: true,
     });
+
+    if (ScrollTrigger.isInViewport(container)) {
+      tween.resume();
+    }
   }
+
 
   setTimeout(startInfiniteLoop, 160);
 
+  // ---- SCRUB (ТВОЙ КОД) ----
   ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
@@ -61,6 +67,17 @@ function setupMarquee(container, {
         overwrite: 'auto',
       });
     },
+  });
+
+  // ---- ВИДИМОСТЬ (ДОБАВЛЕНО, НИЧЕГО НЕ ЛОМАЕТ) ----
+  ScrollTrigger.create({
+    trigger: container,
+    start: "top bottom",
+    end: "bottom top",
+    onEnter: () => tween && tween.resume(),
+    onEnterBack: () => tween && tween.resume(),
+    onLeave: () => tween && tween.pause(),
+    onLeaveBack: () => tween && tween.pause(),
   });
 }
 
@@ -105,7 +122,6 @@ function startWhenFontsReady() {
       }, 50);
     });
   } else {
-    // fallback
     initMarquees();
   }
 }

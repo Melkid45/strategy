@@ -4,6 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <style>
+        @font-face {
+            font-family: 'Bold';
+            src: url('fonts/Stem-Bold.woff');
+        }
+
+        @font-face {
+            font-family: 'Medium';
+            src: url('fonts/Stem-Medium.woff');
+        }
+
+        @font-face {
+            font-family: 'Regular';
+            src: url('fonts/Stem-Regular.woff');
+        }
+
+        @font-face {
+            font-family: 'Light';
+            src: url('fonts/Stem-Light.woff');
+        }
+    </style>
     <link rel="stylesheet" href="scss/splide.css">
     <link rel="stylesheet" href="scss/style.min.css">
     <title>Стратегия</title>
@@ -33,89 +54,59 @@
             <span></span>
         </div>
     </div>
-        <header class="header">
-            <div class="container">
-                <div class="header__body">
-                    <a href="/" class="header__body-logo">
-                        Стратегия
-                    </a>
-                    <a href="#feedback" class="header__body-action">
-                        <span class="soft-title desk">Написать нам</span>
-                        <button class="action-write">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M2 10C2 5.58172 5.58172 2 10 2V2C14.4183 2 18 5.58172 18 10V10C18 14.4183 14.4183 18 10 18H4C2.89543 18 2 17.1046 2 16V10Z"
-                                    stroke="white" stroke-width="2" />
-                            </svg>
-                        </button>
-                    </a>
-                    <div class="header-menu-mob mob">
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="#agency">Агентство</a>
-                                </li>
-                                <li>
-                                    <a href="#case">Кейсы</a>
-                                </li>
-                                <li>
-                                    <a href="#services">Услуги</a>
-                                </li>
-                                <li>
-                                    <a href="#faq">FAQ</a>
-                                </li>
-                                <li>
-                                    <a href="#contact">Контакты</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="header-menu-action">
-                            <div class="item">
-                                <p class="soft-title">Офис в Москве</p>
-                                <a href="">Москва, Красная Поляна, 25</a>
-                            </div>
-                            <div class="item">
-                                <p class="soft-title">Для связи</p>
-                                <div class="wrap">
-                                    <a href="">hey@strategia.io</a>
-                                    <a href="">+7 999 99-204-88</a>
-                                </div>
+    <header class="header">
+        <div class="container">
+            <div class="header__body">
+                <a href="/" class="header__body-logo">
+                    Стратегия
+                </a>
+                <a href="#feedback" class="header__body-action">
+                    <span class="soft-title desk">Написать нам</span>
+                    <button class="action-write">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M2 10C2 5.58172 5.58172 2 10 2V2C14.4183 2 18 5.58172 18 10V10C18 14.4183 14.4183 18 10 18H4C2.89543 18 2 17.1046 2 16V10Z"
+                                stroke="white" stroke-width="2" />
+                        </svg>
+                    </button>
+                </a>
+                <div class="header-menu-mob mob">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#agency">Агентство</a>
+                            </li>
+                            <li>
+                                <a href="#case">Кейсы</a>
+                            </li>
+                            <li>
+                                <a href="#services">Услуги</a>
+                            </li>
+                            <li>
+                                <a href="#faq">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#contact">Контакты</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="header-menu-action">
+                        <div class="item">
+                            <p class="soft-title">Офис в Москве</p>
+                            <a href="">Москва, Красная Поляна, 25</a>
+                        </div>
+                        <div class="item">
+                            <p class="soft-title">Для связи</p>
+                            <div class="wrap">
+                                <a href="">hey@strategia.io</a>
+                                <a href="">+7 999 99-204-88</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-    <!-- <div class="navbar desk">
-        <nav>
-            <ul>
-                <li class="current">
-                    <a class="home-btn" href="">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5 17.5H15C16.1046 17.5 17 16.6046 17 15.5V8.41987C17 7.83602 16.7449 7.28132 16.3016 6.90136L11.3016 2.61564C10.5526 1.97366 9.4474 1.97366 8.69842 2.61564L3.69842 6.90136C3.25513 7.28132 3 7.83602 3 8.41987V15.5C3 16.6046 3.89543 17.5 5 17.5Z"
-                                stroke="white" stroke-width="2" />
-                        </svg>
-                    </a>
-                </li>
-                <li class="soft-title">
-                    <a class="ancor-item" href="#agency">Агентство</a>
-                </li>
-                <li class=" soft-title">
-                    <a class="ancor-item" href="#case">Кейсы</a>
-                </li>
-                <li class=" soft-title">
-                    <a class="ancor-item" href="#services">Услуги</a>
-                </li>
-                <li class=" soft-title">
-                    <a class="ancor-item" href="#faq">FAQ</a>
-                </li>
-                <li class=" soft-title">
-                    <a class="ancor-item" href="#contact">Контакты</a>
-                </li>
-            </ul>
-        </nav>
-    </div> -->
+        </div>
+    </header>
     <main class="main">
         <section class="about">
             <img class="about_back" src="images/dist/about_back.webp" alt="">
@@ -154,7 +145,8 @@
             </div>
         </section>
         <section class="project">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="project__body">
                     <div class="top">
@@ -179,14 +171,19 @@
                             и удобны для любой аудитории
                         </span>
                         <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
+                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять
+                            его
                             публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
+                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так:
+                            Вы
+                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                            размещаетесь на
                             Яндекс Маркете и Беру!
                             <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
+                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во
+                            всех
+                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                            отдельную —
                             на
                             Wildberries, и так далее.
                             <br><br>
@@ -201,7 +198,8 @@
         </section>
         <section class="longest different">
             <img class="dot-patern mob" src="images/dist/dot-patern-black.svg" alt="">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="longest__body">
                     <p>
@@ -215,7 +213,7 @@
                             d="M13 2.1665H91M13 101.833H91M23.8333 101.833V75.8332L36.2105 68.4067C41.9737 64.9491 45.5 58.7208 45.5 51.9998C45.5 45.2788 41.9737 39.0507 36.2105 35.5928L23.8333 28.1665V2.1665M80.1667 2.1665V28.1665L67.7894 35.5928C62.0265 39.0507 58.5 45.2788 58.5 51.9998C58.5 58.7208 62.0265 64.9491 67.7894 68.4067L80.1667 75.8332V101.833"
                             stroke="#FD4B03" stroke-width="4" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             30 дней -
@@ -228,7 +226,8 @@
             </div>
         </section>
         <section class="user">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="user__body">
                     <div class="top">
@@ -255,7 +254,8 @@
             </div>
         </section>
         <section class="project">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="project__body">
                     <div class="top">
@@ -280,14 +280,19 @@
                             и удобны для любой аудитории
                         </span>
                         <p class="soft-description">
-                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять его
+                            Anymarkets (Эни маркетс) — система, позволяющая вам хранить товар в одном месте и управлять
+                            его
                             публикацией
-                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так: Вы
-                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries, размещаетесь на
+                            во множестве маркетплейсов сразу. Если разобраться на простом примере, то работает это так:
+                            Вы
+                            продаете чайники (на месте чайника может быть любой товар) на Ozon, Wildberries,
+                            размещаетесь на
                             Яндекс Маркете и Беру!
                             <br><br>
-                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во всех
-                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon, отдельную —
+                            Вам необходимо заполнить одну единственную карточку товара в Anymarkets и она появится во
+                            всех
+                            вышеперечисленных системах. Вам не нужно заводить отдельную карточку товара на Ozon,
+                            отдельную —
                             на
                             Wildberries, и так далее.
                             <br><br>
@@ -298,7 +303,8 @@
             </div>
         </section>
         <section class="gallery">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="gallery__body">
                     <div class="top">
@@ -360,7 +366,8 @@
         </section>
         <section class="longest different">
             <img class="dot-patern mob" src="images/dist/dot-patern-black.svg" alt="">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="longest__body">
                     <p>
@@ -374,7 +381,7 @@
                             stroke="#FD4B03" stroke-width="4.61538" />
                         <circle id="pupil" cx="60" cy="60" r="12" fill="none" stroke="#FD4B03" stroke-width="3" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             Верный выбор -
@@ -387,7 +394,8 @@
             </div>
         </section>
         <section id="feedback" class="feedback">
-            <canvas class="dot-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
+            <canvas class="dot-canvas"
+                style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1; pointer-events:none;"></canvas>
             <div class="container">
                 <div class="feedback__body">
                     <div class="feedback__top">
@@ -513,7 +521,7 @@
                             d="M2.1665 28.1673L51.4582 58.5007H52.5415L101.833 28.1673M101.833 17.334V88.834H99.6665C86.6665 86.6673 64.9998 85.584 51.9998 85.584C38.9998 85.584 17.3332 86.6673 4.33317 88.834H2.1665V17.334C15.1665 15.1673 38.9998 14.084 51.9998 14.084C64.9998 14.084 88.8332 15.1673 101.833 17.334Z"
                             stroke="#FD4B03" stroke-width="4" />
                     </svg>
-    
+
                     <div class="stroke-wrap main-stroke">
                         <div class="stroke-wrap-item">
                             hey@strategia.io -
@@ -576,7 +584,7 @@
         </div>
         <div class="footer-policy">
             <p class="rights soft-title">
-                © Стратегия, 2013 - 2025 
+                © Стратегия, 2013 - 2025
             </p>
             <div class="wrap">
                 <a href="" class="soft-title btn-white">Политика конфиденциальности</a>

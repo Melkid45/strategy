@@ -19,6 +19,10 @@
     }
     .longest.different{
         padding-top: 200rem !important;
+        overflow: hidden;
+        .dot-patern{
+            display: flex;
+        }
     }
     .agency{
         .content{
@@ -73,6 +77,41 @@
     .preloader {
         .text{
             font-size: 36rem;
+        }
+    }
+    .agency{
+        padding-top: 200rem !important;
+    }
+    .title{
+        .circle {
+            width: 15rem;
+            height: 15rem;
+        }
+
+    }
+    .soft-title{
+        font-size: 18rem;
+    }
+    .soft-description{
+        font-size: 24rem;
+    }
+    .longest__body{
+        p{
+            font-size: 28rem;
+        }
+    }
+    .feedback__body .feedback-wrap p{
+        max-width: 477rem;
+    }
+    .faq__body .faq-frame .item__bottom{
+        max-width: 477rem;
+    }
+    .contact__body .contact-frame .action a{
+        padding: 22rem 160rem;
+    }
+    .xcode__body .xcode-cards .item p{
+        br{
+            display: none;
         }
     }
 }

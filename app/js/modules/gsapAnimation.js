@@ -44,6 +44,8 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 
 // Cards Xcode
+let lastIndex = 0;
+let threshold = 0.035;
 let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
@@ -59,7 +61,7 @@ if (document.querySelector('.xcode')) {
   updateXcodeMetrics();
   let XcodeConsig = {
     start: IsDestop ? 'top+=40%' : 'top+=30%',
-    end: IsDestop ? formula : formulaMobile,
+    end: IsDestop ? formula : isTouch ? formula : formulaMobile,
   }
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -69,21 +71,24 @@ if (document.querySelector('.xcode')) {
       pin: isTouch ? false : true,
       scrub: 1,
       onUpdate: self => {
-        const progress = self.progress; // 0 → 1
-        const index = Math.round(self.progress * (xcodeItems.length - 1));
+        const progress = self.progress;
+        const floatIndex = progress * (xcodeItems.length - 1);
+        if (Math.abs(floatIndex - lastIndex) < threshold) return;
+        const index = Math.round(floatIndex);
+        lastIndex = index;
         setActive(index);
       }
+
     }
   });
 
   tl.to('.xcode-cards', {
-    x: -(IsDestop ? formula : formulaMobile),
+    x: -(IsDestop ? formula : isTouch ? formula : formulaMobile),
     ease: 'none'
   });
 
   function setActive(index) {
-    index = Math.max(0, Math.min(index, xcodeItems.length - 1)); // безопасный диапазон
-
+    index = Math.max(0, Math.min(index, xcodeItems.length - 1));
     if (xcodeContainer.dataset.activeIndex != index) {
       xcodeItems.forEach(el => el.classList.remove('active'));
       xcodeItems[index].classList.add('active');
@@ -118,7 +123,6 @@ if (document.querySelector('.guarantees')) {
   } else {
     GuaranteesCircleStart = '+=20%';
   }
-  console.log(GuaranteesCircleStart)
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
