@@ -60,13 +60,13 @@ if (document.querySelector('.xcode')) {
   }
   updateXcodeMetrics();
   let XcodeConsig = {
-    start: IsDestop ? 'top+=40%' : 'top+=30%',
+    start: IsDestop ? 'top+=40%' : 'top+=40%',
     end: IsDestop ? formula : isTouch ? formula : formulaMobile,
   }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: isTouch ? 'top bottom-=45%' : XcodeConsig.start,
+      start: isTouch ? 'top top' : XcodeConsig.start,
       end: () => isTouch ? '50%' : `${XcodeConsig.end}px`,
       pin: isTouch ? false : true,
       scrub: 1,
@@ -114,13 +114,21 @@ if (document.querySelector('.guarantees')) {
   let IsSmallMobile = window.innerWidth < 380;
   let GuaranteesCircleStart;
   if (isTouch) {
-    GuaranteesCircleStart = '+=11%'
+    if (windowHeight < 800) {
+      GuaranteesCircleStart = '+=35%';
+    } else {
+      GuaranteesCircleStart = '+=11%';
+    }
   } else if (IsSmallMobile) {
     GuaranteesCircleStart = '+=20%'
   } else if (IsDestop) {
     GuaranteesCircleStart = '+=45%';
   } else {
-    GuaranteesCircleStart = '+=13%';
+    if (windowWidth > 500) {
+      GuaranteesCircleStart = '+=25%';
+    } else {
+      GuaranteesCircleStart = '+=13%';
+    }
   }
   console.log(GuaranteesCircleStart)
   gsap.to('.guarantees-section', {
@@ -149,7 +157,7 @@ if (document.querySelector('.guarantees')) {
     scrollTrigger: {
       trigger: '.guarantees',
       start: GuaranteesConfig.start,
-      end: isTouch ? '+=170%' : GuaranteesConfig.end,
+      end: isTouch && windowHeight < 800 ? '+=330%' : isTouch ? '+=170%' : GuaranteesConfig.end,
       scrub: 1,
       pin: true,
       pinSpacing: false,
@@ -172,7 +180,7 @@ if (document.querySelector('.implementation') && IsDestop) {
   let ImpFormula = 5 + ((windowHeight - blockHight) / 10)
   let ImplementationConfig = {
     scale: IsDestop ? 15 : 30,
-    yPercent: IsDestop ? 100 : 450,
+    yPercent: IsDestop ? 450 : 450,
     xPercent: IsDestop ? -70 : -0,
     end: IsDestop ? '+=75%' : '+=100%',
     start: windowWidth >= 1920 ? 'top top+=20%' : `top top+=${ImpFormula}%`

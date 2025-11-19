@@ -1103,7 +1103,8 @@
     &__body {
         display: flex;
         flex-direction: column;
-
+        padding-top: 64px;
+        border-top: 1px solid #8F919A33;
         .feedback__top {
             display: flex;
             gap: 274px;

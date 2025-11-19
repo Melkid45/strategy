@@ -1126,6 +1126,8 @@
         &__body {
             display: flex;
             flex-direction: column;
+            padding-top: 64rem;
+            border-top: 1rem solid #8F919A33;
 
             .feedback__top {
                 display: flex;
@@ -2010,9 +2012,11 @@
     section.feedback {
         padding: 100rem 0 0rem 0rem;
     }
+
     section.faq {
         padding: 0 0 200rem 0;
     }
+
     section.contact {
         padding: 0 0 200rem 0rem;
     }
