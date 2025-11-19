@@ -7,24 +7,10 @@ ScrollTrigger.config({
 });
 gsap.defaults({ overwrite: "auto", duration: 0.6, ease: "power2.out" });
 const lenis = new Lenis({
-  duration: window.innerWidth <= 750 ? 1.8 : 1.2,
-  easing: e => Math.min(1, 1.001 - Math.pow(2, -10 * e)),
-  smoothWheel: true,
-  smoothTouch: window.innerWidth > 750,
-  touchMultiplier: window.innerWidth <= 750 ? 1.5 : 2,
-  wheelMultiplier: 1,
-  infinite: false,
-  autoRaf: false,
-  gestureOrientation: window.innerWidth <= 750 ? "vertical" : "both",
-  touchInertiaMultiplier: window.innerWidth <= 750 ? 2 : 2
+  autoRaf: true,
+  lerp: 0.1,
+  smooth: true
 });
-
-let rafId;
-function raf(time) {
-  lenis.raf(time);
-  rafId = requestAnimationFrame(raf);
-}
-rafId = requestAnimationFrame(raf);
 
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
