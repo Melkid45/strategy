@@ -12,14 +12,6 @@ const lenis = new Lenis({
   smooth: true
 });
 
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    cancelAnimationFrame(rafId);
-  } else {
-    rafId = requestAnimationFrame(raf);
-  }
-});
-
 let isMobile = window.innerWidth <= 750;
 let ticking = false;
 let lastScrollTop = 0;
