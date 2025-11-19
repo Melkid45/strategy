@@ -124,6 +124,4 @@ function startWhenFontsReady() {
     initMarquees();
   }
 }
-if (windowWidth > 750) {
-  window.addEventListener('load', startWhenFontsReady);
-}
+window.addEventListener('load', startWhenFontsReady);
