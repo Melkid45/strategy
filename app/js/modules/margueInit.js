@@ -99,7 +99,8 @@ function initMarquees() {
   });
 
   document.querySelectorAll('.special-margue-container').forEach(wrap => {
-    wrap.style.transform = 'translateX(-60%)';
+    gsap.set(wrap, { xPercent: -60 });
+
 
     const el = wrap.querySelector('.agency-stroke');
     if (el) {

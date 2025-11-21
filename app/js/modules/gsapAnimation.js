@@ -45,13 +45,13 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 // Cards Xcode
 let lastIndex = 0;
-let threshold = 0.1;
+
 let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
   let xcodeItemWidth, xcodeGap, formula, formulaMobile;
-
+  let total = xcodeItems.length - 1;
   function updateXcodeMetrics() {
     xcodeItemWidth = xcodeItems[0].offsetWidth;
     xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
@@ -66,19 +66,32 @@ if (document.querySelector('.xcode')) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: isTouch ? 'top top' : XcodeConsig.start,
-      end: () => isTouch ? '50%' : `${XcodeConsig.end}px`,
-      pin: isTouch ? false : true,
+      start: isTouch && (windowWidth < windowHeight) ? 'top top' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : XcodeConsig.start,
+      end: () => `${XcodeConsig.end}px`,
+      pin: true,
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress;
-        const floatIndex = progress * (xcodeItems.length - 1);
-        if (Math.abs(floatIndex - lastIndex) < threshold) return;
-        const index = Math.round(floatIndex);
-        lastIndex = index;
-        setActive(index);
+        const i = getIndexFromX();
+        if (progress <= 0.001) {
+          if (lastIndex !== 0) {
+            lastIndex = 0;
+            setActive(0);
+          }
+          return;
+        }
+        if (progress >= 0.999) {
+          if (lastIndex !== total) {
+            lastIndex = total;
+            setActive(total);
+          }
+          return;
+        }
+        if (i !== lastIndex) {
+          lastIndex = i;
+          setActive(i);
+        }
       }
-
     }
   });
 
@@ -86,7 +99,13 @@ if (document.querySelector('.xcode')) {
     x: -(IsDestop ? formula : isTouch ? formula : formulaMobile),
     ease: 'none'
   });
+  function getIndexFromX() {
+    const x = gsap.getProperty('.xcode-cards', 'x');
+    const itemFull = xcodeItemWidth + xcodeGap;
 
+    const raw = Math.abs(x) / itemFull;
+    return Math.min(total, Math.round(raw));
+  }
   function setActive(index) {
     index = Math.max(0, Math.min(index, xcodeItems.length - 1));
     if (xcodeContainer.dataset.activeIndex != index) {
@@ -130,7 +149,6 @@ if (document.querySelector('.guarantees')) {
       GuaranteesCircleStart = '+=13%';
     }
   }
-  console.log(GuaranteesCircleStart)
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -185,7 +203,6 @@ if (document.querySelector('.implementation') && IsDestop) {
     end: IsDestop ? '+=75%' : '+=100%',
     start: windowWidth >= 1920 ? 'top top+=20%' : `top top+=${ImpFormula}%`
   }
-  console.log(ImplementationConfig.start)
   gsap.to('.implementation .circle-hero', {
     scale: ImplementationConfig.scale,
     yPercent: ImplementationConfig.yPercent,
@@ -327,7 +344,7 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
     updateXcodeMetrics();
     const AgencyConfig = {
       start: isTouch ? 'top center+=10%' : 'top bottom',
-      end: isTouch ? '+=60%' : '+=100%'
+      end: isTouch ? '+=100%' : '+=100%'
     }
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -339,7 +356,7 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
     });
     tl.to(container, {
       x: isTouch ? -formulaTouch : -formula,
-      ease: 'none',
+      ease: 'power1.inOut',
     });
   });
 }

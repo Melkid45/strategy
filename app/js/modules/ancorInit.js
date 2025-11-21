@@ -33,7 +33,6 @@ window.addEventListener('load', () => {
             }, 100);
           }
           
-          console.log('✅ Anchor links initialized (GSAP + Lenis ready)');
         });
       });
     });
@@ -63,6 +62,7 @@ function initAnchorLinks() {
 
       if (isHomePage) {
         const anchorPart = href.split('?')[0];
+        console.log('Scrolling to anchor:', anchorPart);
         scrollToAnchor(anchorPart);
       }
     });
@@ -71,7 +71,6 @@ function initAnchorLinks() {
 
 function scrollToAnchor(anchorId) {
   if (!isReady) {
-    console.warn('⛔ Ожидаем инициализацию...');
     setTimeout(() => scrollToAnchor(anchorId), 100);
     return;
   }
@@ -80,7 +79,6 @@ function scrollToAnchor(anchorId) {
   
   const target = document.querySelector(cleanAnchorId);
   if (!target) {
-    console.warn(`⛔ Якорь ${cleanAnchorId} не найден`);
     return;
   }
 

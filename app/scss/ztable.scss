@@ -19,6 +19,7 @@
     }
     .longest.different{
         overflow: hidden;
+        padding-top: 200rem !important;
         .dot-patern{
             display: flex;
         }
@@ -92,12 +93,19 @@
             white-space: nowrap;
         }
     }
+    .form-action {
+        .soft-title {
+            br{
+                display: none;
+            }
+        }
+    }
     .soft-title{
         font-size: 24rem;
         line-height: 100%;
     }
     .soft-description{
-        font-size: 28rem;
+        font-size: 26rem;
     }
     .longest__body{
         p{
@@ -114,7 +122,7 @@
         max-width: 547rem;
     }
     .contact__body .contact-frame .action a{
-        padding: 22rem 160rem;
+        padding: 22rem 144rem;
     }
     .xcode__body .xcode-cards .item p{
         br{
