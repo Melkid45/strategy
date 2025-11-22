@@ -50,7 +50,6 @@ function setupMarquee(container, {
 
   setTimeout(startInfiniteLoop, 160);
 
-  // ---- SCRUB (ТВОЙ КОД) ----
   ScrollTrigger.create({
     trigger: container,
     start: scrollStart,
@@ -68,7 +67,6 @@ function setupMarquee(container, {
     },
   });
 
-  // ---- ВИДИМОСТЬ (ДОБАВЛЕНО, НИЧЕГО НЕ ЛОМАЕТ) ----
   ScrollTrigger.create({
     trigger: container,
     start: "top bottom",
@@ -100,9 +98,11 @@ function initMarquees() {
 
   document.querySelectorAll('.special-margue-container').forEach(wrap => {
     gsap.set(wrap, { xPercent: -60 });
+    
 
 
     const el = wrap.querySelector('.agency-stroke');
+    gsap.set(el, { xPercent: 60 });
     if (el) {
       setupMarquee(el, {
         duration: isMobile ? 12 : 10,
