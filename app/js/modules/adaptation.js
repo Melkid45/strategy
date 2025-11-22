@@ -11,7 +11,7 @@ let resizeTimeout;
 let initialWidth = window.innerWidth;
 
 window.addEventListener('resize', () => {
-  if (Math.abs(window.innerWidth - initialWidth) > 50) {
+  if (Math.abs(window.innerWidth - initialWidth) > 10) {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       window.location.reload();

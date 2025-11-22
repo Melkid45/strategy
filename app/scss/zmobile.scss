@@ -799,7 +799,9 @@
             }
         }
     }
-
+    .pin-spacer:has(.guarantees) {
+        overflow: hidden !important;
+    }
     .case {
         width: 100%;
         background: var(--black);
