@@ -1,4 +1,3 @@
-ScrollTrigger.normalizeScroll(true);
 ScrollTrigger.config({
   limitCallbacks: true,
   ignoreMobileResize: true,
@@ -7,7 +6,7 @@ ScrollTrigger.config({
 const lenis = new Lenis({
   autoRaf: true,
   lerp: 0.1,
-  smooth: true
+  smooth: true,
 });
 
 let isMobile = window.innerWidth <= 750;

@@ -71,7 +71,6 @@ if (document.querySelector('.xcode')) {
       start: isTouch && (windowWidth < windowHeight) ? 'top top+=40%' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : XcodeConsig.start,
       end: () => isTouch ? '+=70%' : `${XcodeConsig.end}px`,
       pin: isTouch ? false : true,
-      markers: true,
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress;
@@ -150,6 +149,7 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
     tl.to(container, {
       x: isTouch ? -formulaTouch : -formula,
       ease: 'power1.inOut',
+      overwrite: 'auto',
     });
   });
 }
