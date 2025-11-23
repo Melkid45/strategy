@@ -1,3 +1,4 @@
+ScrollTrigger.normalizeScroll(true);
 ScrollTrigger.config({
   limitCallbacks: true,
   ignoreMobileResize: true,
