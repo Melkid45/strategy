@@ -291,7 +291,7 @@
                 width: 100%;
 
                 .item:has(.item-rotate) {
-                    padding: 20rem 0rem 0rem;
+                    padding: 10rem 0rem 0rem;
                 }
 
                 .item {
@@ -2000,5 +2000,15 @@
     }
     .guarantees{
         padding-top: 0 !important;
+    }
+}
+@media (min-width: 600px) and (max-width: 750px) {
+    .hero-block{
+        &__body{
+            padding: 60rem 0;
+        }
+    }
+    .hero-block__body .hero__body-items .item .main-title {
+        font-size: 30rem;
     }
 }

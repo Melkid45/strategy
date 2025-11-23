@@ -3,6 +3,8 @@
 let windowWidth = window.innerWidth
 let windowHeight = window.innerHeight
 let IsDestop = width > 1100;
+let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
+
 // Hero Block
 if (document.querySelector('.hero-block') && IsDestop) {
   let HeroConfig = {
@@ -43,10 +45,10 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 
 
+
 // Cards Xcode
 let lastIndex = 0;
 
-let isTouch = window.innerWidth < 1100 && window.innerWidth > 750;
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
@@ -66,9 +68,10 @@ if (document.querySelector('.xcode')) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: isTouch && (windowWidth < windowHeight) ? 'top top' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : XcodeConsig.start,
-      end: () => `${XcodeConsig.end}px`,
-      pin: true,
+      start: isTouch && (windowWidth < windowHeight) ? 'top top+=40%' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : XcodeConsig.start,
+      end: () => isTouch ? '+=70%' : `${XcodeConsig.end}px`,
+      pin: isTouch ? false : true,
+      markers: true,
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress;
@@ -116,6 +119,39 @@ if (document.querySelector('.xcode')) {
   }
 
 
+}
+
+if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
+  const xcodeContainers = document.querySelectorAll('.wrap-agency-animation .content');
+
+  xcodeContainers.forEach((container, containerIndex) => {
+    let xcodeItems = container.querySelectorAll('.content__img');
+    let xcodeItemWidth, xcodeGap, formula, formulaTouch;
+
+    function updateXcodeMetrics() {
+      xcodeItemWidth = xcodeItems[0].offsetWidth;
+      xcodeGap = parseFloat(getComputedStyle(container).gap) || 0;
+      formulaTouch = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth) - xcodeItemWidth - xcodeGap * 5;
+      formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - xcodeGap * 2);
+    }
+    updateXcodeMetrics();
+    const AgencyConfig = {
+      start: isTouch ? 'top center+=10%' : 'top bottom',
+      end: isTouch ? '+=100%' : '+=100%'
+    }
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: AgencyConfig.start,
+        end: () => AgencyConfig.end,
+        scrub: 1,
+      }
+    });
+    tl.to(container, {
+      x: isTouch ? -formulaTouch : -formula,
+      ease: 'power1.inOut',
+    });
+  });
 }
 
 
@@ -253,8 +289,6 @@ if (document.querySelector('.feedback-form') && width > 750) {
 
 // Text Color
 
-gsap.registerPlugin(ScrollTrigger);
-
 function splitLetters() {
   const sections = document.querySelectorAll('.split-light, .split-dark');
 
@@ -322,41 +356,3 @@ if (window.innerWidth > 750) {
   initSplitAnimation();
 }
 
-
-
-
-
-
-
-if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
-  const xcodeContainers = document.querySelectorAll('.wrap-agency-animation .content');
-
-  xcodeContainers.forEach((container, containerIndex) => {
-    let xcodeItems = container.querySelectorAll('.content__img');
-    let xcodeItemWidth, xcodeGap, formula, formulaTouch;
-
-    function updateXcodeMetrics() {
-      xcodeItemWidth = xcodeItems[0].offsetWidth;
-      xcodeGap = parseFloat(getComputedStyle(container).gap) || 0;
-      formulaTouch = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth) - xcodeItemWidth - xcodeGap * 5;
-      formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - xcodeGap * 2);
-    }
-    updateXcodeMetrics();
-    const AgencyConfig = {
-      start: isTouch ? 'top center+=10%' : 'top bottom',
-      end: isTouch ? '+=100%' : '+=100%'
-    }
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: AgencyConfig.start,
-        end: () => AgencyConfig.end,
-        scrub: 1,
-      }
-    });
-    tl.to(container, {
-      x: isTouch ? -formulaTouch : -formula,
-      ease: 'power1.inOut',
-    });
-  });
-}

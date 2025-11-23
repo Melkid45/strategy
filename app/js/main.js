@@ -1,11 +1,8 @@
-ScrollTrigger.normalizeScroll(true);
-gsap.ticker.lagSmoothing(1000, 16);
 ScrollTrigger.config({
   limitCallbacks: true,
   ignoreMobileResize: true,
   autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
 });
-gsap.defaults({ overwrite: "auto", duration: 0.6, ease: "power2.out" });
 const lenis = new Lenis({
   autoRaf: true,
   lerp: 0.1,
@@ -40,13 +37,6 @@ if (!isMobile) {
   });
 }
 
-if (isMobile) {
-  gsap.config({
-    force3D: false,
-    autoSleep: 60,
-    nullTargetWarn: false
-  });
-}
 
 if (document.querySelector('.gallery')) {
   let gallery = new Splide('.gallery-splide', {
