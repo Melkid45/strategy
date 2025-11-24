@@ -7,6 +7,8 @@ const lenis = new Lenis({
   autoRaf: true,
   lerp: 0.1,
   smooth: true,
+  syncTouch: true,
+  syncTouchLerp: 0.1,
 });
 
 let isMobile = window.innerWidth <= 750;
