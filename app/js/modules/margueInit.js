@@ -3,7 +3,7 @@ function setupMarquee(container, {
   duration = 15,
   enterX = 0,
   scrollStart = 'top bottom',
-  scrollEnd = '+=100%',
+  scrollEnd = '+=150%',
 } = {}) {
   if (!container || !container.firstElementChild) return;
 
@@ -97,16 +97,16 @@ function initMarquees() {
   });
 
   document.querySelectorAll('.special-margue-container').forEach(wrap => {
-    gsap.set(wrap, { xPercent: -60 });
+    gsap.set(wrap, { xPercent: -100 });
     
 
 
     const el = wrap.querySelector('.agency-stroke');
-    gsap.set(el, { xPercent: 60 });
+    gsap.set(el, { xPercent: 100 });
     if (el) {
       setupMarquee(el, {
         duration: isMobile ? 12 : 10,
-        enterX: 60,
+        enterX: 100,
       });
     }
   });
