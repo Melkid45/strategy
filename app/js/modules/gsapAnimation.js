@@ -48,7 +48,6 @@ if (document.querySelector('.hero-block') && IsDestop) {
 
 // Cards Xcode
 let lastIndex = 0;
-
 if (document.querySelector('.xcode')) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
@@ -62,15 +61,15 @@ if (document.querySelector('.xcode')) {
   }
   updateXcodeMetrics();
   let XcodeConsig = {
-    start: IsDestop ? 'top+=40%' : 'top+=40%',
+    start: isTouch && (windowWidth < windowHeight) ? 'top top' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : IsDestop ? 'top+=35%' : 'top+=30%',
     end: IsDestop ? formula : isTouch ? formula : formulaMobile,
   }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: isTouch && (windowWidth < windowHeight) ? 'top top+=40%' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : XcodeConsig.start,
-      end: () => isTouch ? '+=70%' : `${XcodeConsig.end}px`,
-      pin: isTouch ? false : true,
+      start: XcodeConsig.start,
+      end: () => `${XcodeConsig.end}px`,
+      pin: true,
       scrub: 1,
       onUpdate: self => {
         const progress = self.progress;
@@ -96,7 +95,6 @@ if (document.querySelector('.xcode')) {
       }
     }
   });
-
   tl.to('.xcode-cards', {
     x: -(IsDestop ? formula : isTouch ? formula : formulaMobile),
     ease: 'none'
@@ -119,6 +117,7 @@ if (document.querySelector('.xcode')) {
 
 
 }
+
 
 if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
   const xcodeContainers = document.querySelectorAll('.wrap-agency-animation .content');
@@ -355,4 +354,3 @@ function initSplitAnimation() {
 if (window.innerWidth > 750) {
   initSplitAnimation();
 }
-
