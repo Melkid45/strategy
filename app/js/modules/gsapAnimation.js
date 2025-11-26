@@ -200,7 +200,7 @@ if (document.querySelector('.guarantees')) {
     scale: IsDestop ? 16 : 25,
     yPercent: IsDestop ? -60 : -80,
     start: GuaranteesCircleStart,
-    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=200%'
+    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=250%'
   }
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
