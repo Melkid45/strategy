@@ -3,6 +3,7 @@ ScrollTrigger.config({
   ignoreMobileResize: true,
   autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
 });
+gsap.Scrollnormalize(true);
 const lenis = new Lenis({
   autoRaf: true,
   lerp: 0.1,
