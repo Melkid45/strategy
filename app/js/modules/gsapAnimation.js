@@ -59,15 +59,32 @@ if (document.querySelector('.xcode')) {
     formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
     formulaMobile = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - (xcodeGap * 8 - 10));
   }
+  function getStartPosition() {
+    if (IsDestop) {
+      return 'top+=33%';
+    } else if (isTouch) {
+      if (windowWidth < windowHeight) {
+        return 'top top';
+      } else {
+        return 'top top-=25%';
+      }
+    } else {
+      if (windowWidth >= 500 && windowWidth <= 750) {
+        return 'top+=45%';
+      } else {
+        return 'top+=30%';
+      }
+    }
+  }
+  getStartPosition();
   updateXcodeMetrics();
   let XcodeConsig = {
-    start: isTouch && (windowWidth < windowHeight) ? 'top top' : isTouch && (windowWidth > windowHeight) ? 'top top-=25%' : IsDestop ? 'top+=35%' : 'top+=30%',
     end: IsDestop ? formula : isTouch ? formula : formulaMobile,
   }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.xcode',
-      start: XcodeConsig.start,
+      start: getStartPosition(),
       end: () => `${XcodeConsig.end}px`,
       pin: true,
       scrub: 1,
@@ -200,7 +217,7 @@ if (document.querySelector('.guarantees')) {
     scale: IsDestop ? 16 : 25,
     yPercent: IsDestop ? -60 : -80,
     start: GuaranteesCircleStart,
-    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=350%'
+    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=250%'
   }
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
