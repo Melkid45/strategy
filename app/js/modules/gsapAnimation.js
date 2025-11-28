@@ -148,7 +148,7 @@ if (document.querySelector('.guarantees')) {
       trigger: '.guarantees-circle',
       pin: '.guarantees',
       start: getStartGua(),
-      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2.5}`,
+      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 3}`,
       scrub: 1,
       pinSpacing: false,
       anticipatePin: 1,
