@@ -57,7 +57,7 @@ if (document.querySelector('.xcode')) {
     autoplay: true,
     interval: 3000,
   });
-  
+
   // Mount the auto scroll extension
   xcodeSplider.mount();
 }
@@ -110,18 +110,29 @@ if (document.querySelector('.feedback') && width > 750) {
 }
 if (document.querySelector('.guarantees')) {
   let IsSmallMobile = window.innerWidth < 380;
+  const isSafari = /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent);
+  const isChrome = /chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent);
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isAndroid = /android/i.test(navigator.userAgent);
   let GuaranteesCircleStart;
   function getStartGua() {
     let circle = document.querySelector('.guarantees-circle');
     if (!circle) {
-        return 'top bottom';
+      return 'top bottom';
     }
     let circleHeight = circle.clientHeight;
     if (circleHeight === 0) {
-        return 'top bottom';
+      return 'top bottom';
     }
     return `top bottom-=${circleHeight / 2}px`;
-}
+  }
+  function getUserDevice() {
+    if (isChrome && isIOS) {
+      return `+=${window.innerHeight * 3}`
+    } else {
+      return `+=${window.innerHeight * 2.5}`
+    }
+  }
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -148,7 +159,7 @@ if (document.querySelector('.guarantees')) {
       trigger: '.guarantees-circle',
       pin: '.guarantees',
       start: getStartGua(),
-      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 3}`,
+      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : isTouch ? `+=${window.innerHeight * 2}` : getUserDevice(),
       scrub: 1,
       pinSpacing: false,
       anticipatePin: 1,
