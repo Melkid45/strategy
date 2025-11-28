@@ -443,16 +443,6 @@
             width: 100%;
             margin-top: 80px;
             overflow: visible;
-            .item.is-active {
-                background: var(--black);
-
-                svg {
-                    path {
-                        stroke: var(--orange);
-                    }
-                }
-            }
-
             .item {
                 width: 427px;
                 min-width: 427px;
@@ -463,15 +453,14 @@
                 flex-direction: column;
                 justify-content: space-between;
                 align-items: center;
-                border: 1px solid #FFFFFF33;
                 transition: all 0.3s ease;
-
+                background: var(--black);
                 svg {
                     width: 120px;
                     height: 120px;
 
                     path {
-                        stroke: var(--text-grey);
+                        stroke: var(--orange);
                         transition: all 0.3s ease;
                     }
                 }

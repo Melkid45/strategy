@@ -521,15 +521,6 @@
             .xcode-cards {
                 margin-top: 80rem;
 
-                .item.active {
-                    background: var(--black);
-
-                    svg {
-                        path {
-                            stroke: var(--orange);
-                        }
-                    }
-                }
                 .item {
                     width: 426rem !important;
                     min-width: 426rem;
@@ -541,16 +532,15 @@
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
-                    border: 1rem solid #FFFFFF33;
                     position: relative;
                     z-index: 3;
-
+                    background: var(--black);
                     svg {
                         width: 120rem;
                         height: 120rem;
 
                         path {
-                            stroke: var(--text-grey);
+                            stroke: var(--orange);
                         }
                     }
 

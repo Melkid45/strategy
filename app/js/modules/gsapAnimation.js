@@ -54,8 +54,6 @@ if (document.querySelector('.xcode')) {
     arrows: false,
     pagination: false,
     type: 'loop',
-    autoplay: true,
-    interval: 3000,
   });
 
   // Mount the auto scroll extension
