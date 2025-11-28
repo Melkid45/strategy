@@ -521,8 +521,6 @@
             }
 
             .xcode-cards {
-                display: flex;
-                gap: 20rem;
                 padding-left: 0rem;
                 margin-top: 80rem;
 
@@ -537,8 +535,9 @@
                 }
 
                 .item {
-                    width: 246rem;
+                    width: 246rem !important;
                     min-width: 246rem;
+                    margin-right: 20rem !important;
                     height: 322rem;
                     padding: 20rem;
                     border-radius: 16rem;

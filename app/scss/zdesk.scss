@@ -519,9 +519,6 @@
             }
 
             .xcode-cards {
-                display: flex;
-                gap: 40rem;
-                padding-left: 467rem;
                 margin-top: 80rem;
 
                 .item.active {
@@ -533,10 +530,10 @@
                         }
                     }
                 }
-
                 .item {
-                    width: 427rem;
-                    min-width: 427rem;
+                    width: 426rem !important;
+                    min-width: 426rem;
+                    margin-right: 40rem;
                     height: 560rem;
                     padding: 40rem;
                     border-radius: 24rem;

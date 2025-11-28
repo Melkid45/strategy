@@ -49,90 +49,17 @@ if (document.querySelector('.hero-block') && IsDestop) {
 // Cards Xcode
 let lastIndex = 0;
 if (document.querySelector('.xcode')) {
-  let xcodeContainer = document.querySelector('.xcode-cards');
-  let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
-  let xcodeItemWidth, xcodeGap, formula, formulaMobile;
-  let total = xcodeItems.length - 1;
-  function updateXcodeMetrics() {
-    xcodeItemWidth = xcodeItems[0].offsetWidth;
-    xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
-    formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
-    formulaMobile = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - (xcodeGap * 8 - 10));
-  }
-  function getStartPosition() {
-    if (IsDestop) {
-      return 'top+=33%';
-    } else if (isTouch) {
-      if (windowWidth < windowHeight) {
-        return 'top top';
-      } else {
-        return 'top top-=25%';
-      }
-    } else {
-      if (windowWidth >= 500 && windowWidth <= 750) {
-        return 'top+=45%';
-      } else {
-        return 'top+=30%';
-      }
-    }
-  }
-  getStartPosition();
-  updateXcodeMetrics();
-  let XcodeConsig = {
-    end: IsDestop ? formula : isTouch ? formula : formulaMobile,
-  }
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.xcode',
-      start: getStartPosition(),
-      end: () => `${XcodeConsig.end}px`,
-      pin: true,
-      scrub: 1,
-      onUpdate: self => {
-        const progress = self.progress;
-        const i = getIndexFromX();
-        if (progress <= 0.001) {
-          if (lastIndex !== 0) {
-            lastIndex = 0;
-            setActive(0);
-          }
-          return;
-        }
-        if (progress >= 0.999) {
-          if (lastIndex !== total) {
-            lastIndex = total;
-            setActive(total);
-          }
-          return;
-        }
-        if (i !== lastIndex) {
-          lastIndex = i;
-          setActive(i);
-        }
-      }
-    }
+  let xcodeSplider = new Splide('.xcode-cards', {
+    perMove: 1,
+    arrows: false,
+    pagination: false,
+    type: 'loop',
+    autoplay: true,
+    interval: 3000,
   });
-  tl.to('.xcode-cards', {
-    x: -(IsDestop ? formula : isTouch ? formula : formulaMobile),
-    ease: 'none'
-  });
-  function getIndexFromX() {
-    const x = gsap.getProperty('.xcode-cards', 'x');
-    const itemFull = xcodeItemWidth + xcodeGap;
-
-    const raw = Math.abs(x) / itemFull;
-    return Math.min(total, Math.round(raw));
-  }
-  function setActive(index) {
-    index = Math.max(0, Math.min(index, xcodeItems.length - 1));
-    if (xcodeContainer.dataset.activeIndex != index) {
-      xcodeItems.forEach(el => el.classList.remove('active'));
-      xcodeItems[index].classList.add('active');
-      xcodeContainer.dataset.activeIndex = index;
-    }
-  }
-
-
+  
+  // Mount the auto scroll extension
+  xcodeSplider.mount();
 }
 
 
@@ -184,23 +111,17 @@ if (document.querySelector('.feedback') && width > 750) {
 if (document.querySelector('.guarantees')) {
   let IsSmallMobile = window.innerWidth < 380;
   let GuaranteesCircleStart;
-  if (isTouch) {
-    if (windowHeight < 800) {
-      GuaranteesCircleStart = '+=35%';
-    } else {
-      GuaranteesCircleStart = '+=11%';
+  function getStartGua() {
+    let circle = document.querySelector('.guarantees-circle');
+    if (!circle) {
+        return 'top bottom';
     }
-  } else if (IsSmallMobile) {
-    GuaranteesCircleStart = '+=20%'
-  } else if (IsDestop) {
-    GuaranteesCircleStart = '+=45%';
-  } else {
-    if (windowWidth > 500) {
-      GuaranteesCircleStart = '+=25%';
-    } else {
-      GuaranteesCircleStart = '+=13%';
+    let circleHeight = circle.clientHeight;
+    if (circleHeight === 0) {
+        return 'top bottom';
     }
-  }
+    return `top bottom-=${circleHeight / 2}px`;
+}
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -213,34 +134,34 @@ if (document.querySelector('.guarantees')) {
       scrub: true,
     }
   })
-  let GuaranteesConfig = {
-    scale: IsDestop ? 16 : 25,
+  const GuaranteesConfig = {
+    scale: IsDestop ? 22 : 25,
     yPercent: IsDestop ? -60 : -80,
-    start: GuaranteesCircleStart,
-    end: IsDestop ? '+=200%' : IsSmallMobile ? '+=300%' : '+=250%'
-  }
+    start: GuaranteesCircleStart
+  };
+  console.log(getStartGua());
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
     scale: isTouch ? 30 : GuaranteesConfig.scale,
-    ease: 'power1.inOut',
+    ease: 'none',
     rotate: 90,
     scrollTrigger: {
-      trigger: '.guarantees',
-      start: GuaranteesConfig.start,
-      end: isTouch && windowHeight < 800 ? '+=330%' : isTouch ? '+=170%' : GuaranteesConfig.end,
+      trigger: '.guarantees-circle',
+      pin: '.guarantees',
+      start: getStartGua(),
+      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2}`,
       scrub: 1,
-      pin: true,
       pinSpacing: false,
-      onUpdate: (process) => {
-        let progress = process.progress;
-        if (document.querySelector('.guarantees-canvas') && progress >= 0.4) {
-          document.querySelector('.guarantees-canvas').style.opacity = '1';
-        } else if (progress < 0.4 && document.querySelector('.guarantees-canvas')) {
-          document.querySelector('.guarantees-canvas').style.opacity = '0';
-        }
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const canvas = document.querySelector('.guarantees-canvas');
+        if (canvas) canvas.style.opacity = progress >= 0.4 ? "1" : "0";
       }
     },
-  })
+  });
+
 }
 
 

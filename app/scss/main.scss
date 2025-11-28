@@ -439,12 +439,11 @@
         }
 
         .xcode-cards {
-            display: flex;
-            gap: 40px;
-            padding-left: 467px;
+            padding-left: 0;
+            width: 100%;
             margin-top: 80px;
-
-            .item.active {
+            overflow: visible;
+            .item.is-active {
                 background: var(--black);
 
                 svg {
