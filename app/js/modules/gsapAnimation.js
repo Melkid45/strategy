@@ -139,7 +139,6 @@ if (document.querySelector('.guarantees')) {
     yPercent: IsDestop ? -60 : -80,
     start: GuaranteesCircleStart
   };
-  console.log(getStartGua());
   gsap.to('.guarantees-circle', {
     yPercent: GuaranteesConfig.yPercent,
     scale: isTouch ? 30 : GuaranteesConfig.scale,
@@ -149,7 +148,7 @@ if (document.querySelector('.guarantees')) {
       trigger: '.guarantees-circle',
       pin: '.guarantees',
       start: getStartGua(),
-      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2}`,
+      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2.5}`,
       scrub: 1,
       pinSpacing: false,
       anticipatePin: 1,
