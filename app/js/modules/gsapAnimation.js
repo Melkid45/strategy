@@ -128,9 +128,9 @@ if (document.querySelector('.guarantees')) {
   }
   function getUserDevice() {
     if (isChrome && isIOS) {
-      return `+=${window.innerHeight * 3}`
+      return `+=${window.innerHeight * 3.3}`
     } else {
-      return `+=${window.innerHeight * 2.5}`
+      return `+=${window.innerHeight * 2.8}`
     }
   }
   gsap.to('.guarantees-section', {
