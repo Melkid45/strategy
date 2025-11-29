@@ -1,4 +1,3 @@
-/* -------- FIXED MOBILE SCRUB MARQUEE (NO LAGS + NO FLICKER) -------- */
 function setupMarquee(container, {
   duration = 15,
   enterX = 0,

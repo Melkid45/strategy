@@ -108,28 +108,16 @@ if (document.querySelector('.feedback') && width > 750) {
 }
 if (document.querySelector('.guarantees')) {
   let IsSmallMobile = window.innerWidth < 380;
-  const isSafari = /safari/i.test(navigator.userAgent) && !/chrome/i.test(navigator.userAgent);
-  const isChrome = /chrome/i.test(navigator.userAgent) && !/edg/i.test(navigator.userAgent);
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isAndroid = /android/i.test(navigator.userAgent);
   let GuaranteesCircleStart;
-  function getStartGua() {
-    let circle = document.querySelector('.guarantees-circle');
-    if (!circle) {
-      return 'top bottom';
-    }
-    let circleHeight = circle.clientHeight;
-    if (circleHeight === 0) {
-      return 'top bottom';
-    }
-    return `top bottom-=${circleHeight / 2}px`;
-  }
-  function getUserDevice() {
-    if (isChrome && isIOS) {
-      return `+=${window.innerHeight * 3.3}`
-    } else {
-      return `+=${window.innerHeight * 2.8}`
-    }
+  function getGuaranteesConfig() {
+    const circle = document.querySelector('.guarantees-circle');
+
+    return {
+      scale: IsDestop ? 22 : 25,
+      yPercent: IsDestop ? -60 : -80,
+      start: circle ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
+      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2.8}`
+    };
   }
   gsap.to('.guarantees-section', {
     yPercent: 0,
@@ -143,40 +131,33 @@ if (document.querySelector('.guarantees')) {
       scrub: true,
     }
   })
-  const GuaranteesConfig = {
-    scale: IsDestop ? 22 : 25,
-    yPercent: IsDestop ? -60 : -80,
-    start: GuaranteesCircleStart
-  };
+  const config = getGuaranteesConfig();
   gsap.to('.guarantees-circle', {
-    yPercent: GuaranteesConfig.yPercent,
-    scale: isTouch ? 30 : GuaranteesConfig.scale,
+    yPercent: config.yPercent,
+    scale: config.scale,
     ease: 'none',
     rotate: 90,
     scrollTrigger: {
       trigger: '.guarantees-circle',
       pin: '.guarantees',
-      start: getStartGua(),
-      end: () => IsDestop ? `+=${window.innerHeight * 1.2}` : isTouch ? `+=${window.innerHeight * 2}` : getUserDevice(),
+      start: config.start,
+      end: config.end,
       scrub: 1,
       pinSpacing: false,
       anticipatePin: 1,
-      invalidateOnRefresh: true,
       onUpdate: (self) => {
-        const progress = self.progress;
         const canvas = document.querySelector('.guarantees-canvas');
-        if (canvas) canvas.style.opacity = progress >= 0.4 ? "1" : "0";
+        if (canvas) canvas.style.opacity = self.progress >= 0.4 ? "1" : "0";
       }
     },
   });
-
 }
 
 
 // Implementation Block
 if (document.querySelector('.implementation') && IsDestop) {
   let blockHight = document.querySelector('.implementation').clientHeight
-  let ImpFormula = 5 + ((windowHeight - blockHight) / 10)
+  let ImpFormula = 10 + ((windowHeight - blockHight) / 10)
   let ImplementationConfig = {
     scale: IsDestop ? 15 : 30,
     yPercent: IsDestop ? 450 : 450,
@@ -214,7 +195,6 @@ if (document.querySelector('.implementation') && IsDestop) {
 
 
 // Feedback Block
-
 if (document.querySelector('.feedback-form') && width > 750) {
   gsap.to('.feedback-form', {
     yPercent: 0,
