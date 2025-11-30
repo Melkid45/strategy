@@ -187,7 +187,7 @@ if (document.querySelector('.guarantees')) {
     return {
       scale: IsDestop ? 22 : 25,
       yPercent: IsDestop ? -60 : -80,
-      start: circle ? `top bottom-=${circle.clientHeight / 4}px` : 'top bottom',
+      start: circle ? `top bottom-=${circle.clientHeight / 6}px` : 'top bottom',
       end: IsDestop ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1}`
     };
   }
@@ -204,6 +204,7 @@ if (document.querySelector('.guarantees')) {
         start: config.start,
         end: config.end,
         scrub: 1,
+        markers: true,
         pin: '.guarantees',
         pinSpacing: false,
         anticipatePin: 1,
