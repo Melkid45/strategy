@@ -39,6 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     .text {
         text-align: center;
     }
@@ -105,6 +106,7 @@
     transform: translateY(100%);
     z-index: 9999;
 }
+
 .hero-block {
     width: 100%;
     height: 110vh;
@@ -112,6 +114,7 @@
     background: var(--black);
     position: relative;
     padding: 0;
+
     &__body {
         padding: 122px 0px 0px 0px;
         width: 100%;
@@ -337,12 +340,14 @@
     }
 }
 
-.pin-spacer:has(.hero-block) + .agency{
+.pin-spacer:has(.hero-block)+.agency {
     padding-top: 0 !important;
 }
+
 .agency {
     width: 100%;
     overflow: hidden;
+
     .content {
         position: absolute;
         top: 0;
@@ -421,6 +426,7 @@
     position: relative;
     z-index: 2;
     overflow: hidden;
+
     &__body {
         border-top: 1px solid #FFFFFF33;
         width: 100%;
@@ -443,6 +449,7 @@
             width: 100%;
             margin-top: 80px;
             overflow: visible;
+
             .item {
                 width: 427px;
                 min-width: 427px;
@@ -455,6 +462,7 @@
                 align-items: center;
                 transition: all 0.3s ease;
                 background: var(--black);
+
                 svg {
                     width: 120px;
                     height: 120px;
@@ -550,6 +558,7 @@
     background: var(--black);
     position: relative;
     z-index: 3;
+
     .stroke-wrap {
         color: #8F919A;
     }
@@ -613,6 +622,7 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
+
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -696,20 +706,29 @@
             bottom: -832px;
             align-self: center;
             width: 832px;
+            will-change: transform, scale;
             height: 832px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
     }
 }
+
 .dot-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
+
 .case {
     width: 100%;
     background: var(--black);
     overflow: hidden;
     position: relative;
+
     &__body {
         padding-top: 64px;
         border-top: 1px solid #FFFFFF33;
@@ -1093,6 +1112,7 @@
         flex-direction: column;
         padding-top: 64px;
         border-top: 1px solid #8F919A33;
+
         .feedback__top {
             display: flex;
             gap: 274px;
@@ -1434,6 +1454,7 @@
     background: var(--black);
     position: relative;
     z-index: 2;
+
     &__body {
         padding-top: 64px;
         display: flex;

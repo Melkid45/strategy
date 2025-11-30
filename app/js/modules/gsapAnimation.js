@@ -137,6 +137,8 @@ if (document.querySelector('.guarantees')) {
     scale: config.scale,
     ease: 'none',
     rotate: 90,
+    force3D: true,
+    transformStyle: "preserve-3d",
     scrollTrigger: {
       trigger: '.guarantees-circle',
       pin: '.guarantees',
