@@ -49,15 +49,77 @@ if (document.querySelector('.hero-block') && IsDestop) {
 // Cards Xcode
 let lastIndex = 0;
 if (document.querySelector('.xcode')) {
-  let xcodeSplider = new Splide('.xcode-cards', {
-    perMove: 1,
-    arrows: false,
-    pagination: false,
-    type: 'loop',
+  let xcodeContainer = document.querySelector('.xcode-cards');
+  let xcodeContainerHieght = xcodeContainer.clientHeight
+  let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
+  let xcodeItemWidth, xcodeGap, formula, formulaMobile;
+  let total = xcodeItems.length - 1;
+  function updateXcodeMetrics() {
+    xcodeItemWidth = xcodeItems[0].offsetWidth;
+    xcodeGap = parseFloat(getComputedStyle(xcodeContainer).gap) || 0;
+    formula = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1);
+    formulaMobile = (xcodeItemWidth + xcodeGap) * (xcodeItems.length - 1) - (xcodeItemWidth - (xcodeGap * 8 - 10));
+  }
+  function getStartPosition() {
+    return `top center-=${xcodeContainerHieght / 2}`
+  }
+  getStartPosition();
+  updateXcodeMetrics();
+  let XcodeConsig = {
+    end: IsDestop ? formula : isTouch ? formula : formulaMobile,
+  }
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.xcode-cards',
+      start: getStartPosition(),
+      end: () => `${XcodeConsig.end}px`,
+      pin: '.history',
+      scrub: 1,
+      onUpdate: self => {
+        const progress = self.progress;
+        const i = getIndexFromX();
+        if (progress <= 0.001) {
+          if (lastIndex !== 0) {
+            lastIndex = 0;
+            setActive(0);
+          }
+          return;
+        }
+        if (progress >= 0.999) {
+          if (lastIndex !== total) {
+            lastIndex = total;
+            setActive(total);
+          }
+          return;
+        }
+        if (i !== lastIndex) {
+          lastIndex = i;
+          setActive(i);
+        }
+      }
+    }
   });
+  tl.to('.xcode-cards', {
+    x: -XcodeConsig.end,
+    ease: 'none'
+  });
+  function getIndexFromX() {
+    const x = gsap.getProperty('.xcode-cards', 'x');
+    const itemFull = xcodeItemWidth + xcodeGap;
 
-  // Mount the auto scroll extension
-  xcodeSplider.mount();
+    const raw = Math.abs(x) / itemFull;
+    return Math.min(total, Math.round(raw));
+  }
+  function setActive(index) {
+    index = Math.max(0, Math.min(index, xcodeItems.length - 1));
+    if (xcodeContainer.dataset.activeIndex != index) {
+      xcodeItems.forEach(el => el.classList.remove('active'));
+      xcodeItems[index].classList.add('active');
+      xcodeContainer.dataset.activeIndex = index;
+    }
+  }
+
+
 }
 
 
@@ -107,18 +169,7 @@ if (document.querySelector('.feedback') && width > 750) {
 
 }
 if (document.querySelector('.guarantees')) {
-  let IsSmallMobile = window.innerWidth < 380;
-  let GuaranteesCircleStart;
   const circle = document.querySelector('.guarantees-circle');
-  function getGuaranteesConfig() {
-
-    return {
-      scale: IsDestop ? 22 : 25,
-      yPercent: IsDestop ? -60 : -80,
-      start: circle ? `top bottom-=${circle.clientHeight / 4}px` : 'top bottom',
-      end: IsDestop ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.6}`
-    };
-  }
   gsap.to('.guarantees-section', {
     yPercent: 0,
     xPercent: 0,
@@ -131,59 +182,83 @@ if (document.querySelector('.guarantees')) {
       scrub: true,
     }
   })
+  function getGuaranteesConfig() {
+
+    return {
+      scale: IsDestop ? 22 : 25,
+      yPercent: IsDestop ? -60 : -80,
+      start: circle ? `top bottom-=${circle.clientHeight / 4}px` : 'top bottom',
+      end: IsDestop ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1}`
+    };
+  }
   const config = getGuaranteesConfig();
-  gsap.to('.guarantees-circle', {
-    scale: config.scale,
-    ease: 'none',
-    rotate: 90,
-    force3D: true,
-    transformStyle: "preserve-3d",
-    scrollTrigger: {
-      trigger: '.guarantees-circle',
-      start: config.start,
-      end: config.end,
-      scrub: 1,
-      pin: '.guarantees',
-      pinSpacing: false,
-      anticipatePin: 1,
-      onUpdate: (self) => {
-        const canvas = document.querySelector('.guarantees-canvas');
-        if (canvas) canvas.style.opacity = self.progress >= 0.4 ? "1" : "0";
+  if (windowWidth <= 750) {
+    gsap.to('.guarantees-circle', {
+      scale: config.scale,
+      ease: 'none',
+      rotate: 90,
+      force3D: true,
+      transformStyle: "preserve-3d",
+      scrollTrigger: {
+        trigger: '.guarantees-circle',
+        start: config.start,
+        end: config.end,
+        scrub: 1,
+        pin: '.guarantees',
+        pinSpacing: false,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const canvas = document.querySelector('.guarantees-canvas');
+          if (canvas) canvas.style.opacity = self.progress >= 0.4 ? "1" : "0";
+        },
       },
-    },
-  });
-  gsap.to('.case', {
-  scrollTrigger: {
-    trigger: '.case',
-    start: 'top bottom',
-    end: '+=150%',
-    toggleActions: "play reverse play reverse",
-    onLeave: () => circle.style.display = 'none',
-    onEnterBack: () => circle.style.display = 'block',
-  },
-});
+    });
+    gsap.to('.case', {
+      scrollTrigger: {
+        trigger: '.case',
+        start: 'top bottom',
+        end: '+=150%',
+        toggleActions: "play reverse play reverse",
+        onLeave: () => circle.style.display = 'none',
+        onEnterBack: () => circle.style.display = 'block',
+      },
+    });
+  } else {
+    gsap.to('.guarantees-guarantees', {
+      yPercent: config.yPercent,
+      scale: config.scale,
+      ease: 'none',
+      rotate: 90,
+      scrollTrigger: {
+        trigger: '.guarantees-guarantees',
+        pin: '.guarantees',
+        start: config.start,
+        end: () => IsDestop ? `+=${window.innerHeight * 1.8}` : `+=${window.innerHeight * 2}`,
+        scrub: 1,
+        pinSpacing: false,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const canvas = document.querySelector('.guarantees-canvas');
+          if (canvas) canvas.style.opacity = progress >= 0.4 ? "1" : "0";
+        }
+      },
+    });
+  }
 }
 
 
 // Implementation Block
 if (document.querySelector('.implementation') && IsDestop) {
   let blockHight = document.querySelector('.implementation').clientHeight
-  let ImpFormula = 10 + ((windowHeight - blockHight) / 10)
-  let ImplementationConfig = {
-    scale: IsDestop ? 15 : 30,
-    yPercent: IsDestop ? 450 : 450,
-    xPercent: IsDestop ? -70 : -0,
-    end: IsDestop ? '+=75%' : '+=100%',
-    start: windowWidth >= 1920 ? 'top top+=20%' : `top top+=${ImpFormula}%`
-  }
+  let ImpFormula = 15 + ((windowHeight - blockHight) / 10)
   gsap.to('.implementation .circle-hero', {
-    scale: ImplementationConfig.scale,
-    yPercent: ImplementationConfig.yPercent,
-    xPercent: ImplementationConfig.xPercent,
+    scale: 15,
+    yPercent: 450,
+    xPercent: -70,
     scrollTrigger: {
       trigger: '.implementation',
-      start: ImplementationConfig.start,
-      end: ImplementationConfig.end,
+      start: windowWidth >= 1920 ? 'top top+=20%' : `top top+=${ImpFormula}%`,
+      end: '+=75%',
       scrub: 1,
       onUpdate: (process) => {
         let StartProgress = process.progress
@@ -289,3 +364,8 @@ function initSplitAnimation() {
 }
 
 initSplitAnimation();
+
+
+
+
+

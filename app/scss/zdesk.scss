@@ -520,13 +520,16 @@
 
             .xcode-cards {
                 margin-top: 80rem;
-                .splide__track{
+                padding-left: 467rem;
+                display: flex;
+                gap: 40rem;
+                .splide__track {
                     overflow: visible;
                 }
+
                 .item {
                     width: 426rem !important;
                     min-width: 426rem;
-                    margin-right: 40rem;
                     height: 560rem;
                     padding: 40rem;
                     border-radius: 24rem;
@@ -536,14 +539,14 @@
                     align-items: center;
                     position: relative;
                     z-index: 3;
-                    background: var(--black);
-
+                    background: transparent;
+                    border: 1rem solid #FFFFFF33;
                     svg {
                         width: 120rem;
                         height: 120rem;
 
                         path {
-                            stroke: var(--orange);
+                            stroke: var(--text-grey);
                         }
                     }
 
@@ -703,6 +706,7 @@
 
     .guarantees {
         width: 100%;
+
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
@@ -783,6 +787,15 @@
                     z-index: 0;
                 }
             }
+
+            .guarantees-circle {
+                position: absolute;
+                bottom: -932rem;
+                -ms-flex-item-align: center;
+                align-self: center;
+                width: 832rem;
+                height: 832rem;
+            }
         }
     }
 
@@ -792,6 +805,7 @@
         z-index: 1;
         display: flex;
         justify-content: center;
+
         .guarantees-circle {
             position: absolute;
             top: -416rem;
@@ -801,9 +815,11 @@
             transform-origin: center center;
             bottom: auto;
         }
-        .dot-canvas{
+
+        .dot-canvas {
             z-index: 6;
         }
+
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
@@ -1983,7 +1999,7 @@
     }
 
     section.case {
-        padding: 0rem 0 200rem 0rem;
+        padding: 200rem 0rem;
     }
 
     section.services {
@@ -2015,7 +2031,7 @@
     }
 
     section.project {
-        padding: 200rem 0;
+        padding: 200rem 0 0rem 0;
     }
 
     section.user {
@@ -2023,10 +2039,10 @@
     }
 
     section.gallery {
-        padding: 0rem 0 200rem 0;
+        padding: 200rem 0 0 0;
     }
 
     section.guarantees {
-        padding: 0 0 616rem 0;
+        padding: 0 0 0rem 0;
     }
 }

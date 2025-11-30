@@ -522,13 +522,13 @@
             .xcode-cards {
                 padding-left: 0rem;
                 margin-top: 80rem;
+                gap: 20rem;
                 .splide__track{
                     overflow: visible;
                 }
                 .item {
-                    width: 246rem !important;
+                    width: 246rem;
                     min-width: 246rem;
-                    margin-right: 20rem !important;
                     height: 322rem;
                     padding: 20rem;
                     border-radius: 16rem;
@@ -536,14 +536,14 @@
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
-                    background: var(--black);
-
+                    background: transparent;
+                    border: 1rem solid #FFFFFF33;
                     svg {
                         width: 60rem;
                         height: 60rem;
 
                         path {
-                            stroke: var(--orange);
+                            stroke: var(--text-grey);
                         }
                     }
 
@@ -803,6 +803,7 @@
             flex-direction: column;
             position: relative;
             z-index: 6;
+            background: var(--black);
             .case__top {
                 display: flex;
                 flex-direction: column;
@@ -1982,7 +1983,7 @@
     }
 
     section.case {
-        padding: 0 0 80rem 0rem;
+        padding: 80rem 0rem;
     }
 
     section.services {
@@ -2018,7 +2019,7 @@
     }
 
     .guarantees {
-        padding: 0 0 247.5rem 0;
+        padding: 0 0 247.5rem 0 !important;
     }
 }
 

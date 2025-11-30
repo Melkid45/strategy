@@ -445,11 +445,20 @@
         }
 
         .xcode-cards {
-            padding-left: 0;
+            padding-left: 467px;
             width: 100%;
             margin-top: 80px;
             overflow: visible;
-
+            display: flex;
+            gap: 40px;
+            .item.active{
+                background: var(--black);
+                svg{
+                    path{
+                        stroke: var(--orange);
+                    }
+                }
+            }
             .item {
                 width: 427px;
                 min-width: 427px;
@@ -461,14 +470,14 @@
                 justify-content: space-between;
                 align-items: center;
                 transition: all 0.3s ease;
-                background: var(--black);
+                background: transparent;
 
                 svg {
                     width: 120px;
                     height: 120px;
 
                     path {
-                        stroke: var(--orange);
+                        stroke: var(--text-grey);
                         transition: all 0.3s ease;
                     }
                 }
@@ -621,6 +630,7 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
+    padding-bottom: 1200px !important;
 
     &__body {
         padding-top: 64px;
