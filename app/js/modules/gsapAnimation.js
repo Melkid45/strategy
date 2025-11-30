@@ -109,14 +109,14 @@ if (document.querySelector('.feedback') && width > 750) {
 if (document.querySelector('.guarantees')) {
   let IsSmallMobile = window.innerWidth < 380;
   let GuaranteesCircleStart;
+  const circle = document.querySelector('.guarantees-circle');
   function getGuaranteesConfig() {
-    const circle = document.querySelector('.guarantees-circle');
 
     return {
       scale: IsDestop ? 22 : 25,
       yPercent: IsDestop ? -60 : -80,
-      start: circle ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
-      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 1}`
+      start: circle ? `top bottom-=${circle.clientHeight / 4}px` : 'top bottom',
+      end: IsDestop ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.6}`
     };
   }
   gsap.to('.guarantees-section', {
@@ -143,13 +143,25 @@ if (document.querySelector('.guarantees')) {
       start: config.start,
       end: config.end,
       scrub: 1,
+      pin: '.guarantees',
+      pinSpacing: false,
       anticipatePin: 1,
       onUpdate: (self) => {
         const canvas = document.querySelector('.guarantees-canvas');
         if (canvas) canvas.style.opacity = self.progress >= 0.4 ? "1" : "0";
-      }
+      },
     },
   });
+  gsap.to('.case', {
+  scrollTrigger: {
+    trigger: '.case',
+    start: 'top bottom',
+    end: '+=150%',
+    toggleActions: "play reverse play reverse",
+    onLeave: () => circle.style.display = 'none',
+    onEnterBack: () => circle.style.display = 'block',
+  },
+});
 }
 
 

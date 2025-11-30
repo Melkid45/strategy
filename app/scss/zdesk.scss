@@ -520,7 +520,9 @@
 
             .xcode-cards {
                 margin-top: 80rem;
-
+                .splide__track{
+                    overflow: visible;
+                }
                 .item {
                     width: 426rem !important;
                     min-width: 426rem;
@@ -799,7 +801,9 @@
             transform-origin: center center;
             bottom: auto;
         }
-
+        .dot-canvas{
+            z-index: 6;
+        }
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
@@ -1979,7 +1983,7 @@
     }
 
     section.case {
-        padding: 0 0 200rem 0rem;
+        padding: 0rem 0 200rem 0rem;
     }
 
     section.services {
@@ -1994,12 +1998,8 @@
         padding: 200rem 0rem;
     }
 
-    .implementation+.longest {
-        padding-top: 0 !important;
-    }
-
     section.feedback {
-        padding: 100rem 0 0rem 0rem;
+        padding: 0rem 0 0rem 0rem;
     }
 
     section.faq {
