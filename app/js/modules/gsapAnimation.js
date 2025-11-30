@@ -116,7 +116,7 @@ if (document.querySelector('.guarantees')) {
       scale: IsDestop ? 22 : 25,
       yPercent: IsDestop ? -60 : -80,
       start: circle ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
-      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 2.8}`
+      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 3}`
     };
   }
   gsap.to('.guarantees-section', {
