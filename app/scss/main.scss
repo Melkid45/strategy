@@ -618,7 +618,6 @@
 
 .guarantees {
     width: 100%;
-    padding-bottom: 1200px;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -700,20 +699,6 @@
                 z-index: 0;
             }
         }
-
-        .guarantees-circle {
-            position: absolute;
-            bottom: -832px;
-            align-self: center;
-            width: 832px;
-            will-change: transform, scale;
-            height: 832px;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
     }
 }
 
@@ -726,8 +711,21 @@
 .case {
     width: 100%;
     background: var(--black);
-    overflow: hidden;
     position: relative;
+
+    .guarantees-circle {
+        position: absolute;
+        bottom: -832px;
+        align-self: center;
+        width: 832px;
+        will-change: transform, scale;
+        height: 832px;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
 
     &__body {
         padding-top: 64px;

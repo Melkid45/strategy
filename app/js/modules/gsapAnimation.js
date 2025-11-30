@@ -116,7 +116,7 @@ if (document.querySelector('.guarantees')) {
       scale: IsDestop ? 22 : 25,
       yPercent: IsDestop ? -60 : -80,
       start: circle ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
-      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 3}`
+      end: IsDestop ? `+=${window.innerHeight * 1.2}` : `+=${window.innerHeight * 1}`
     };
   }
   gsap.to('.guarantees-section', {
@@ -133,7 +133,6 @@ if (document.querySelector('.guarantees')) {
   })
   const config = getGuaranteesConfig();
   gsap.to('.guarantees-circle', {
-    yPercent: config.yPercent,
     scale: config.scale,
     ease: 'none',
     rotate: 90,
@@ -141,11 +140,9 @@ if (document.querySelector('.guarantees')) {
     transformStyle: "preserve-3d",
     scrollTrigger: {
       trigger: '.guarantees-circle',
-      pin: '.guarantees',
       start: config.start,
       end: config.end,
       scrub: 1,
-      pinSpacing: false,
       anticipatePin: 1,
       onUpdate: (self) => {
         const canvas = document.querySelector('.guarantees-canvas');
@@ -279,6 +276,4 @@ function initSplitAnimation() {
   });
 }
 
-if (window.innerWidth > 750) {
-  initSplitAnimation();
-}
+initSplitAnimation();

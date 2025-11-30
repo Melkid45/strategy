@@ -535,6 +535,7 @@
                     position: relative;
                     z-index: 3;
                     background: var(--black);
+
                     svg {
                         width: 120rem;
                         height: 120rem;
@@ -700,7 +701,6 @@
 
     .guarantees {
         width: 100%;
-        padding-bottom: 1200rem;
         &__body {
             padding-top: 64rem;
             border-top: 1rem solid #FFFFFF33;
@@ -781,23 +781,24 @@
                     z-index: 0;
                 }
             }
-
-            .guarantees-circle {
-                position: absolute;
-                bottom: -932rem;
-                align-self: center;
-                width: 832rem;
-                height: 832rem;
-                transform-origin: center center;
-            }
         }
     }
 
     .case {
         width: 100%;
         background: var(--black);
-        overflow: hidden;
         z-index: 1;
+        display: flex;
+        justify-content: center;
+        .guarantees-circle {
+            position: absolute;
+            top: -416rem;
+            align-self: center;
+            width: 832rem;
+            height: 832rem;
+            transform-origin: center center;
+            bottom: auto;
+        }
 
         &__body {
             padding-top: 64rem;
@@ -1970,7 +1971,7 @@
     }
 
     section.xcode {
-        padding: 0rem 0rem ;
+        padding: 0rem 0rem;
     }
 
     section.awards {
@@ -2025,7 +2026,7 @@
         padding: 0rem 0 200rem 0;
     }
 
-    .guarantees {
-        padding-top: 0 !important;
+    section.guarantees {
+        padding: 0 0 616rem 0;
     }
 }
