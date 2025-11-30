@@ -20,6 +20,7 @@ window.addEventListener('load', () => {
           immediate: true,
           duration: 0.1
         });
+        ScrollTrigger.refresh();
       }
 
       requestAnimationFrame(() => {
