@@ -185,14 +185,15 @@ if (document.querySelector('.guarantees')) {
   function getGuaranteesConfig() {
 
     return {
-      scale: IsDestop ? 22 : 25,
+      scale: IsDestop ? 22 : 20,
       yPercent: IsDestop ? -60 : -80,
       start: circle ? `top bottom-=${circle.clientHeight / 6}px` : 'top bottom',
-      end: IsDestop ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1}`
+      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.8}`
     };
   }
   const config = getGuaranteesConfig();
   if (windowWidth <= 750) {
+    // Первая анимация - scale и rotate
     gsap.to('.guarantees-circle', {
       scale: config.scale,
       ease: 'none',
@@ -208,10 +209,18 @@ if (document.querySelector('.guarantees')) {
         pin: '.guarantees',
         pinSpacing: false,
         anticipatePin: 1,
-        onUpdate: (self) => {
-          const canvas = document.querySelector('.guarantees-canvas');
-          if (canvas) canvas.style.opacity = self.progress >= 0.4 ? "1" : "0";
-        },
+      },
+    });
+
+    gsap.to('.guarantees-circle', {
+      yPercent: 50,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.guarantees-circle',
+        start: config.start,
+        end: config.end,
+        scrub: 1,
+        markers: true,
       },
     });
     gsap.to('.case', {
