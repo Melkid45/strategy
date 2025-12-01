@@ -205,7 +205,6 @@ if (document.querySelector('.guarantees')) {
         start: config.start,
         end: config.end,
         scrub: 1,
-        markers: true,
         pin: '.guarantees',
         pinSpacing: false,
         anticipatePin: 1,
@@ -220,7 +219,6 @@ if (document.querySelector('.guarantees')) {
         start: config.start,
         end: config.end,
         scrub: 1,
-        markers: true,
       },
     });
     gsap.to('.case', {
