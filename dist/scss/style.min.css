@@ -6735,7 +6735,11 @@ a {
         height: 335rem;
         z-index: 5;
         background: url(../images/dist/quard-circle.svg) center no-repeat;
-        background-size: cover
+        background-size: cover;
+        image-rendering: optimizeQuality;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        backface-visibility: hidden;
     }
 
     .services {
