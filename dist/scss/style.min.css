@@ -6734,6 +6734,13 @@ a {
         width: 335rem;
         height: 335rem;
         z-index: 5;
+        shape-rendering: geometricPrecision;
+        transform-origin: center center;
+        transform-box: fill-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 
     .services {
