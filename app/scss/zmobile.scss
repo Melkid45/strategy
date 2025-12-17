@@ -916,6 +916,8 @@
             z-index: 5;
             will-change: auto;
             background: url(../images/dist/case-circle.svg) no-repeat 0 0/cover;
+            display: inline-block;
+            
             svg {
                 width: 100%;
                 height: 100%;
