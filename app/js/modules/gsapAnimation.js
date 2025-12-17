@@ -44,11 +44,9 @@ if (document.querySelector('.hero-block') && IsDestop) {
 }
 
 
-
-
 // Cards Xcode
 let lastIndex = 0;
-if (document.querySelector('.xcode')) {
+if (document.querySelector('.xcode') && windowWidth > 750) {
   let xcodeContainer = document.querySelector('.xcode-cards');
   let xcodeContainerHieght = xcodeContainer.clientHeight
   let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
@@ -120,6 +118,15 @@ if (document.querySelector('.xcode')) {
   }
 
 
+} else {
+  const flkty = new Flickity('.xcode-cards', {
+    cellAlign: 'left',
+    contain: true,
+    prevNextButtons: false,
+    pageDots: false,
+    wrapAround: true,
+  });
+  document.querySelectorAll('.xcode-cards .item').forEach((el) => el.classList.remove('active'))
 }
 
 
@@ -258,7 +265,7 @@ if (document.querySelector('.guarantees')) {
 // Implementation Block
 if (document.querySelector('.implementation') && IsDestop) {
   let blockHight = document.querySelector('.implementation').clientHeight
-  let ImpFormula = 15 + ((windowHeight - blockHight) / 10)
+  let ImpFormula = ((windowHeight - blockHight) / 10)
   gsap.to('.implementation .circle-hero', {
     scale: 15,
     yPercent: 450,

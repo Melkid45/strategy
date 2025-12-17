@@ -9,8 +9,10 @@ function setupMarquee(container, {
   const item = container.firstElementChild;
   const gap = parseFloat(getComputedStyle(container).gap) || 0;
 
+  const isMobile = window.matchMedia('(max-width: 750px)').matches;
+
   let formula = 0;
-  let speed = 120;
+  let speed = isMobile ? 70 : 120;
   let tween;
 
   function recalcWidth() {

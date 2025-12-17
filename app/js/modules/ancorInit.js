@@ -5,8 +5,8 @@ let isRedirectingFromCase = false;
 
 window.addEventListener('load', () => {
   const urlParams = new URLSearchParams(window.location.search);
-  isRedirectingFromCase = urlParams.get('fromCase') === 'true' || 
-                         document.referrer.includes('case-page');
+  isRedirectingFromCase = urlParams.get('fromCase') === 'true' ||
+    document.referrer.includes('case-page');
 
   const waitForReady = () => {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof lenis === 'undefined') {
@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
 
     gsap.delayedCall(0.3, () => {
       if (!isRedirectingFromCase) {
-        lenis.scrollTo(0, { 
+        lenis.scrollTo(0, {
           immediate: true,
           duration: 0.1
         });
@@ -27,13 +27,13 @@ window.addEventListener('load', () => {
         requestAnimationFrame(() => {
           initAnchorLinks();
           isReady = true;
-          
+
           if (isRedirectingFromCase && window.location.hash) {
             setTimeout(() => {
               scrollToAnchor(window.location.hash);
             }, 100);
           }
-          
+
         });
       });
     });
@@ -61,11 +61,9 @@ function initAnchorLinks() {
         return;
       }
 
-      if (isHomePage) {
-        const anchorPart = href.split('?')[0];
-        console.log('Scrolling to anchor:', anchorPart);
-        scrollToAnchor(anchorPart);
-      }
+      const anchorPart = href.split('?')[0];
+      console.log('Scrolling to anchor:', anchorPart);
+      scrollToAnchor(anchorPart);
     });
   });
 }
@@ -77,7 +75,7 @@ function scrollToAnchor(anchorId) {
   }
 
   const cleanAnchorId = anchorId.split('?')[0];
-  
+
   const target = document.querySelector(cleanAnchorId);
   if (!target) {
     return;

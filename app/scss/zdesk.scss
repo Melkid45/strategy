@@ -118,6 +118,7 @@
     .soft-title {
         @include soft-title(14rem, 500, 20rem);
         color: var(--white);
+        white-space: nowrap;
     }
 
     .soft-description {
@@ -795,6 +796,15 @@
                 align-self: center;
                 width: 832rem;
                 height: 832rem;
+                display: inline-flex;
+                background: url(../images/dist/quard-circle.svg) no-repeat 0 0/cover;
+                background-size: cover;
+                unicode-bidi: isolate;
+                will-change: rotate;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
             }
         }
     }
@@ -1803,6 +1813,7 @@
                 align-self: flex-end;
                 max-width: 893rem;
                 margin-top: 80rem;
+                margin-bottom: 120rem;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
@@ -1826,10 +1837,10 @@
 
             .project_screens {
                 position: relative;
-                margin-top: 120rem;
                 align-self: center;
                 width: 1010rem;
                 height: 972rem;
+                margin-top: 0;
 
                 img {
                     width: 100%;

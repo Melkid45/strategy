@@ -56,3 +56,20 @@
     @include soft-description(20px,400 ,120%);
     color: var(--white);
 }
+.title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 193px;
+
+    .circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--white);
+    }
+
+    span {
+        color: var(--white);
+    }
+}

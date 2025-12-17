@@ -1,5 +1,5 @@
 
-if (width > 750) {
+
 (function () {
   const DOTS = 10;
   const FOLLOW_SPEED = 0.15;
@@ -21,6 +21,7 @@ if (width > 750) {
   for (let i = 0; i < DOTS; i++) {
     const el = document.createElement('div');
     el.className = 'cursor-dot tail';
+    if (!trailRoot) return;
     trailRoot.appendChild(el);
     dots.push({ el, x: pointer.x, y: pointer.y, scale: 1, opacity: 0 });
   }
@@ -42,10 +43,10 @@ if (width > 750) {
     const element = document.elementFromPoint(x, y);
     if (element) {
       const isInteractive =
-        element.tagName === 'A' ||
-        element.tagName === 'BUTTON' ||
-        element.style.cursor === 'pointer' ||
-        window.getComputedStyle(element).cursor === 'pointer';
+          element.tagName === 'A' ||
+          element.tagName === 'BUTTON' ||
+          element.style.cursor === 'pointer' ||
+          window.getComputedStyle(element).cursor === 'pointer';
       pointer.isHovering = isInteractive;
     } else {
       pointer.isHovering = false;
@@ -67,9 +68,9 @@ if (width > 750) {
 
   function animate() {
     const dotScale = lerp(
-      parseFloat(cursorDot.dataset.scale || 1),
-      pointer.isHovering ? 1.2 : 1,
-      0.2
+        parseFloat(cursorDot.dataset.scale || 1),
+        pointer.isHovering ? 1.2 : 1,
+        0.2
     );
     cursorDot.dataset.scale = dotScale;
     cursorDot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px,0) translate(-50%, -50%) scale(${dotScale})`;
@@ -97,8 +98,5 @@ if (width > 750) {
 
     requestAnimationFrame(animate);
   }
-    requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 })();
-
-
-}

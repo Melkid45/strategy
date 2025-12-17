@@ -15,15 +15,12 @@ function updateScrollDelayed() {
 function handleAccordionClick($item) {
   const $siblings = $item.siblings('.item');
   const isAlreadyOpen = $item.hasClass('open');
-
   $siblings.removeClass('open');
-
   if (!isAlreadyOpen) {
     $item.addClass('open');
   } else {
     $item.removeClass('open');
   }
-
   updateScrollDelayed();
 }
 

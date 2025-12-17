@@ -1,9 +1,4 @@
 /*<-----Feedback----->*/
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
   const fileWrap = document.querySelector('.file-wrap');
   if (!fileWrap) return;
@@ -52,12 +47,5 @@ $('.form-action button').on('click', function (e) {
       $element.classList.add('has-val')
     }
   })
-  if (col == 5) {
-    $('.feedback-form-main').remove()
-    $('.form-send').fadeIn(300)
-    $('.form-default').remove()
-    lenis.scrollTo('.ancor-form', {
-      duration: 0.3,
-    })
-  }
+
 })
