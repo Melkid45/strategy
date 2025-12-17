@@ -164,8 +164,6 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
   });
 }
 
-
-
 // Guarantees Block
 if (document.querySelector('.feedback') && width > 750) {
   gsap.set('.feedback-form, .guarantees-section', {
@@ -200,13 +198,10 @@ if (document.querySelector('.guarantees')) {
   }
   const config = getGuaranteesConfig();
   if (windowWidth <= 750) {
-    // Первая анимация - scale и rotate
     gsap.to('.guarantees-circle', {
       scale: config.scale,
       ease: 'none',
       rotate: 90,
-      force3D: true,
-      transformStyle: "preserve-3d",
       scrollTrigger: {
         trigger: '.guarantees-circle',
         start: config.start,
@@ -214,7 +209,6 @@ if (document.querySelector('.guarantees')) {
         scrub: 1,
         pin: '.guarantees',
         pinSpacing: false,
-        anticipatePin: 1,
       },
     });
 
@@ -233,6 +227,7 @@ if (document.querySelector('.guarantees')) {
         trigger: '.case',
         start: 'top bottom',
         end: '+=150%',
+        immediateRender: true,
         toggleActions: "play reverse play reverse",
         onLeave: () => circle.style.display = 'none',
         onEnterBack: () => circle.style.display = 'block',
@@ -260,6 +255,7 @@ if (document.querySelector('.guarantees')) {
     });
   }
 }
+
 
 
 // Implementation Block
