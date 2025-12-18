@@ -191,18 +191,14 @@ if (document.querySelector('.guarantees')) {
 
     return {
       scale: IsDestop ? 22 : 20,
-      yPercent: `335rem`,
-      start: circle && IsDestop || isTouch ? `top bottom-=${circle.clientHeight / 6}px` : !isTouch && !IsDestop ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
-      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1.5}`
+      yPercent: IsDestop ? -60 : -80,
+      start: circle ? `top bottom-=${circle.clientHeight / 6}px` : 'top bottom',
+      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.8}`
     };
   }
   const config = getGuaranteesConfig();
   if (windowWidth <= 750) {
-    gsap.to('.guarantees-circle', {
-      scale: config.scale,
-      yPercent: 170,
-      ease: 'none',
-      rotate: 90,
+    const guaranteesTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: '.guarantees-circle',
         start: config.start,
@@ -211,8 +207,20 @@ if (document.querySelector('.guarantees')) {
         scrub: 1,
         pin: '.guarantees',
         pinSpacing: false,
-      },
+      }
     });
+
+    // Анимация scale по этапам
+    guaranteesTimeline
+      .to('.guarantees-circle', {
+        keyframes: [
+          { scale: 9, duration: 2 },
+          { scale: 10, duration: 2 },
+          { scale: 12, duration: 2 }
+        ],
+        ease: 'none',
+        rotate: 90,
+      });
     gsap.to('.case', {
       scrollTrigger: {
         trigger: '.case',
