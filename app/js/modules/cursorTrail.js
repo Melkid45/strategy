@@ -1,6 +1,6 @@
 
 
-(function () {
+function CursorTrail() {
   const DOTS = 10;
   const FOLLOW_SPEED = 0.15;
   const SPEED_THRESHOLD = 1.5;
@@ -99,4 +99,8 @@
     requestAnimationFrame(animate);
   }
   requestAnimationFrame(animate);
-})();
+};
+
+if (window.innerWidth > 750){
+  CursorTrail();
+}

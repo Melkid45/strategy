@@ -133,7 +133,6 @@
     .header.open {
         background: #151519;
         height: 100%;
-        mix-blend-mode: normal;
     }
 
     .header {
@@ -141,7 +140,7 @@
         padding-top: 20rem;
         z-index: 90;
         transition: all 0.5s ease;
-        mix-blend-mode: difference;
+        mix-blend-mode: normal;
         position: fixed;
         top: 0;
         left: 0;
@@ -909,15 +908,14 @@
 
         .guarantees-circle {
             position: absolute;
-            top: -167.5rem;
+            top: -335rem;
             bottom: auto;
             width: 335rem;
             height: 335rem;
             z-index: 5;
+            display: inline-block;
             will-change: auto;
             background: url(../images/dist/case-circle.svg) no-repeat 0 0/cover;
-            display: inline-block;
-            
             svg {
                 width: 100%;
                 height: 100%;
@@ -2035,7 +2033,7 @@
     }
 
     .guarantees {
-        padding: 0 0 247.5rem 0 !important;
+        padding: 0 0 415rem 0 !important;
     }
 }
 

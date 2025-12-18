@@ -191,35 +191,26 @@ if (document.querySelector('.guarantees')) {
 
     return {
       scale: IsDestop ? 22 : 20,
-      yPercent: IsDestop ? -60 : -80,
-      start: circle ? `top bottom-=${circle.clientHeight / 6}px` : 'top bottom',
-      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.8}`
+      yPercent: `335rem`,
+      start: circle && IsDestop || isTouch ? `top bottom-=${circle.clientHeight / 6}px` : !isTouch && !IsDestop ? `top bottom-=${circle.clientHeight / 2}px` : 'top bottom',
+      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1.5}`
     };
   }
   const config = getGuaranteesConfig();
   if (windowWidth <= 750) {
     gsap.to('.guarantees-circle', {
       scale: config.scale,
+      yPercent: 170,
       ease: 'none',
       rotate: 90,
       scrollTrigger: {
         trigger: '.guarantees-circle',
         start: config.start,
         end: config.end,
+        markers: true,
         scrub: 1,
         pin: '.guarantees',
         pinSpacing: false,
-      },
-    });
-
-    gsap.to('.guarantees-circle', {
-      yPercent: 50,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.guarantees-circle',
-        start: config.start,
-        end: config.end,
-        scrub: 1,
       },
     });
     gsap.to('.case', {
