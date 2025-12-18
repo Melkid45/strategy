@@ -214,12 +214,13 @@ if (document.querySelector('.guarantees')) {
     guaranteesTimeline
       .to('.guarantees-circle', {
         keyframes: [
-          { scale: 9, duration: 2 },
-          { scale: 10, duration: 2 },
+          { scale: 7, duration: 1.5 },
+          { scale: 7, duration: 2 },
+          { scale: 7, duration: 2 },
           { scale: 12, duration: 2 }
         ],
         ease: 'none',
-        rotate: 90,
+        rotate: 110,
       });
     gsap.to('.case', {
       scrollTrigger: {

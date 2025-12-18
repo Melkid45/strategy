@@ -1,0 +1,138 @@
+@media (max-width: 1100px) and (min-width: 751px) {
+    .hero-block{
+        height: auto;
+    }
+    .hero-block__body{
+        height: auto;
+        padding: 156rem 0rem;
+        .hero__body-items{
+            .item{
+                border-top: 1rem solid #8F919A33;
+            }
+        }
+    }
+    .hero-block-scroll{
+        bottom: 80rem;
+    }
+    .implementation{
+        height: auto;
+    }
+    .longest.different{
+        overflow: hidden;
+        padding-top: 80rem !important;
+        .dot-patern{
+            display: flex;
+        }
+    }
+    .agency{
+        .content{
+            width: 100%;
+            position: static;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 24rem;
+            padding-left: 40rem;
+        }
+    }
+    .content__img{
+        opacity: 1 !important;
+        scale: 1 !important;
+        position: static !important;
+        height: 266rem !important;
+        width: 416rem !important;
+        min-width: 416rem;
+        img{
+            filter: none !important;
+        }
+    }
+    .header__body-logo{
+        font-size: 42rem;
+    }
+    .header__body-action{
+        span{
+            font-size: 24rem;
+        }
+        button {
+            padding: 15rem 30rem !important;
+            svg{
+                width: 28rem !important;
+                height: 28rem !important;
+            }
+        }
+    }
+    .ancor-item{
+        padding: 20rem 36rem !important;
+    }
+    .navbar li{
+        font-size: 22rem;
+        .home-btn{
+            padding: 15rem 32rem !important;
+        }
+        svg{
+            width: 24rem !important;
+            height: 24rem !important;
+        }
+    }
+    .preloader {
+        .text{
+            font-size: 36rem;
+        }
+    }
+    .agency{
+        padding-top: 200rem !important;
+    }
+    .title{
+        .circle {
+            width: 18rem;
+            height: 18rem;
+            min-height: 18rem;
+            min-width: 18rem;
+        }
+        span, h3{
+            white-space: nowrap;
+        }
+    }
+    .form-action {
+        .soft-title {
+            br{
+                display: none;
+            }
+        }
+    }
+    .soft-title{
+        font-size: 24rem;
+        line-height: 100%;
+    }
+    .soft-description{
+        font-size: 26rem;
+    }
+    .longest__body{
+        p{
+            font-size: 28rem;
+        }
+    }
+    .feedback__body .feedback-wrap p{
+        max-width: 587rem;
+    }
+    .faq__body .faq-frame .item__bottom{
+        max-width: 547rem;
+    }
+    .guarantees__body .guarantees__wrap p {
+        max-width: 547rem;
+    }
+    .contact__body .contact-frame .action a{
+        padding: 22rem 144rem;
+    }
+    .xcode__body .xcode-cards .item p{
+        br{
+            display: none;
+        }
+    }
+    section.project{
+        padding: 200rem 0 0 0;
+    }
+    section.gallery {
+        padding: 200rem 0 0 0;
+    }
+}

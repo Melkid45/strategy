@@ -1,0 +1,42 @@
+.header.back{
+    transform: translateY(-100%);
+}
+.header{
+    width: 100%;
+    padding-top: 52px;
+    z-index: 99;
+    transition: all 0.5s ease;
+    mix-blend-mode: difference;
+    position: fixed;
+    top: 0;
+    left: 0;
+    &__body{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        &-logo{
+            @include main-title(24px, 700, 20px);
+            color: var(--white);
+            text-transform: uppercase;
+        }
+        &-action{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            span{
+                color: var(--white);
+            }
+            .action-write{
+                padding: 10px 18px;
+                background: var(--so-grey);
+                border-radius: 40px;
+                backdrop-filter: blur(10px);
+                svg{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
