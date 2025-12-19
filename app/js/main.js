@@ -62,13 +62,13 @@ if (document.querySelector('.gallery')) {
   }, 100);
 }
 $('.menu-scrolling').on('click', function (e) {
-  if ($('.burger').hasClass('open')){
+  if ($('.burger').hasClass('open')) {
     lenis.start()
-  }else{
+  } else {
     lenis.stop();
   }
   $(this).children('.burger').toggleClass('open')
-  
+
   $('.header').toggleClass('open')
 })
 
@@ -77,3 +77,12 @@ $('.header-menu-mob li').on('click', function (e) {
   $('.menu-scrolling').children('.burger').removeClass('open')
   $('.header').removeClass('open')
 })
+
+
+
+if (window.innerWidth <= 750) {
+  ScrollTrigger.normalizeScroll({
+    allowNestedScroll: true, // важно для мобилок
+  });
+  gsap.ticker.lagSmoothing(0);
+}

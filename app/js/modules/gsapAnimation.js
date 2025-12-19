@@ -119,14 +119,18 @@ if (document.querySelector('.xcode') && windowWidth > 750) {
 
 
 } else {
-  const flkty = new Flickity('.xcode-cards', {
-    cellAlign: 'left',
-    contain: true,
-    prevNextButtons: false,
-    pageDots: false,
-    wrapAround: true,
-  });
-  document.querySelectorAll('.xcode-cards .item').forEach((el) => el.classList.remove('active'))
+  let xcodeItems = gsap.utils.toArray('.xcode-cards .item');
+  if (xcodeItems.length) {
+    const flkty = new Flickity('.xcode-cards', {
+      cellAlign: 'left',
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false,
+      wrapAround: true,
+    });
+    document.querySelectorAll('.xcode-cards .item').forEach((el) => el.classList.remove('active'))
+  }
+
 }
 
 
@@ -164,6 +168,8 @@ if (document.querySelector('.wrap-agency-animation') && !IsDestop) {
   });
 }
 
+
+
 // Guarantees Block
 if (document.querySelector('.feedback') && width > 750) {
   gsap.set('.feedback-form, .guarantees-section', {
@@ -193,7 +199,7 @@ if (document.querySelector('.guarantees')) {
       scale: IsDestop ? 22 : 20,
       yPercent: IsDestop ? -60 : -80,
       start: circle ? `top bottom-=${circle.clientHeight / 6}px` : 'top bottom',
-      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 0.8}`
+      end: IsDestop || isTouch ? `+=${window.innerHeight * 1}` : `+=${window.innerHeight * 1}`
     };
   }
   const config = getGuaranteesConfig();
@@ -203,21 +209,17 @@ if (document.querySelector('.guarantees')) {
         trigger: '.guarantees-circle',
         start: config.start,
         end: config.end,
-        markers: true,
+        markers: false,
         scrub: 1,
         pin: '.guarantees',
         pinSpacing: false,
       }
     });
 
-    // Анимация scale по этапам
     guaranteesTimeline
       .to('.guarantees-circle', {
         keyframes: [
-          { scale: 7, duration: 1.5 },
-          { scale: 7, duration: 2 },
-          { scale: 7, duration: 2 },
-          { scale: 12, duration: 2 }
+          { scale: 8, duration: 10 }
         ],
         ease: 'none',
         rotate: 110,
@@ -227,7 +229,6 @@ if (document.querySelector('.guarantees')) {
         trigger: '.case',
         start: 'top bottom',
         end: '+=150%',
-        immediateRender: true,
         toggleActions: "play reverse play reverse",
         onLeave: () => circle.style.display = 'none',
         onEnterBack: () => circle.style.display = 'block',
@@ -255,7 +256,6 @@ if (document.querySelector('.guarantees')) {
     });
   }
 }
-
 
 
 // Implementation Block

@@ -101,6 +101,7 @@ function CursorTrail() {
   requestAnimationFrame(animate);
 };
 
+CursorTrail();
 if (window.innerWidth > 750){
-  CursorTrail();
+
 }

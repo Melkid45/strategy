@@ -685,9 +685,14 @@
         position: absolute;
         bottom: -832px;
         align-self: center;
-        will-change: auto;
         width: 832px;
+        will-change: transform, scale;
         height: 832px;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
 
     &__body {

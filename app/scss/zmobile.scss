@@ -512,7 +512,6 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20rem;
-
                 h2 {
                     color: var(--white);
                     margin-top: 0 !important;
@@ -523,16 +522,13 @@
                 padding-left: 0rem;
                 margin-top: 80rem;
                 gap: 20rem;
-
-                .flickity-viewport {
+                .flickity-viewport{
                     width: 100%;
                     overflow: visible !important;
                 }
-
-                .splide__track {
+                .splide__track{
                     overflow: visible;
                 }
-
                 .item {
                     width: 246rem;
                     min-width: 246rem;
@@ -547,7 +543,6 @@
                     background: transparent;
                     transition: background 0.3s ease;
                     border: 1rem solid #FFFFFF33;
-
                     svg {
                         width: 60rem;
                         height: 60rem;
@@ -806,8 +801,9 @@
         position: relative;
         display: flex;
         justify-content: center;
-
+        z-index: 6;
         &__body {
+            margin-top: 40px;
             padding-top: 40rem;
             border-top: 1rem solid #FFFFFF33;
             display: flex;
@@ -815,7 +811,6 @@
             position: relative;
             z-index: 6;
             background: var(--black);
-
             .case__top {
                 display: flex;
                 flex-direction: column;
@@ -915,7 +910,7 @@
             z-index: 5;
             display: inline-block;
             will-change: auto;
-            background: url(../images/dist/case-circle.svg) no-repeat 0 0/cover;
+            background: url(/images/dist/case-circle.svg) no-repeat 0 0/cover;
             svg {
                 width: 100%;
                 height: 100%;
@@ -1997,7 +1992,7 @@
     }
 
     section.case {
-        padding: 0rem 0rem 80rem 0rem;
+        padding:0rem 0rem 80rem 0rem;
     }
 
     section.services {

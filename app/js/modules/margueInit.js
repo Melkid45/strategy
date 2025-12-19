@@ -12,7 +12,7 @@ function setupMarquee(container, {
   const isMobile = window.matchMedia('(max-width: 750px)').matches;
 
   let formula = 0;
-  let speed = isMobile ? 70 : 120;
+  let speed = isMobile ? 50 : 120;
   let tween;
 
   function recalcWidth() {
