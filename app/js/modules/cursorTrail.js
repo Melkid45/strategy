@@ -43,10 +43,10 @@ function CursorTrail() {
     const element = document.elementFromPoint(x, y);
     if (element) {
       const isInteractive =
-          element.tagName === 'A' ||
-          element.tagName === 'BUTTON' ||
-          element.style.cursor === 'pointer' ||
-          window.getComputedStyle(element).cursor === 'pointer';
+        element.tagName === 'A' ||
+        element.tagName === 'BUTTON' ||
+        element.style.cursor === 'pointer' ||
+        window.getComputedStyle(element).cursor === 'pointer';
       pointer.isHovering = isInteractive;
     } else {
       pointer.isHovering = false;
@@ -68,9 +68,9 @@ function CursorTrail() {
 
   function animate() {
     const dotScale = lerp(
-        parseFloat(cursorDot.dataset.scale || 1),
-        pointer.isHovering ? 1.2 : 1,
-        0.2
+      parseFloat(cursorDot.dataset.scale || 1),
+      pointer.isHovering ? 1.2 : 1,
+      0.2
     );
     cursorDot.dataset.scale = dotScale;
     cursorDot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px,0) translate(-50%, -50%) scale(${dotScale})`;
@@ -101,7 +101,6 @@ function CursorTrail() {
   requestAnimationFrame(animate);
 };
 
-CursorTrail();
-if (window.innerWidth > 750){
-
+if (window.innerWidth > 750) {
+  CursorTrail();
 }

@@ -12,9 +12,6 @@ body {
     margin: 0 auto;
     overflow-x: hidden;
     width: 100%;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
     cursor: none;
     position: relative;
     z-index: 1;
@@ -27,6 +24,7 @@ body {
     position: relative;
     z-index: 1;
     overflow: hidden;
+    width: 100%;
 }
 
 .cursor {

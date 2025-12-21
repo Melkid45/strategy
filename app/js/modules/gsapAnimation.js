@@ -237,14 +237,14 @@ if (document.querySelector('.guarantees')) {
   } else {
     gsap.to('.guarantees-guarantees', {
       yPercent: config.yPercent,
-      scale: config.scale,
+      scale: isTouch ? 25 : config.scale,
       ease: 'none',
       rotate: 90,
       scrollTrigger: {
         trigger: '.guarantees-guarantees',
         pin: '.guarantees',
         start: config.start,
-        end: () => IsDestop ? `+=${window.innerHeight * 1.8}` : `+=${window.innerHeight * 2}`,
+        end: () => IsDestop ? `+=${window.innerHeight * 1.8}` : `+=${window.innerHeight * 1.5}`,
         scrub: 1,
         pinSpacing: false,
         onUpdate: (self) => {

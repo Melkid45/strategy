@@ -3,12 +3,16 @@ ScrollTrigger.config({
   ignoreMobileResize: true,
   autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
 });
-const lenis = new Lenis({
-  autoRaf: true,
-  lerp: 0.1,
-  smooth: true,
-});
 let isMobile = window.innerWidth <= 750;
+const lenis = new Lenis({
+    autoRaf: true,
+    lerp: 0.1,
+    smooth: true,
+  });
+if (isMobile) {
+  lenis.destroy()
+}
+
 let ticking = false;
 let lastScrollTop = 0;
 let isScrollingDown = false;
@@ -35,7 +39,7 @@ if (!isMobile) {
     });
   });
 }
-if (document.querySelector('.gallery')) {
+if (document.querySelector('.gallery-splide')) {
   let gallery = new Splide('.gallery-splide', {
     perPage: 1,
     perMove: 1,
@@ -56,7 +60,7 @@ if (document.querySelector('.gallery')) {
       const paginationWidth = pagination.clientWidth
       let totalWidthPag = (paginationWidth - ((splides.length + 1) * gap)) / splides.length
       $('.splide__pagination__page').css({
-        width: `${totalWidthPag}`
+        width: `${totalWidthPag - 5}`
       })
     }
   }, 100);
