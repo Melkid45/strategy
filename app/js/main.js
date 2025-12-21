@@ -5,14 +5,10 @@ ScrollTrigger.config({
 });
 let isMobile = window.innerWidth <= 750;
 const lenis = new Lenis({
-    autoRaf: true,
-    lerp: 0.1,
-    smooth: true,
-  });
-if (isMobile) {
-  lenis.destroy()
-}
-
+  autoRaf: true,
+  lerp: 0.1,
+  smooth: true,
+});
 let ticking = false;
 let lastScrollTop = 0;
 let isScrollingDown = false;
@@ -81,12 +77,3 @@ $('.header-menu-mob li').on('click', function (e) {
   $('.menu-scrolling').children('.burger').removeClass('open')
   $('.header').removeClass('open')
 })
-
-
-
-if (window.innerWidth <= 750) {
-  ScrollTrigger.normalizeScroll({
-    allowNestedScroll: true, // важно для мобилок
-  });
-  gsap.ticker.lagSmoothing(0);
-}

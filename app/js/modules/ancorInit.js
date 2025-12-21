@@ -46,7 +46,7 @@ function initAnchorLinks() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
-
+      lenis.start()
       const href = anchor.getAttribute('href');
       if (!href || href === '#') return;
 

@@ -123,6 +123,7 @@
     .soft-title {
         @include soft-title(14rem, 500, 20rem);
         color: var(--white);
+        white-space: wrap;
     }
 
     .soft-description {
@@ -451,7 +452,8 @@
                 width: 100%;
                 height: 100%;
                 overflow: hidden;
-                img{
+
+                img {
                     width: 100%;
                     height: 100%;
                 }
@@ -549,11 +551,21 @@
                     overflow: visible;
                 }
 
+                .item.is-selected {
+                    background: var(--black);
+
+                    svg {
+                        path {
+                            stroke: var(--orange);
+                        }
+                    }
+                }
+
                 .item {
-                    width: 246rem;
-                    min-width: 246rem;
+                    width: 246rem !important;
+                    min-width: 246rem !important;
                     height: 322rem;
-                    margin-right: 20rem;
+                    margin-right: 20rem !important;
                     padding: 20rem;
                     border-radius: 16rem;
                     display: flex;
@@ -663,6 +675,10 @@
         background: var(--black);
         overflow: visible;
         position: relative;
+
+        .dot-patern {
+            display: block;
+        }
 
         .stroke-wrap {
             color: #8F919A;
@@ -919,7 +935,7 @@
                 height: 48rem;
                 border-radius: 40rem;
                 border: 1rem solid var(--white);
-                color: var(--white);
+                color: var(--black);
                 margin-top: 40rem;
                 align-self: center;
                 display: flex;
@@ -1081,9 +1097,11 @@
                 width: 100%;
                 gap: 20rem;
                 border-top: 1rem solid #FFFFFF33;
-                .wrap-animation{
+
+                .wrap-animation {
                     position: relative;
                 }
+
                 .main-title {
                     color: var(--white);
                 }
@@ -1566,7 +1584,6 @@
                     padding: 0rem 0rem 20rem 0rem;
                     border-top: none;
                 }
-
                 .item {
                     width: 100%;
                     padding: 20rem 0rem 0 0;
@@ -1581,7 +1598,7 @@
                         bottom: -100rem;
                         width: 100%;
                         height: 200rem;
-
+                        display: none;
                     }
 
                     .line-bottom {
@@ -1605,7 +1622,6 @@
                     display: flex;
                     flex-direction: column;
                     gap: 20rem;
-
                     a {
                         padding: 0;
                         width: 100%;
@@ -1788,11 +1804,15 @@
         }
     }
 
+    section.project {
+        padding: 80rem 0 0 0;
+        position: relative;
+    }
+
     .project {
         width: 100%;
         background: var(--black);
         overflow: hidden;
-        padding-bottom: 0rem;
 
         &__body {
             display: flex;
