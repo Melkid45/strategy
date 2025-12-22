@@ -5,8 +5,16 @@ let isRedirectingFromCase = false;
 
 window.addEventListener('load', () => {
   const urlParams = new URLSearchParams(window.location.search);
-  isRedirectingFromCase = urlParams.get('fromCase') === 'true' ||
-    document.referrer.includes('case-page');
+  const isReload =
+    performance.getEntriesByType('navigation')[0]?.type === 'reload';
+
+  const isRedirectingFromCase =
+    !isReload &&
+    (
+      urlParams.get('fromCase') === 'true' ||
+      document.referrer.includes('case-page')
+    );
+
 
   const waitForReady = () => {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof lenis === 'undefined') {
