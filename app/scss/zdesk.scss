@@ -412,7 +412,9 @@
                         max-height: 1000rem;
                     }
                 }
-
+                .item:last-child{
+                    padding-bottom: 0;
+                }
                 .item {
                     padding: 64rem 0rem;
                     border-top: 1rem solid #FFFFFF33;
@@ -605,6 +607,9 @@
                 }
                 .item:first-child {
                     padding: 0 0 64rem 0rem;
+                }
+                .item:last-child{
+                    padding-bottom: 0;
                 }
                 .item {
                     padding: 64rem 0rem;
